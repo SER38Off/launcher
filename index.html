@@ -23,6 +23,7 @@
             --status-green: #10b981;
             --status-green-bg: rgba(16, 185, 129, 0.15);
             --status-red: #ef4444;
+            --status-gold: #f59e0b;
             --input-bg: rgba(0, 0, 0, 0.5);
         }
 
@@ -57,7 +58,7 @@
         }
         @keyframes gridMove { from { transform: translateY(0); } to { transform: translateY(-40px); } }
 
-        /* --- ГЛОБАЛЬНЫЕ КЛАССЫ ЭКРАНОВ И ВКЛАДОК (ИСПРАВЛЕНО) --- */
+        /* --- ГЛОБАЛЬНЫЕ КЛАССЫ ЭКРАНОВ И ВКЛАДОК --- */
         .screen { display: none !important; width: 100%; height: 100%; justify-content: center; align-items: center; animation: fadeIn 0.4s ease; }
         .screen.active { display: flex !important; }
         
@@ -106,7 +107,7 @@
 
         /* --- БОКОВОЕ МЕНЮ --- */
         .sidebar { width: 250px; background: var(--bg-sidebar); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 30px 0; }
-        .brand { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 50px; display: flex; align-items: center; justify-content: center; gap: 12px; letter-spacing: -0.5px;}
+        .brand { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 40px; display: flex; align-items: center; justify-content: center; gap: 12px; letter-spacing: -0.5px;}
         .brand i { color: var(--accent-color); filter: drop-shadow(0 0 8px var(--accent-glow)); font-size: 26px;}
 
         .nav-items { display: flex; flex-direction: column; gap: 8px; padding: 0 20px; flex-grow: 1; }
@@ -115,10 +116,25 @@
         .nav-item.active { color: #fff; background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--accent-color); box-shadow: inset 20px 0 20px -20px var(--accent-glow); }
         .nav-item i { font-size: 18px; width: 20px; text-align: center; }
 
-        .user-profile { padding: 25px 25px 0; border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; margin: 0 20px; }
+        .user-profile { padding: 20px 25px 15px; border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; margin: 0 20px; }
         .avatar { width: 45px; height: 45px; border-radius: 12px; background: rgba(59, 130, 246, 0.1); display: flex; justify-content: center; align-items: center; color: var(--accent-color); font-size: 20px; border: 1px solid rgba(59, 130, 246, 0.3);}
         .user-info .name { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 2px;}
-        .user-info .sub { font-size: 12px; color: var(--status-green); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;}
+        .user-info .sub { font-size: 12px; color: var(--status-green); font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; transition: 0.3s;}
+
+        /* --- БЛОК БАЛАНСА В МЕНЮ --- */
+        .balance-block {
+            display: flex; justify-content: space-between; align-items: center;
+            margin: 0 20px; padding: 12px 15px; background: var(--status-green-bg);
+            border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px;
+            box-shadow: inset 0 0 10px rgba(16, 185, 129, 0.1);
+        }
+        .balance-amount { font-size: 16px; font-weight: 800; color: var(--status-green); text-shadow: 0 0 10px var(--status-green); display: flex; align-items: center; gap: 8px;}
+        .balance-amount i { font-size: 14px; }
+        .btn-topup {
+            background: var(--status-green); color: #000; width: 28px; height: 28px; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; font-size: 14px; transition: 0.3s; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+        .btn-topup:hover { transform: scale(1.1); box-shadow: 0 0 15px var(--status-green); background: #34d399; }
 
         /* --- ОСНОВНОЙ КОНТЕНТ --- */
         .main-content { flex-grow: 1; display: flex; flex-direction: column; position: relative; background: rgba(0,0,0,0.2); }
@@ -127,16 +143,13 @@
         .window-controls { display: flex; gap: 12px; }
         .control-dot { width: 14px; height: 14px; border-radius: 50%; background: #444; cursor: pointer; transition: 0.3s; }
         .control-dot.close:hover { background: var(--status-red); box-shadow: 0 0 10px var(--status-red); }
-        .control-dot.min:hover { background: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
+        .control-dot.min:hover { background: var(--status-gold); box-shadow: 0 0 10px var(--status-gold); }
 
-        /* ИСПРАВЛЕНИЕ: Убрали flex-direction: column; отсюда, оно теперь внутри .tab-content */
         .workspace { padding: 35px 40px; height: calc(100% - 60px); overflow-y: auto; width: 100%; }
         .section-title { font-size: 30px; font-weight: 800; margin-bottom: 30px; color: var(--text-main); letter-spacing: -0.5px;}
 
-        /* --- РАЗДЕЛЕННАЯ ВКЛАДКА LIBRARY (БИБЛИОТЕКА) --- */
+        /* --- РАЗДЕЛЕННАЯ ВКЛАДКА LIBRARY --- */
         .library-layout { display: flex; gap: 35px; height: 100%; flex-grow: 1; overflow: hidden; width: 100%; }
-        
-        /* Левая колонка: Список игр */
         .owned-games-list { width: 280px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; padding-right: 15px; }
         .owned-game-item { padding: 18px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
         .owned-game-item:hover { border-color: var(--text-muted); background: var(--bg-card-hover); }
@@ -147,24 +160,26 @@
         .owned-game-title { font-size: 15px; font-weight: 700; color: var(--text-main); }
         .owned-game-status { font-size: 12px; color: var(--status-green); font-weight: 600; }
 
-        /* Правая колонка: Панель инжекта */
-        .inject-panel { flex-grow: 1; display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .inject-panel { flex-grow: 1; display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow-y: auto;}
         
-        /* Заглушка, если нет игр */
         .empty-library { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--text-muted); text-align: center; }
         .empty-library i { font-size: 60px; margin-bottom: 20px; opacity: 0.5; }
         .empty-library h3 { font-size: 20px; color: var(--text-main); margin-bottom: 10px; }
 
-        /* Контент панели инжекта */
         .inject-game-header { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid var(--border-color); }
         .inject-game-icon { width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 14px; display: flex; justify-content: center; align-items: center; font-size: 28px; color: var(--accent-color); box-shadow: 0 0 20px var(--accent-glow); }
         .inject-game-title { font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
         .inject-game-sub { font-size: 13px; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 8px; }
         .inject-game-sub span { padding: 4px 8px; background: var(--status-green-bg); color: var(--status-green); border-radius: 6px; font-weight: 700; font-size: 11px; text-transform: uppercase; }
 
-        .sys-badges { display: flex; gap: 15px; margin-bottom: 30px; }
+        .sys-badges { display: flex; gap: 15px; margin-bottom: 20px; }
         .sys-badge { flex: 1; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; color: var(--text-main); }
         .sys-badge i { font-size: 18px; color: var(--status-green); }
+
+        .library-configs { margin-bottom: 20px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; }
+        .lib-cfg-title { font-size: 12px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 10px; letter-spacing: 1px; }
+        .lib-cfg-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .lib-cfg-item { background: rgba(59, 130, 246, 0.1); color: var(--accent-color); padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; border: 1px solid rgba(59, 130, 246, 0.3); }
 
         .btn-inject { width: 100%; padding: 22px; border-radius: 14px; background: var(--accent-color); border: none; color: #fff; font-size: 18px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--accent-glow); margin-bottom: 20px; }
         .btn-inject:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 15px 35px var(--accent-glow); }
@@ -172,18 +187,22 @@
         .progress-container { width: 100%; height: 8px; background: var(--input-bg); border-radius: 4px; overflow: hidden; display: none; margin-bottom: 20px; border: 1px solid var(--border-color); }
         .progress-bar { width: 0%; height: 100%; background: var(--status-green); box-shadow: 0 0 10px var(--status-green); transition: width 0.1s linear; }
 
-        .terminal { flex-grow: 1; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); overflow-y: hidden; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: inset 0 5px 15px rgba(0,0,0,0.3); min-height: 120px;}
+        .terminal { flex-grow: 1; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); overflow-y: auto; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: inset 0 5px 15px rgba(0,0,0,0.3); min-height: 120px;}
         .log-line { margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
         .log-time { color: var(--text-muted); margin-right: 8px; opacity: 0.5; }
         .log-info { color: var(--accent-color); }
         .log-success { color: var(--status-green); text-shadow: 0 0 8px var(--status-green); }
+        .log-warn { color: var(--status-gold); }
         .log-error { color: var(--status-red); }
 
-        /* --- ВКЛАДКА: STORE --- */
+        /* --- ВКЛАДКА: МАГАЗИН И КОНФИГИ --- */
         .store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding-bottom: 20px; width: 100%;}
-        .store-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; }
+        .store-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
         .store-card:hover { border-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); background: var(--bg-card-hover); }
         .store-icon { width: 55px; height: 55px; background: rgba(59, 130, 246, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--accent-color); margin-bottom: 20px; border: 1px solid rgba(59, 130, 246, 0.2);}
+        
+        .cfg-badge { position: absolute; top: 25px; right: 25px; background: rgba(59,130,246,0.15); color: var(--accent-color); font-size: 11px; padding: 4px 8px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(59,130,246,0.3); }
+
         .store-title { font-size: 18px; font-weight: 800; color: var(--text-main); line-height: 1.2;}
         .store-price { font-size: 18px; font-weight: 800; color: var(--status-green); margin: 12px 0 20px; }
         .store-btn { padding: 12px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 10px; font-weight: 700; font-size: 14px; transition: 0.3s; margin-top: auto; }
@@ -205,18 +224,38 @@
         .setting-control select, .setting-control button { padding: 12px 20px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 10px; font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.3s; min-width: 150px; text-align: center;}
         .setting-control select:hover, .setting-control button:hover { border-color: var(--accent-color); }
 
+        /* --- МОДАЛЬНОЕ ОКНО ПОПОЛНЕНИЯ (TOP UP) И ПРОМОКОДОВ --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
+            z-index: 10000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: var(--bg-launcher); border: 1px solid var(--border-color); border-radius: 20px;
+            padding: 40px; width: 400px; text-align: center; position: relative;
+            transform: scale(0.9); transition: 0.3s ease; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: transparent; color: var(--text-muted); font-size: 20px; border: none; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px;}
+        .modal-close:hover { color: #fff; background: var(--status-red); }
+        
+        .promo-divider { width: 100%; height: 1px; background: var(--border-color); margin-bottom: 25px; position: relative; }
+        .promo-divider span { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--bg-launcher); padding: 0 10px; color: var(--text-muted); font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+
         /* TOAST */
         #toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; }
-        .toast { background: var(--bg-sidebar); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px 25px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); animation: toastIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, toastOut 0.4s 3s ease forwards; }
-        .toast i { color: var(--status-green); font-size: 24px; filter: drop-shadow(0 0 8px var(--status-green)); }
+        .toast { background: var(--bg-sidebar); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px 25px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); animation: toastIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, toastOut 0.4s 3s ease forwards; border-left: 4px solid var(--accent-color); }
+        .toast.success { border-left-color: var(--status-green); }
+        .toast.success i { color: var(--status-green); filter: drop-shadow(0 0 8px var(--status-green)); }
+        .toast.error { border-left-color: var(--status-red); }
+        .toast.error i { color: var(--status-red); filter: drop-shadow(0 0 8px var(--status-red)); }
+        .toast.info { border-left-color: var(--accent-color); }
+        .toast.info i { color: var(--accent-color); filter: drop-shadow(0 0 8px var(--accent-color)); }
+        .toast i { font-size: 24px; }
         .toast-text { font-size: 15px; font-weight: 600; color: var(--text-main); }
         @keyframes toastIn { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100px); } }
-
-        /* ЭФФЕКТ RIPPLE ДЛЯ КНОПОК */
-        .ripple-btn { position: relative; overflow: hidden; }
-        .ripple { position: absolute; border-radius: 50%; transform: scale(0); animation: ripple-anim 0.6s linear; background: rgba(255, 255, 255, 0.3); pointer-events: none; }
-        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
     </style>
 </head>
 <body>
@@ -249,15 +288,23 @@
                 <div class="nav-items">
                     <div class="nav-item active" data-target="tab-library"><i class="fa-solid fa-gamepad"></i> <span data-i18n="nav_library">Library</span></div>
                     <div class="nav-item" data-target="tab-store"><i class="fa-solid fa-cart-shopping"></i> <span data-i18n="nav_store">Store</span></div>
+                    <div class="nav-item" data-target="tab-configs"><i class="fa-solid fa-sliders"></i> <span data-i18n="nav_configs">Configs</span></div>
                     <div class="nav-item" data-target="tab-spoofer"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="nav_spoofer">Spoofer</span></div>
                     <div class="nav-item" data-target="tab-settings"><i class="fa-solid fa-gear"></i> <span data-i18n="nav_settings">Settings</span></div>
                 </div>
+                
                 <div class="user-profile">
                     <div class="avatar"><i class="fa-solid fa-user"></i></div>
                     <div class="user-info">
                         <div class="name" id="displayUsername">User</div>
-                        <div class="sub" data-i18n="user_status">Active Sub</div>
+                        <div class="sub" id="displayUserStatus" data-i18n="user_status">Premium</div>
                     </div>
+                </div>
+
+                <!-- БЛОК БАЛАНСА -->
+                <div class="balance-block">
+                    <div class="balance-amount" id="balanceDisplay"><i class="fa-solid fa-wallet"></i> 0 ₽</div>
+                    <button class="btn-topup ripple-btn" id="openTopupBtn" title="Top Up"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </aside>
 
@@ -273,26 +320,22 @@
                 <!-- Вкладка: LIBRARY -->
                 <div class="workspace tab-content active" id="tab-library">
                     <h2 class="section-title" data-i18n="title_library">My Library</h2>
-                    
                     <div class="library-layout">
-                        <!-- Левая панель: Список купленных игр -->
-                        <div class="owned-games-list" id="ownedGamesList">
-                            <!-- Генерируется через JS -->
-                        </div>
-
-                        <!-- Правая панель: Инжект -->
-                        <div class="inject-panel" id="injectPanel">
-                            <!-- Генерируется через JS -->
-                        </div>
+                        <div class="owned-games-list" id="ownedGamesList"></div>
+                        <div class="inject-panel" id="injectPanel"></div>
                     </div>
                 </div>
 
                 <!-- Вкладка: STORE -->
                 <div class="workspace tab-content" id="tab-store">
                     <h2 class="section-title" data-i18n="title_store">Cheat Store</h2>
-                    <div class="store-grid" id="storeGrid">
-                        <!-- Генерируется через JS -->
-                    </div>
+                    <div class="store-grid" id="storeGrid"></div>
+                </div>
+
+                <!-- Вкладка: CONFIGS -->
+                <div class="workspace tab-content" id="tab-configs">
+                    <h2 class="section-title" data-i18n="title_configs">Config Store</h2>
+                    <div class="store-grid" id="configsGrid"></div>
                 </div>
 
                 <!-- Вкладка: SPOOFER -->
@@ -312,52 +355,42 @@
                 <div class="workspace tab-content" id="tab-settings">
                     <h2 class="section-title" data-i18n="title_settings">Settings</h2>
                     <div class="settings-grid">
-                        
                         <div class="setting-row">
-                            <div class="setting-info">
-                                <h4 data-i18n="set_lang">Language</h4>
-                                <p data-i18n="set_lang_desc">Select interface language.</p>
-                            </div>
-                            <div class="setting-control">
-                                <select id="langSelect">
-                                    <option value="en">English</option>
-                                    <option value="ru">Русский</option>
-                                </select>
-                            </div>
+                            <div class="setting-info"><h4 data-i18n="set_lang">Language</h4><p data-i18n="set_lang_desc">Select interface language.</p></div>
+                            <div class="setting-control"><select id="langSelect"><option value="ru">Русский</option><option value="en">English</option></select></div>
                         </div>
-
                         <div class="setting-row">
-                            <div class="setting-info">
-                                <h4 data-i18n="set_curr">Currency</h4>
-                                <p data-i18n="set_curr_desc">Store display currency.</p>
-                            </div>
-                            <div class="setting-control">
-                                <select id="currSelect">
-                                    <option value="RUB">RUB ₽</option>
-                                    <option value="USD">USD $</option>
-                                    <option value="EUR">EUR €</option>
-                                </select>
-                            </div>
+                            <div class="setting-info"><h4 data-i18n="set_curr">Currency</h4><p data-i18n="set_curr_desc">Store display currency.</p></div>
+                            <div class="setting-control"><select id="currSelect"><option value="RUB">RUB ₽</option><option value="USD">USD $</option><option value="EUR">EUR €</option></select></div>
                         </div>
-
                         <div class="setting-row">
-                            <div class="setting-info">
-                                <h4 data-i18n="set_theme">App Theme</h4>
-                                <p data-i18n="set_theme_desc">Toggle dark/light mode.</p>
-                            </div>
-                            <div class="setting-control">
-                                <button id="themeToggleBtn" class="ripple-btn"><i class="fa-solid fa-moon"></i> <span data-i18n="btn_theme">Toggle Theme</span></button>
-                            </div>
+                            <div class="setting-info"><h4 data-i18n="set_theme">App Theme</h4><p data-i18n="set_theme_desc">Toggle dark/light mode.</p></div>
+                            <div class="setting-control"><button id="themeToggleBtn" class="ripple-btn"><i class="fa-solid fa-moon"></i> <span data-i18n="btn_theme">Toggle Theme</span></button></div>
                         </div>
-
                         <div class="setting-row" style="margin-top: 20px; border-color: transparent; background: transparent; padding: 0;">
                             <button style="padding: 15px 30px; background: rgba(239, 68, 68, 0.1); color: var(--status-red); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; font-weight: 800; font-size: 15px; width: 100%; transition: 0.3s;" id="logoutBtn" class="ripple-btn" data-i18n="btn_logout">Logout Account</button>
                         </div>
-
                     </div>
                 </div>
 
             </main>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПОПОЛНЕНИЯ (С ПРОМОКОДАМИ) -->
+    <div class="modal-overlay" id="topupModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeTopupBtn"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 25px;" data-i18n="topup_title">Пополнить баланс</h2>
+            
+            <button class="auth-btn ripple-btn" style="background: var(--accent-color); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 10px;" id="tgTopupBtn">
+                <i class="fa-brands fa-telegram" style="font-size: 20px;"></i> <span data-i18n="topup_tg_btn">Купить через Telegram</span>
+            </button>
+
+            <div class="promo-divider"><span data-i18n="topup_promo_text">ИЛИ ПРОМОКОД</span></div>
+
+            <input type="text" class="auth-input" id="topupPromo" data-i18n-placeholder="topup_promo_ph" placeholder="Введите промокод" style="text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 15px;">
+            <button class="auth-btn ripple-btn" style="background: var(--status-green); color: #000; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);" id="confirmPromoBtn" data-i18n="topup_promo_btn">Активировать</button>
         </div>
     </div>
 
@@ -366,7 +399,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- БАЗА ДАННЫХ ИГР (ВСЕ 16 ИГР С САЙТА) ---
+            // --- БАЗЫ ДАННЫХ ---
             const dbGames = [
                 { id: "pubg", title: "PUBG Mobile", icon: "fa-mobile-screen-button", basePrice: 250 },
                 { id: "codm", title: "CoD: Mobile", icon: "fa-jet-fighter", basePrice: 240 },
@@ -386,10 +419,27 @@
                 { id: "gta5", title: "GTA V / FiveM", icon: "fa-car", basePrice: 300 }
             ];
 
-            let ownedGames = []; // Изначально пусто
-            let activeGameId = null; // Текущая выбранная игра в библиотеке
+            const dbConfigs = [
+                { id: "c_pubg_1", gameId: "pubg", name: "Safe Conqueror CFG", basePrice: 60 },
+                { id: "c_pubg_2", gameId: "pubg", name: "Brutal Rage Setup", basePrice: 90 },
+                { id: "c_cs2_1", gameId: "cs2", name: "Faceit Safe CFG", basePrice: 150 },
+                { id: "c_cs2_2", gameId: "cs2", name: "Legit CFG by Admin", basePrice: 50 },
+                { id: "c_rust_1", gameId: "rust", name: "M249 Beam Macro", basePrice: 100 },
+                { id: "c_val_1", gameId: "val", name: "Radiant Legit Profile", basePrice: 200 },
+                { id: "c_dota_1", gameId: "dota2", name: "Tinker/Meepo Combo", basePrice: 90 },
+                { id: "c_fn_1", gameId: "fn", name: "FNCS Winner CFG", basePrice: 150 },
+                { id: "c_ab_1", gameId: "ab", name: "Full Loot Filter", basePrice: 100 },
+                { id: "c_eft_1", gameId: "eft", name: "Labs Chad CFG", basePrice: 300 },
+                { id: "c_gta_1", gameId: "gta5", name: "Casino Rig (Money)", basePrice: 150 }
+            ];
+
+            // --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ---
+            let ownedGames = []; 
+            let ownedConfigs = []; 
+            let activeGameId = null; 
+            let userBalanceRUB = 0; 
+            let usedPromos = []; // Список использованных промокодов
             
-            // --- СОСТОЯНИЕ НАСТРОЕК ---
             let currentLang = 'ru';
             let currentCurr = 'RUB';
             let isDark = true;
@@ -401,60 +451,38 @@
             // --- СЛОВАРЬ (i18n) ---
             const i18n = {
                 ru: {
-                    auth_sub_login: "Войдите в свой аккаунт", auth_sub_reg: "Создайте новый аккаунт",
-                    auth_user: "Имя пользователя", auth_pass: "Пароль",
-                    auth_btn_login: "Войти", auth_btn_reg: "Зарегистрироваться",
-                    auth_switch_reg: "Нет аккаунта? Создать", auth_switch_login: "Уже есть аккаунт? Войти",
-                    nav_library: "Библиотека", nav_store: "Магазин", nav_spoofer: "Спуфер", nav_settings: "Настройки",
-                    user_status: "Premium", title_library: "Библиотека",
-                    btn_inject: "Запустить", btn_injecting: "Инициализация...",
+                    auth_sub_login: "Войдите в свой аккаунт", auth_sub_reg: "Создайте новый аккаунт", auth_user: "Имя пользователя", auth_pass: "Пароль", auth_btn_login: "Войти", auth_btn_reg: "Зарегистрироваться", auth_switch_reg: "Нет аккаунта? Создать", auth_switch_login: "Уже есть аккаунт? Войти",
+                    nav_library: "Библиотека", nav_store: "Магазин Игр", nav_configs: "Конфиги", nav_spoofer: "Спуфер", nav_settings: "Настройки",
+                    user_status: "Premium", status_elite: "Elite User", status_god: "GOD MODE",
+                    title_library: "Библиотека", title_configs: "Магазин Конфигов", btn_inject: "Запустить", btn_injecting: "Инициализация...",
                     sys_server: "Сервер онлайн", sys_driver: "Драйвер загружен", sys_ac: "Античит отключен", sys_safe: "Undetected",
                     title_store: "Магазин читов", btn_buy: "Купить", btn_owned: "Куплено",
                     empty_lib_title: "Библиотека пуста", empty_lib_desc: "Перейдите в магазин, чтобы купить софт.",
                     title_spoofer: "HWID Спуфер", spoof_title: "Защити свое железо", spoof_desc: "Наш Ring-0 спуфер безопасно подменяет серийные номера ПК (Disk, Motherboard, MAC), предотвращая баны по железу во всех играх.", btn_spoof: "ЗАПУСТИТЬ СПУФЕР",
                     title_settings: "Настройки", set_lang: "Язык", set_lang_desc: "Выберите язык интерфейса.", set_curr: "Валюта", set_curr_desc: "Отображение цен в магазине.", set_theme: "Тема", set_theme_desc: "Светлый или темный режим.", btn_theme: "Сменить", btn_logout: "Выйти из аккаунта",
-                    toast_buy: "Покупка успешна! Софт в библиотеке.", toast_spoof: "Спуфер запущен! HWID подменен."
+                    toast_buy: "Покупка успешна! Софт в библиотеке.", toast_cfg_buy: "Конфиг успешно приобретен!", toast_spoof: "Спуфер запущен! HWID подменен.", toast_no_money: "Недостаточно средств на балансе!",
+                    cfg_default: "Настройки по умолчанию", cfg_active: "Активные конфиги:",
+                    topup_title: "Пополнить баланс", topup_tg_btn: "Купить через Telegram", topup_promo_text: "ИЛИ ПРОМОКОД", topup_promo_ph: "Введите промокод", topup_promo_btn: "Активировать",
+                    toast_promo: "Промокод успешно активирован!", toast_promo_used: "Этот промокод уже использован!", toast_promo_invalid: "Неверный промокод!"
                 },
                 en: {
-                    auth_sub_login: "Sign in to your account", auth_sub_reg: "Create a new account",
-                    auth_user: "Username", auth_pass: "Password",
-                    auth_btn_login: "Login", auth_btn_reg: "Register",
-                    auth_switch_reg: "Don't have an account? Register", auth_switch_login: "Already have an account? Login",
-                    nav_library: "Library", nav_store: "Store", nav_spoofer: "Spoofer", nav_settings: "Settings",
-                    user_status: "Premium", title_library: "My Library",
-                    btn_inject: "Launch Hack", btn_injecting: "Initializing...",
+                    auth_sub_login: "Sign in to your account", auth_sub_reg: "Create a new account", auth_user: "Username", auth_pass: "Password", auth_btn_login: "Login", auth_btn_reg: "Register", auth_switch_reg: "Don't have an account? Register", auth_switch_login: "Already have an account? Login",
+                    nav_library: "Library", nav_store: "Game Store", nav_configs: "Configs", nav_spoofer: "Spoofer", nav_settings: "Settings",
+                    user_status: "Premium", status_elite: "Elite User", status_god: "GOD MODE",
+                    title_library: "My Library", title_configs: "Config Store", btn_inject: "Launch Hack", btn_injecting: "Initializing...",
                     sys_server: "Server Online", sys_driver: "Driver Loaded", sys_ac: "Anti-Cheat Bypassed", sys_safe: "Undetected",
                     title_store: "Cheat Store", btn_buy: "Purchase", btn_owned: "Owned",
                     empty_lib_title: "Library is empty", empty_lib_desc: "Go to the store to purchase software.",
                     title_spoofer: "HWID Spoofer", spoof_title: "Protect Your Hardware", spoof_desc: "Our Ring-0 spoofer safely changes your PC serial numbers (Disk, Motherboard, MAC) to prevent hardware bans in all games.", btn_spoof: "SPOOF HWID NOW",
                     title_settings: "Settings", set_lang: "Language", set_lang_desc: "Select interface language.", set_curr: "Currency", set_curr_desc: "Store display currency.", set_theme: "App Theme", set_theme_desc: "Toggle dark/light mode.", btn_theme: "Toggle", btn_logout: "Logout Account",
-                    toast_buy: "Purchase successful! Added to Library.", toast_spoof: "Spoofer active! HWID spoofed."
+                    toast_buy: "Purchase successful! Added to Library.", toast_cfg_buy: "Config successfully purchased!", toast_spoof: "Spoofer active! HWID spoofed.", toast_no_money: "Insufficient funds!",
+                    cfg_default: "Default Settings", cfg_active: "Active Configs:",
+                    topup_title: "Top Up Balance", topup_tg_btn: "Buy via Telegram", topup_promo_text: "OR PROMO CODE", topup_promo_ph: "Enter promo code", topup_promo_btn: "Activate",
+                    toast_promo: "Promo code successfully activated!", toast_promo_used: "Promo code already used!", toast_promo_invalid: "Invalid promo code!"
                 }
             };
 
-            // --- ЭЛЕМЕНТЫ DOM ---
-            const authScreen = document.getElementById('auth-screen');
-            const launcherScreen = document.getElementById('launcher-screen');
-            const authForm = document.getElementById('authForm');
-            const authToggleBtn = document.getElementById('authToggleBtn');
-            const authSubmitBtn = document.getElementById('authSubmitBtn');
-            const authSubtitle = document.getElementById('auth-subtitle');
-            const usernameInput = document.getElementById('authUsername');
-            const displayUsername = document.getElementById('displayUsername');
-            
-            const navItems = document.querySelectorAll('.nav-item');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            const ownedGamesList = document.getElementById('ownedGamesList');
-            const injectPanel = document.getElementById('injectPanel');
-            const storeGrid = document.getElementById('storeGrid');
-            
-            const langSelect = document.getElementById('langSelect');
-            const currSelect = document.getElementById('currSelect');
-            const themeToggleBtn = document.getElementById('themeToggleBtn');
-            const logoutBtn = document.getElementById('logoutBtn');
-
-            // --- ЭФФЕКТ RIPPLE ДЛЯ КНОПОК ---
+            // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
             function createRipple(event) {
                 const button = event.currentTarget;
                 const circle = document.createElement("span");
@@ -466,9 +494,9 @@
                 circle.style.top = `${event.clientY - rect.top - radius}px`;
                 circle.classList.add("ripple");
                 const existingRipple = button.querySelector('.ripple');
-                if (existingRipple) { existingRipple.remove(); }
+                if (existingRipple) existingRipple.remove();
                 button.appendChild(circle);
-                setTimeout(() => { circle.remove(); }, 600);
+                setTimeout(() => circle.remove(), 600);
             }
             function attachRipple() {
                 document.querySelectorAll('.ripple-btn').forEach(btn => {
@@ -477,290 +505,296 @@
                 });
             }
 
-            // --- 1. ЛОГИКА АВТОРИЗАЦИИ (ФЕЙК) ---
-            authToggleBtn.addEventListener('click', () => {
-                isLoginMode = !isLoginMode;
+            function showToast(text, type = 'success') {
+                const cont = document.getElementById('toast-container');
+                const t = document.createElement('div');
+                t.className = `toast ${type}`;
+                let icon = 'fa-circle-check';
+                if(type === 'error') icon = 'fa-circle-xmark';
+                if(type === 'info') icon = 'fa-circle-info';
+                
+                t.innerHTML = `<i class="fa-solid ${icon}"></i> <span class="toast-text">${text}</span>`;
+                cont.appendChild(t);
+                setTimeout(() => t.remove(), 3400);
+            }
+
+            // ОБНОВЛЕНИЕ БАЛАНСА И РАНГА
+            function updateBalanceUI() {
+                const mult = rates[currentCurr];
+                const sym = symbols[currentCurr];
+                const val = Math.floor(userBalanceRUB * mult);
+                document.getElementById('balanceDisplay').innerHTML = `<i class="fa-solid fa-wallet"></i> ${val} ${sym}`;
+
+                // Обновление ранга
+                const statusEl = document.getElementById('displayUserStatus');
+                const totalItems = ownedGames.length + ownedConfigs.length;
+                const dict = i18n[currentLang];
+                
+                if (totalItems >= 5) {
+                    statusEl.innerText = dict.status_god;
+                    statusEl.style.color = "var(--status-gold)";
+                    statusEl.style.textShadow = "0 0 10px rgba(245, 158, 11, 0.5)";
+                } else if (totalItems >= 2) {
+                    statusEl.innerText = dict.status_elite;
+                    statusEl.style.color = "#3b82f6";
+                    statusEl.style.textShadow = "none";
+                } else {
+                    statusEl.innerText = dict.user_status;
+                    statusEl.style.color = "var(--status-green)";
+                    statusEl.style.textShadow = "none";
+                }
+            }
+
+            // --- 1. АВТОРИЗАЦИЯ ---
+            document.getElementById('authToggleBtn').addEventListener('click', () => { isLoginMode = !isLoginMode; updateI18n(); });
+            document.getElementById('authForm').addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                document.getElementById('displayUsername').innerText = document.getElementById('authUsername').value.trim() || "User";
+                document.getElementById('auth-screen').classList.remove('active');
+                document.getElementById('launcher-screen').classList.add('active');
+                
+                userBalanceRUB = 0; // Начинаем с 0
                 updateI18n();
             });
 
-            authForm.addEventListener('submit', (e) => {
-                e.preventDefault(); 
-                const user = usernameInput.value.trim() || "User";
-                displayUsername.innerText = user;
-                
-                authScreen.classList.remove('active');
-                launcherScreen.classList.add('active');
-                
-                renderLibrary();
-                renderStore();
-            });
-
-            logoutBtn.addEventListener('click', () => {
-                launcherScreen.classList.remove('active');
-                authScreen.classList.add('active');
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                document.getElementById('launcher-screen').classList.remove('active');
+                document.getElementById('auth-screen').classList.add('active');
                 document.getElementById('authPassword').value = '';
-                logoutBtn.style.background = '';
-                logoutBtn.style.color = '';
+                ownedGames = []; ownedConfigs = []; activeGameId = null; userBalanceRUB = 0; usedPromos = []; // Сброс аккаунта
             });
 
-            logoutBtn.addEventListener('mouseover', () => { logoutBtn.style.background = 'var(--status-red)'; logoutBtn.style.color = '#fff';});
-            logoutBtn.addEventListener('mouseleave', () => { logoutBtn.style.background = 'rgba(239, 68, 68, 0.1)'; logoutBtn.style.color = 'var(--status-red)';});
+            document.getElementById('logoutBtn').addEventListener('mouseover', () => { document.getElementById('logoutBtn').style.background = 'var(--status-red)'; document.getElementById('logoutBtn').style.color = '#fff';});
+            document.getElementById('logoutBtn').addEventListener('mouseleave', () => { document.getElementById('logoutBtn').style.background = 'rgba(239, 68, 68, 0.1)'; document.getElementById('logoutBtn').style.color = 'var(--status-red)';});
 
-            // --- 2. НАВИГАЦИЯ ПО ВКЛАДКАМ (ИСПРАВЛЕНА ДЛЯ 100% ИЗОЛЯЦИИ СТРАНИЦ) ---
-            navItems.forEach(item => {
+            // --- 2. НАВИГАЦИЯ ---
+            document.querySelectorAll('.nav-item').forEach(item => {
                 item.addEventListener('click', () => {
-                    navItems.forEach(n => n.classList.remove('active'));
-                    tabContents.forEach(t => t.classList.remove('active'));
-                    
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
                     item.classList.add('active');
                     document.getElementById(item.getAttribute('data-target')).classList.add('active');
                 });
             });
 
-            // --- 3. РЕНДЕР БИБЛИОТЕКИ (РАЗДЕЛЕННЫЙ ДИЗАЙН) ---
+            // --- 3. ПОПОЛНЕНИЕ БАЛАНСА И ПРОМОКОДЫ ---
+            const topupModal = document.getElementById('topupModal');
+            
+            document.getElementById('openTopupBtn').addEventListener('click', () => {
+                document.getElementById('topupPromo').value = '';
+                topupModal.classList.add('active');
+            });
+            
+            document.getElementById('closeTopupBtn').addEventListener('click', () => topupModal.classList.remove('active'));
+            
+            document.getElementById('tgTopupBtn').addEventListener('click', () => {
+                window.open('https://t.me/X_PROJECT7', '_blank');
+            });
+
+            document.getElementById('confirmPromoBtn').addEventListener('click', () => {
+                const promo = document.getElementById('topupPromo').value.trim().toUpperCase();
+                if (!promo) return;
+
+                if (usedPromos.includes(promo)) {
+                    showToast(i18n[currentLang].toast_promo_used, 'error');
+                    return;
+                }
+
+                let addedRUB = 0;
+                if (promo === 'ADMIN' || promo === 'XPROJECT') addedRUB = 10000;
+                else if (promo === 'FREE') addedRUB = 500;
+                
+                if (addedRUB > 0) {
+                    userBalanceRUB += addedRUB;
+                    usedPromos.push(promo);
+                    updateBalanceUI();
+                    showToast(i18n[currentLang].toast_promo, 'success');
+                    topupModal.classList.remove('active');
+                } else {
+                    showToast(i18n[currentLang].toast_promo_invalid, 'error');
+                }
+            });
+
+
+            // --- 4. РЕНДЕР БИБЛИОТЕКИ ---
             function renderLibrary() {
-                ownedGamesList.innerHTML = '';
+                const list = document.getElementById('ownedGamesList');
+                const panel = document.getElementById('injectPanel');
+                list.innerHTML = '';
                 const dict = i18n[currentLang];
 
                 if (ownedGames.length === 0) {
-                    injectPanel.innerHTML = `
-                        <div class="empty-library">
-                            <i class="fa-solid fa-ghost"></i>
-                            <h3>${dict.empty_lib_title}</h3>
-                            <p>${dict.empty_lib_desc}</p>
-                        </div>
-                    `;
+                    panel.innerHTML = `<div class="empty-library"><i class="fa-solid fa-ghost"></i><h3>${dict.empty_lib_title}</h3><p>${dict.empty_lib_desc}</p></div>`;
                     activeGameId = null;
                     return;
                 }
 
-                // Слева - список купленных игр
                 ownedGames.forEach((id, index) => {
                     const game = dbGames.find(g => g.id === id);
-                    if (!game) return;
-
                     if (!activeGameId && index === 0) activeGameId = id;
 
                     const item = document.createElement('div');
                     item.className = `owned-game-item ${activeGameId === id ? 'active' : ''}`;
-                    item.innerHTML = `
-                        <div class="owned-game-icon"><i class="fa-solid ${game.icon}"></i></div>
-                        <div class="owned-game-info">
-                            <div class="owned-game-title">${game.title}</div>
-                            <div class="owned-game-status"><i class="fa-solid fa-circle-check"></i> ${dict.sys_safe}</div>
-                        </div>
-                    `;
-                    item.addEventListener('click', () => {
-                        activeGameId = id;
-                        renderLibrary(); 
-                    });
-                    ownedGamesList.appendChild(item);
+                    item.innerHTML = `<div class="owned-game-icon"><i class="fa-solid ${game.icon}"></i></div><div class="owned-game-info"><div class="owned-game-title">${game.title}</div><div class="owned-game-status"><i class="fa-solid fa-circle-check"></i> ${dict.sys_safe}</div></div>`;
+                    item.addEventListener('click', () => { activeGameId = id; renderLibrary(); });
+                    list.appendChild(item);
                 });
 
-                // Справа - панель инжекта
                 if (activeGameId) {
-                    const activeGame = dbGames.find(g => g.id === activeGameId);
-                    injectPanel.innerHTML = `
-                        <div class="inject-game-header">
-                            <div class="inject-game-icon"><i class="fa-solid ${activeGame.icon}"></i></div>
-                            <div>
-                                <div class="inject-game-title">${activeGame.title}</div>
-                                <div class="inject-game-sub"><span>${dict.sys_safe}</span> Private Build Engine</div>
-                            </div>
-                        </div>
+                    const game = dbGames.find(g => g.id === activeGameId);
+                    const gameConfigs = dbConfigs.filter(c => c.gameId === activeGameId && ownedConfigs.includes(c.id));
+                    
+                    let configsHtml = '';
+                    if(gameConfigs.length > 0) {
+                        const items = gameConfigs.map(c => `<div class="lib-cfg-item"><i class="fa-solid fa-check"></i> ${c.name}</div>`).join('');
+                        configsHtml = `<div class="library-configs"><div class="lib-cfg-title">${dict.cfg_active}</div><div class="lib-cfg-list">${items}</div></div>`;
+                    } else {
+                        configsHtml = `<div class="library-configs"><div class="lib-cfg-title">${dict.cfg_active}</div><div class="lib-cfg-item" style="color:var(--text-muted); border-color:var(--border-color); background:rgba(255,255,255,0.05);"><i class="fa-solid fa-sliders"></i> ${dict.cfg_default}</div></div>`;
+                    }
 
-                        <div class="sys-badges">
-                            <div class="sys-badge"><i class="fa-solid fa-server"></i> ${dict.sys_server}</div>
-                            <div class="sys-badge"><i class="fa-solid fa-microchip"></i> ${dict.sys_driver}</div>
-                            <div class="sys-badge"><i class="fa-solid fa-shield-halved"></i> ${dict.sys_ac}</div>
-                        </div>
-
+                    panel.innerHTML = `
+                        <div class="inject-game-header"><div class="inject-game-icon"><i class="fa-solid ${game.icon}"></i></div><div><div class="inject-game-title">${game.title}</div><div class="inject-game-sub"><span>${dict.sys_safe}</span> Private Build Engine</div></div></div>
+                        <div class="sys-badges"><div class="sys-badge"><i class="fa-solid fa-server"></i> ${dict.sys_server}</div><div class="sys-badge"><i class="fa-solid fa-microchip"></i> ${dict.sys_driver}</div><div class="sys-badge"><i class="fa-solid fa-shield-halved"></i> ${dict.sys_ac}</div></div>
+                        ${configsHtml}
                         <button class="btn-inject ripple-btn" id="injectBtn">${dict.btn_inject}</button>
-                        
-                        <div class="progress-container" id="progContainer">
-                            <div class="progress-bar" id="progBar"></div>
-                        </div>
-
-                        <div class="terminal" id="terminalBox">
-                            <div class="log-line"><span class="log-time">[System]</span> X-Project Hook Ready. Select game process.</div>
-                        </div>
+                        <div class="progress-container" id="progContainer"><div class="progress-bar" id="progBar"></div></div>
+                        <div class="terminal" id="terminalBox"><div class="log-line"><span class="log-time">[System]</span> Hook Ready. Select game process.</div></div>
                     `;
                     
-                    bindInjectButton();
+                    document.getElementById('injectBtn').addEventListener('click', function() {
+                        const btn = this; const pCont = document.getElementById('progContainer'); const pBar = document.getElementById('progBar'); const term = document.getElementById('terminalBox');
+                        if(btn.disabled) return; btn.disabled = true;
+                        btn.innerText = dict.btn_injecting; btn.style.opacity = "0.7";
+                        pCont.style.display = "block"; pBar.style.width = "0%"; term.innerHTML = '';
+
+                        const seq = [
+                            { t: 300, p: 15, m: "Authenticating token...", type: "info" },
+                            { t: 900, p: 35, m: "Loading active config profiles...", type: "info" },
+                            { t: 1600, p: 60, m: "Bypassing anti-cheat services...", type: "warn" },
+                            { t: 2500, p: 85, m: "Mapping driver to Ring-0...", type: "info" },
+                            { t: 3200, p: 100, m: "Injection Successful! Hack is active in-game.", type: "success" }
+                        ];
+
+                        seq.forEach(s => {
+                            setTimeout(() => {
+                                pBar.style.width = `${s.p}%`;
+                                const d = document.createElement('div'); d.className = 'log-line';
+                                let c = 'log-info'; if(s.type==='success') c='log-success'; if(s.type==='warn') c='log-warn';
+                                d.innerHTML = `<span class="log-time">[Log]</span> <span class="${c}">${s.m}</span>`;
+                                term.appendChild(d); term.scrollTop = term.scrollHeight;
+                                if (s.p === 100) setTimeout(() => { btn.innerText = dict.btn_inject; btn.style.opacity = "1"; pCont.style.display = "none"; btn.disabled = false; }, 3000);
+                            }, s.t);
+                        });
+                    });
                     attachRipple();
                 }
             }
 
-            function bindInjectButton() {
-                const injectBtn = document.getElementById('injectBtn');
-                const progContainer = document.getElementById('progContainer');
-                const progBar = document.getElementById('progBar');
-                const terminalBox = document.getElementById('terminalBox');
-                let isInjecting = false;
-
-                function addLog(msg, type = 'info') {
-                    const now = new Date();
-                    const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-                    const div = document.createElement('div');
-                    div.className = 'log-line';
-                    let c = 'log-info'; if(type==='success') c='log-success'; if(type==='error') c='log-error';
-                    div.innerHTML = `<span class="log-time">[${timeStr}]</span> <span class="${c}">${msg}</span>`;
-                    terminalBox.appendChild(div);
-                    terminalBox.scrollTop = terminalBox.scrollHeight;
-                }
-
-                injectBtn.addEventListener('click', () => {
-                    if (isInjecting) return;
-                    isInjecting = true;
-                    
-                    injectBtn.innerText = i18n[currentLang].btn_injecting;
-                    injectBtn.style.opacity = "0.7";
-                    injectBtn.style.cursor = "wait";
-                    
-                    progContainer.style.display = "block";
-                    progBar.style.width = "0%";
-                    terminalBox.innerHTML = '';
-
-                    const seq = [
-                        { t: 300, p: 15, m: "Authenticating token...", type: "info" },
-                        { t: 900, p: 35, m: "Bypassing anti-cheat services...", type: "info" },
-                        { t: 1600, p: 60, m: "Allocating stealth memory...", type: "info" },
-                        { t: 2500, p: 85, m: "Mapping driver to Ring-0...", type: "info" },
-                        { t: 3200, p: 100, m: "Injection Successful! Hack is active in-game.", type: "success" }
-                    ];
-
-                    seq.forEach(step => {
-                        setTimeout(() => {
-                            progBar.style.width = `${step.p}%`;
-                            addLog(step.m, step.type);
-                            if (step.p === 100) {
-                                setTimeout(() => {
-                                    injectBtn.innerText = i18n[currentLang].btn_inject;
-                                    injectBtn.style.opacity = "1";
-                                    injectBtn.style.cursor = "pointer";
-                                    progContainer.style.display = "none";
-                                    isInjecting = false;
-                                }, 3000);
-                            }
-                        }, step.t);
-                    });
-                });
-            }
-
-            // --- 4. РЕНДЕР МАГАЗИНА ---
+            // --- 5. РЕНДЕР МАГАЗИНА (ИГРЫ И КОНФИГИ) С ПРОВЕРКОЙ БАЛАНСА ---
             function renderStore() {
-                storeGrid.innerHTML = '';
-                const mult = rates[currentCurr];
-                const sym = symbols[currentCurr];
-                const textBuy = i18n[currentLang].btn_buy;
-                const textOwned = i18n[currentLang].btn_owned;
-
+                const sGrid = document.getElementById('storeGrid'); sGrid.innerHTML = '';
+                const mult = rates[currentCurr]; const sym = symbols[currentCurr];
+                
                 dbGames.forEach(game => {
                     const isOwned = ownedGames.includes(game.id);
                     const finalPrice = Math.ceil(game.basePrice * mult);
-                    
-                    const card = document.createElement('div');
-                    card.className = 'store-card';
-                    card.innerHTML = `
-                        <div class="store-icon"><i class="fa-solid ${game.icon}"></i></div>
-                        <div class="store-title">${game.title}</div>
-                        <div class="store-price">${finalPrice} ${sym}</div>
-                        <button class="store-btn ripple-btn ${isOwned ? 'owned' : ''}" data-id="${game.id}">
-                            ${isOwned ? textOwned : textBuy}
-                        </button>
-                    `;
-                    storeGrid.appendChild(card);
+                    const card = document.createElement('div'); card.className = 'store-card';
+                    card.innerHTML = `<div class="store-icon"><i class="fa-solid ${game.icon}"></i></div><div class="store-title">${game.title}</div><div class="store-price">${finalPrice} ${sym}</div>
+                        <button class="store-btn ripple-btn ${isOwned ? 'owned' : ''}" data-id="${game.id}">${isOwned ? i18n[currentLang].btn_owned : i18n[currentLang].btn_buy}</button>`;
+                    sGrid.appendChild(card);
                 });
 
-                attachRipple();
-
-                document.querySelectorAll('.store-btn:not(.owned)').forEach(btn => {
+                document.querySelectorAll('#storeGrid .store-btn:not(.owned)').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         const id = e.target.getAttribute('data-id');
-                        ownedGames.push(id);
-                        activeGameId = id; 
-                        renderStore(); 
-                        renderLibrary(); 
-                        showToast(i18n[currentLang].toast_buy);
+                        const game = dbGames.find(g => g.id === id);
+                        
+                        if (userBalanceRUB >= game.basePrice) {
+                            userBalanceRUB -= game.basePrice;
+                            ownedGames.push(id);
+                            activeGameId = id; 
+                            showToast(i18n[currentLang].toast_buy);
+                            updateI18n(); 
+                        } else {
+                            showToast(i18n[currentLang].toast_no_money, 'error');
+                        }
                     });
                 });
+                attachRipple();
+            }
+
+            function renderConfigsStore() {
+                const cGrid = document.getElementById('configsGrid'); cGrid.innerHTML = '';
+                const mult = rates[currentCurr]; const sym = symbols[currentCurr];
+
+                dbConfigs.forEach(cfg => {
+                    const isOwned = ownedConfigs.includes(cfg.id);
+                    const finalPrice = Math.ceil(cfg.basePrice * mult);
+                    const gameName = (dbGames.find(g => g.id === cfg.gameId) || {}).title || "Unknown";
+                    
+                    const card = document.createElement('div'); card.className = 'store-card';
+                    card.innerHTML = `<div style="display:flex; justify-content:space-between;"><div class="store-icon"><i class="fa-solid fa-sliders"></i></div><span class="cfg-badge">${gameName}</span></div>
+                        <div class="store-title">${cfg.name}</div><div class="store-price">+${finalPrice} ${sym}</div>
+                        <button class="store-btn ripple-btn ${isOwned ? 'owned' : ''}" data-cfg-id="${cfg.id}">${isOwned ? i18n[currentLang].btn_owned : i18n[currentLang].btn_buy}</button>`;
+                    cGrid.appendChild(card);
+                });
+
+                document.querySelectorAll('#configsGrid .store-btn:not(.owned)').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = e.target.getAttribute('data-cfg-id');
+                        const cfg = dbConfigs.find(c => c.id === id);
+
+                        if (userBalanceRUB >= cfg.basePrice) {
+                            userBalanceRUB -= cfg.basePrice;
+                            ownedConfigs.push(id);
+                            showToast(i18n[currentLang].toast_cfg_buy);
+                            updateI18n();
+                        } else {
+                            showToast(i18n[currentLang].toast_no_money, 'error');
+                        }
+                    });
+                });
+                attachRipple();
             }
 
             // --- 6. SPOOFER КНОПКА ---
             document.getElementById('spoofBtn').addEventListener('click', function() {
-                const btn = this;
-                btn.innerText = "WAIT...";
-                btn.style.opacity = '0.7';
+                const btn = this; btn.innerText = "WAIT..."; btn.style.opacity = '0.7';
                 setTimeout(() => {
-                    btn.innerText = "OK!";
-                    btn.style.background = "var(--status-green)";
-                    btn.style.opacity = '1';
+                    btn.innerText = "OK!"; btn.style.background = "var(--status-green)"; btn.style.opacity = '1';
                     showToast(i18n[currentLang].toast_spoof);
-                    setTimeout(() => {
-                        btn.innerText = i18n[currentLang].btn_spoof;
-                        btn.style.background = "var(--accent-color)";
-                    }, 3000);
+                    setTimeout(() => { btn.innerText = i18n[currentLang].btn_spoof; btn.style.background = "var(--accent-color)"; }, 3000);
                 }, 1500);
             });
 
-            // --- 7. TOAST УВЕДОМЛЕНИЯ ---
-            function showToast(text) {
-                const cont = document.getElementById('toast-container');
-                const t = document.createElement('div');
-                t.className = 'toast';
-                t.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span class="toast-text">${text}</span>`;
-                cont.appendChild(t);
-                setTimeout(() => t.remove(), 3400);
-            }
-
-            // --- 8. НАСТРОЙКИ (ЛОКАЛИЗАЦИЯ И ВАЛЮТА) ---
+            // --- 7. НАСТРОЙКИ (ЛОКАЛИЗАЦИЯ И ВАЛЮТА) ---
             function updateI18n() {
                 const dict = i18n[currentLang];
-                
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (dict[key]) el.innerHTML = dict[key];
-                });
-                
-                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                    const key = el.getAttribute('data-i18n-placeholder');
-                    if (dict[key]) el.placeholder = dict[key];
-                });
+                document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (dict[k]) el.innerHTML = dict[k]; });
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const k = el.getAttribute('data-i18n-placeholder'); if (dict[k]) el.placeholder = dict[k]; });
 
                 if (isLoginMode) {
-                    authSubtitle.innerText = dict.auth_sub_login;
-                    authSubmitBtn.innerText = dict.auth_btn_login;
-                    authToggleBtn.innerText = dict.auth_switch_reg;
+                    document.getElementById('auth-subtitle').innerText = dict.auth_sub_login;
+                    document.getElementById('authSubmitBtn').innerText = dict.auth_btn_login;
+                    document.getElementById('authToggleBtn').innerText = dict.auth_switch_reg;
                 } else {
-                    authSubtitle.innerText = dict.auth_sub_reg;
-                    authSubmitBtn.innerText = dict.auth_btn_reg;
-                    authToggleBtn.innerText = dict.auth_switch_login;
+                    document.getElementById('auth-subtitle').innerText = dict.auth_sub_reg;
+                    document.getElementById('authSubmitBtn').innerText = dict.auth_btn_reg;
+                    document.getElementById('authToggleBtn').innerText = dict.auth_switch_login;
                 }
-
-                langSelect.value = currentLang; 
                 
+                updateBalanceUI();
                 renderLibrary();
                 renderStore();
+                renderConfigsStore();
             }
 
-            langSelect.addEventListener('change', (e) => {
-                currentLang = e.target.value;
-                updateI18n();
-            });
+            document.getElementById('langSelect').addEventListener('change', (e) => { currentLang = e.target.value; updateI18n(); });
+            document.getElementById('currSelect').addEventListener('change', (e) => { currentCurr = e.target.value; updateI18n(); });
+            document.getElementById('themeToggleBtn').addEventListener('click', () => { isDark = !isDark; document.body.setAttribute('data-theme', isDark ? 'dark' : 'light'); });
 
-            currSelect.addEventListener('change', (e) => {
-                currentCurr = e.target.value;
-                renderStore();
-            });
-
-            themeToggleBtn.addEventListener('click', () => {
-                isDark = !isDark;
-                document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
-            });
-
-            // Стартовая инициализация
+            // Инициализация
             updateI18n();
-            attachRipple();
         });
     </script>
 </body>
