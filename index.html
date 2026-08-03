@@ -8,28 +8,27 @@
     content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#090b11">
+  <meta name="theme-color" content="#f1f1f1">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="VibeTube">
 
   <title>VibeTube — старый YouTube</title>
 
   <style>
     :root {
-      --bg: #090b11;
-      --panel: #11151f;
-      --panel-2: #191e2a;
-      --panel-3: #242b3a;
-      --text: #f7f8fc;
-      --muted: #9299aa;
-      --border: rgba(255, 255, 255, 0.08);
-      --red: #ff174d;
-      --blue: #75c9ff;
-      --header-height: 62px;
-      --sidebar-width: 235px;
-      --mobile-nav-height: 72px;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      --background: #f1f1f1;
+      --panel: #ffffff;
+      --panel-gray: #eeeeee;
+      --border: #cccccc;
+      --border-dark: #aaaaaa;
+      --text: #222222;
+      --muted: #777777;
+      --link: #167ac6;
+      --red: #cc181e;
+      --header-height: 52px;
+      --sidebar-width: 210px;
+      --mobile-nav-height: 66px;
     }
 
     * {
@@ -39,41 +38,16 @@
 
     html {
       scroll-behavior: smooth;
-      background: var(--bg);
+      background: var(--background);
     }
 
     body {
       margin: 0;
       min-height: 100vh;
       color: var(--text);
-      background:
-        radial-gradient(
-          circle at 80% -10%,
-          rgba(82, 65, 255, 0.15),
-          transparent 35%
-        ),
-        var(--bg);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-    }
-
-    body.winter-mode {
-      background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(91, 200, 255, 0.25),
-          transparent 38%
-        ),
-        radial-gradient(
-          circle at 100% 45%,
-          rgba(61, 75, 255, 0.15),
-          transparent 38%
-        ),
-        #07101b;
+      background: var(--background);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
     }
 
     button,
@@ -83,8 +57,6 @@
     }
 
     button {
-      color: inherit;
-      border: 0;
       cursor: pointer;
     }
 
@@ -93,7 +65,171 @@
       text-decoration: none;
     }
 
-    .header {
+    /* ЗАГРУЗОЧНЫЙ ЭКРАН */
+
+    .loading-screen {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at center, #ffffff, #dedede);
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loading-box {
+      width: min(460px, 100%);
+      padding: 30px;
+      background: #ffffff;
+      border: 1px solid #bcbcbc;
+      border-radius: 4px;
+      box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.22);
+      text-align: center;
+    }
+
+    .loading-logo {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 22px;
+      font-size: 35px;
+      font-weight: bold;
+      letter-spacing: -2px;
+    }
+
+    .loading-logo .vibe {
+      color: #222;
+    }
+
+    .loading-logo .tube {
+      margin-left: 4px;
+      padding: 3px 7px 4px;
+      color: white;
+      background:
+        linear-gradient(#e52d27, #b31217);
+      border: 1px solid #990d12;
+      border-radius: 7px;
+      text-shadow:
+        0 -1px rgba(0, 0, 0, 0.45);
+      box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .loading-spinner {
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 18px;
+      border: 5px solid #dddddd;
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: loading-spin 0.8s linear infinite;
+    }
+
+    @keyframes loading-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-title {
+      margin-bottom: 7px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .loading-status {
+      min-height: 34px;
+      color: #666;
+      line-height: 1.45;
+    }
+
+    .loading-progress {
+      height: 14px;
+      overflow: hidden;
+      margin-top: 18px;
+      background: #e5e5e5;
+      border: 1px solid #c5c5c5;
+      border-radius: 2px;
+      box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .loading-progress-fill {
+      width: 0%;
+      height: 100%;
+      background:
+        linear-gradient(
+          to bottom,
+          #e9453f,
+          #b51217
+        );
+      transition: width 0.25s;
+    }
+
+    .loading-numbers {
+      margin-top: 8px;
+      color: #888;
+      font-size: 12px;
+    }
+
+    .api-setup {
+      display: none;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid #ddd;
+    }
+
+    .api-setup.visible {
+      display: block;
+    }
+
+    .api-setup p {
+      margin: 0 0 10px;
+      color: #666;
+      line-height: 1.45;
+    }
+
+    .api-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 10px;
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .api-input:focus {
+      border-color: #167ac6;
+      box-shadow:
+        0 0 2px rgba(22, 122, 198, 0.5);
+    }
+
+    .api-button {
+      width: 100%;
+      height: 38px;
+      margin-top: 9px;
+      color: white;
+      background:
+        linear-gradient(#e52d27, #b31217);
+      border: 1px solid #980e13;
+      border-radius: 2px;
+      font-weight: bold;
+      text-shadow:
+        0 -1px rgba(0, 0, 0, 0.35);
+    }
+
+    /* СТАРАЯ ШАПКА */
+
+    .topbar {
       position: fixed;
       z-index: 100;
       top: 0;
@@ -106,109 +242,116 @@
         );
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       padding:
         env(safe-area-inset-top)
         15px
         0;
-      background: rgba(9, 11, 17, 0.9);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
+      background:
+        linear-gradient(
+          to bottom,
+          #ffffff,
+          #e8e8e8
+        );
+      border-bottom: 1px solid #bcbcbc;
+      box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.15);
     }
 
-    .icon-button {
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
-      display: grid;
-      place-items: center;
-      color: var(--text);
-      background: transparent;
-      border-radius: 50%;
-      font-size: 19px;
-    }
-
-    .icon-button:hover {
-      background: var(--panel-3);
+    .menu-button {
+      width: 34px;
+      height: 31px;
+      color: #555;
+      background:
+        linear-gradient(#ffffff, #e6e6e6);
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      font-size: 18px;
     }
 
     .logo {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 9px;
       flex: 0 0 auto;
-      font-size: 21px;
-      font-weight: 950;
-      letter-spacing: -1px;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: -1.6px;
     }
 
-    .logo-icon {
-      position: relative;
-      width: 35px;
-      height: 24px;
-      border-radius: 8px;
+    .logo-vibe {
+      color: #222;
+    }
+
+    .logo-tube {
+      margin-left: 3px;
+      padding: 2px 5px 3px;
+      color: white;
       background:
-        linear-gradient(
-          135deg,
-          #ff174d,
-          #ff4b2b
-        );
-      box-shadow:
-        0 0 28px rgba(255, 23, 77, 0.35);
+        linear-gradient(#e52d27, #b31217);
+      border: 1px solid #9b0e13;
+      border-radius: 5px;
+      text-shadow:
+        0 -1px rgba(0, 0, 0, 0.45);
     }
 
-    .logo-icon::after {
-      content: "";
-      position: absolute;
-      top: 7px;
-      left: 14px;
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-left: 9px solid white;
-    }
-
-    .search {
-      width: min(680px, 100%);
-      height: 42px;
+    .search-area {
+      width: min(650px, 100%);
+      height: 31px;
       display: flex;
       margin: 0 auto;
     }
 
-    .search input {
+    .search-area input {
       width: 100%;
       min-width: 0;
-      padding: 0 17px;
-      color: var(--text);
-      background: #0d1017;
-      border: 1px solid var(--border);
+      height: 31px;
+      padding: 0 9px;
+      background: white;
+      border: 1px solid #aaa;
       border-right: 0;
-      border-radius: 24px 0 0 24px;
+      border-radius: 2px 0 0 2px;
       outline: none;
+      box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.12);
     }
 
-    .search input:focus {
-      border-color: #65bdff;
+    .search-area input:focus {
+      border-color: #3c8dc5;
     }
 
-    .search button {
-      width: 64px;
-      flex: 0 0 64px;
-      color: var(--text);
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 0 24px 24px 0;
+    .search-area button {
+      width: 65px;
+      height: 31px;
+      color: #555;
+      background:
+        linear-gradient(#ffffff, #e5e5e5);
+      border: 1px solid #aaa;
+      border-radius: 0 2px 2px 0;
+      font-weight: bold;
     }
 
-    .header-actions {
+    .header-buttons {
       display: flex;
-      align-items: center;
-      gap: 3px;
+      gap: 7px;
+    }
+
+    .classic-button {
+      height: 31px;
+      padding: 0 12px;
+      color: #444;
+      background:
+        linear-gradient(#ffffff, #e5e5e5);
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      font-weight: bold;
+      white-space: nowrap;
     }
 
     .mobile-search-button {
       display: none;
     }
+
+    /* БОКОВОЕ МЕНЮ */
 
     .sidebar {
       position: fixed;
@@ -221,83 +364,80 @@
       bottom: 0;
       left: 0;
       width: var(--sidebar-width);
-      padding: 12px;
       overflow-y: auto;
-      background: rgba(9, 11, 17, 0.94);
-      border-right: 1px solid var(--border);
-      backdrop-filter: blur(20px);
+      padding: 14px 10px;
+      background: #eeeeee;
+      border-right: 1px solid #cccccc;
       transition: transform 0.25s;
     }
 
-    .side-button {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 12px 14px;
-      color: var(--text);
-      background: transparent;
-      border-radius: 12px;
-      text-align: left;
-      font-weight: 750;
-    }
-
-    .side-button:hover,
-    .side-button.active {
-      background: var(--panel-2);
-    }
-
-    .side-button.winter {
-      color: #d7f5ff;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(50, 160, 230, 0.2),
-          rgba(84, 69, 210, 0.16)
-        );
-      border:
-        1px solid rgba(187, 237, 255, 0.1);
-    }
-
-    .side-icon {
-      width: 24px;
-      flex: 0 0 24px;
-      text-align: center;
-      font-size: 19px;
-    }
-
-    .side-line {
-      height: 1px;
-      margin: 14px 4px;
-      background: var(--border);
-    }
-
-    .side-title {
-      padding: 8px 14px;
-      color: var(--muted);
+    .sidebar-section-title {
+      padding: 7px 10px 5px;
+      color: #666;
       font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.8px;
+      font-weight: bold;
       text-transform: uppercase;
     }
 
-    .side-info {
-      margin: 13px 3px;
-      padding: 14px;
-      color: var(--muted);
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      font-size: 12px;
-      line-height: 1.5;
+    .sidebar-button {
+      width: 100%;
+      min-height: 33px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 10px;
+      color: #333;
+      background: transparent;
+      border: 0;
+      border-radius: 2px;
+      text-align: left;
     }
 
-    .side-info strong {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--text);
-      font-size: 15px;
+    .sidebar-button:hover {
+      background: #dddddd;
     }
+
+    .sidebar-button.active {
+      color: white;
+      background:
+        linear-gradient(#d5302c, #b4161c);
+      font-weight: bold;
+    }
+
+    .sidebar-button.winter:not(.active) {
+      color: #246a9e;
+      font-weight: bold;
+    }
+
+    .sidebar-icon {
+      width: 20px;
+      text-align: center;
+    }
+
+    .sidebar-line {
+      height: 1px;
+      margin: 12px 2px;
+      background: #cccccc;
+      border-bottom: 1px solid white;
+    }
+
+    .sidebar-info {
+      margin-top: 12px;
+      padding: 10px;
+      color: #666;
+      background: #fafafa;
+      border: 1px solid #ccc;
+      line-height: 1.45;
+    }
+
+    .sidebar-info strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #333;
+      font-size: 14px;
+    }
+
+    /* ОСНОВНОЙ КОНТЕНТ */
 
     .page {
       min-height: 100vh;
@@ -312,214 +452,101 @@
     }
 
     .content {
-      width: min(1750px, 100%);
-      margin: auto;
-      padding: 24px 28px 90px;
+      width: min(1500px, 100%);
+      margin: 0 auto;
+      padding: 18px 20px 80px;
     }
 
-    .hero {
-      position: relative;
-      min-height: 285px;
+    .classic-banner {
       display: flex;
       align-items: center;
-      overflow: hidden;
-      padding: 38px;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 16px;
+      padding: 17px 20px;
       background:
-        radial-gradient(
-          circle at 78% 20%,
-          rgba(255, 23, 77, 0.42),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 68% 120%,
-          rgba(65, 95, 255, 0.35),
-          transparent 38%
-        ),
         linear-gradient(
-          135deg,
-          #181822,
-          #0d0e15
+          to bottom,
+          #ffffff,
+          #e9e9e9
         );
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      box-shadow: var(--shadow);
+      border: 1px solid #c6c6c6;
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(
-          rgba(255, 255, 255, 0.024) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.024) 1px,
-          transparent 1px
-        );
-      background-size: 28px 28px;
-      mask-image:
-        linear-gradient(
-          to right,
-          black,
-          transparent
-        );
+    .classic-banner h1 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      font-weight: normal;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 780px;
+    .classic-banner p {
+      margin: 0;
+      color: #666;
+      line-height: 1.45;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      padding: 7px 11px;
-      color: #f8dce5;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      margin: 17px 0 14px;
-      font-size: clamp(45px, 6vw, 80px);
-      line-height: 0.92;
-      letter-spacing: -4px;
-    }
-
-    .hero h1 span {
-      color: var(--red);
-    }
-
-    .hero p {
-      max-width: 680px;
-      margin: 0 0 23px;
-      color: #bdc2cf;
-      font-size: clamp(15px, 1.7vw, 19px);
-      line-height: 1.5;
-    }
-
-    .hero-buttons {
+    .banner-counts {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      gap: 18px;
     }
 
-    .primary-button,
-    .secondary-button {
-      min-height: 44px;
-      padding: 11px 18px;
-      border-radius: 100px;
-      font-weight: 900;
+    .banner-count {
+      min-width: 85px;
+      text-align: center;
     }
 
-    .primary-button {
-      color: #07090e;
-      background: white;
-    }
-
-    .secondary-button {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid var(--border);
-    }
-
-    .stats {
-      position: absolute;
-      z-index: 2;
-      right: 29px;
-      bottom: 27px;
-      display: flex;
-      gap: 9px;
-    }
-
-    .stat {
-      min-width: 98px;
-      padding: 13px 15px;
-      background: rgba(0, 0, 0, 0.32);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      backdrop-filter: blur(12px);
-    }
-
-    .stat strong {
+    .banner-count strong {
       display: block;
-      font-size: 21px;
+      color: #333;
+      font-size: 22px;
     }
 
-    .stat span {
-      color: var(--muted);
+    .banner-count span {
+      color: #777;
       font-size: 11px;
     }
 
     .winter-banner {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;
       align-items: center;
-      gap: 20px;
-      overflow: hidden;
-      margin-top: 18px;
-      padding: 24px 26px;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 16px;
+      padding: 15px 18px;
+      color: #164d75;
       background:
-        radial-gradient(
-          circle at 84% 25%,
-          rgba(227, 249, 255, 0.35),
-          transparent 25%
-        ),
         linear-gradient(
-          135deg,
-          #1268a8,
-          #3c378f
+          to bottom,
+          #effaff,
+          #d6eefb
         );
-      border:
-        1px solid rgba(186, 234, 255, 0.2);
-      border-radius: 21px;
+      border: 1px solid #9cc9e3;
+      box-shadow:
+        inset 0 1px white;
       cursor: pointer;
     }
 
-    .winter-banner::after {
-      content: "❄  ❅  ❆  ❄";
-      position: absolute;
-      top: 3px;
-      right: 15px;
-      color: rgba(255, 255, 255, 0.13);
-      font-size: 42px;
-      letter-spacing: 15px;
-      transform: rotate(-8deg);
-    }
-
     .winter-banner h2 {
-      position: relative;
-      z-index: 2;
-      margin: 0 0 6px;
-      font-size: clamp(23px, 3vw, 35px);
-      letter-spacing: -1px;
+      margin: 0 0 3px;
+      font-size: 18px;
     }
 
     .winter-banner p {
-      position: relative;
-      z-index: 2;
       margin: 0;
-      color: rgba(255, 255, 255, 0.74);
+      color: #4d7692;
     }
 
     .winter-banner button {
-      position: relative;
-      z-index: 2;
-      padding: 11px 17px;
-      color: #06131d;
-      background: #dff7ff;
-      border-radius: 100px;
-      font-weight: 900;
-      white-space: nowrap;
+      min-height: 32px;
+      padding: 0 14px;
+      color: #245b7f;
+      background:
+        linear-gradient(#ffffff, #dceef8);
+      border: 1px solid #85b8d5;
+      border-radius: 2px;
+      font-weight: bold;
     }
 
     .filters {
@@ -530,123 +557,117 @@
           var(--header-height) +
           env(safe-area-inset-top)
         );
-      margin-top: 8px;
-      padding: 16px 0 14px;
-      background: rgba(9, 11, 17, 0.9);
-      backdrop-filter: blur(20px);
+      margin-bottom: 15px;
+      padding: 10px;
+      background:
+        linear-gradient(#ffffff, #ededed);
+      border: 1px solid #c6c6c6;
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.08);
     }
 
     .filter-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       overflow-x: auto;
-      padding: 2px 1px;
       scrollbar-width: none;
+    }
+
+    .filter-row + .filter-row {
+      margin-top: 8px;
     }
 
     .filter-row::-webkit-scrollbar {
       display: none;
     }
 
-    .chip {
+    .filter-button {
       flex: 0 0 auto;
-      min-height: 36px;
-      padding: 8px 13px;
-      color: var(--text);
-      background: var(--panel-2);
-      border: 1px solid transparent;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 850;
+      min-height: 29px;
+      padding: 0 11px;
+      color: #444;
+      background:
+        linear-gradient(#ffffff, #e5e5e5);
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      font-weight: bold;
       white-space: nowrap;
     }
 
-    .chip:hover {
-      background: var(--panel-3);
-    }
-
-    .chip.active {
-      color: #080a0f;
-      background: white;
-    }
-
-    .chip.winter {
-      color: #dff7ff;
+    .filter-button:hover {
       background:
-        linear-gradient(
-          135deg,
-          rgba(50, 157, 223, 0.35),
-          rgba(82, 70, 195, 0.35)
-        );
-      border-color:
-        rgba(181, 233, 255, 0.18);
+        linear-gradient(#ffffff, #dcdcdc);
     }
 
-    .chip.winter.active {
-      color: #07121a;
-      background: #d4f3ff;
+    .filter-button.active {
+      color: white;
+      background:
+        linear-gradient(#3f3f3f, #222222);
+      border-color: #222;
+    }
+
+    .filter-button.winter {
+      color: #23658f;
+      border-color: #95bed7;
+    }
+
+    .filter-button.winter.active {
+      color: white;
+      background:
+        linear-gradient(#4d9ccc, #2c739f);
+      border-color: #26688f;
     }
 
     .filter-select {
-      min-height: 36px;
-      max-width: 210px;
-      padding: 7px 11px;
-      color: var(--text);
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      outline: none;
+      height: 29px;
+      max-width: 220px;
+      padding: 0 7px;
+      color: #333;
+      background: white;
+      border: 1px solid #aaa;
+      border-radius: 2px;
     }
 
-    .section-header {
+    .section-heading {
       display: flex;
       align-items: end;
       justify-content: space-between;
       gap: 15px;
-      margin: 19px 0;
+      margin: 0 0 12px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #cccccc;
     }
 
-    .section-header h2 {
+    .section-heading h2 {
       margin: 0;
-      font-size: clamp(22px, 3vw, 28px);
-      letter-spacing: -0.8px;
+      font-size: 18px;
+      font-weight: normal;
     }
 
-    .section-header p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 13px;
+    .section-heading p {
+      margin: 4px 0 0;
+      color: #777;
+      font-size: 12px;
     }
 
     .result-count {
-      color: var(--muted);
-      font-size: 13px;
+      color: #777;
+      font-size: 12px;
       white-space: nowrap;
     }
+
+    /* КАРТОЧКИ */
 
     .video-grid {
       display: grid;
       grid-template-columns:
         repeat(4, minmax(0, 1fr));
-      gap: 28px 16px;
+      gap: 20px 14px;
     }
 
     .video-card {
       min-width: 0;
-      animation: card-in 0.3s ease both;
-    }
-
-    @keyframes card-in {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
     }
 
     .thumbnail {
@@ -654,228 +675,154 @@
       display: block;
       overflow: hidden;
       aspect-ratio: 16 / 9;
-      background:
-        radial-gradient(
-          circle at 75% 20%,
-          var(--thumb-2),
-          transparent 38%
-        ),
-        linear-gradient(
-          135deg,
-          var(--thumb-1),
-          #10131c
-        );
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      box-shadow:
-        0 9px 28px rgba(0, 0, 0, 0.2);
+      background: #222;
+      border: 1px solid #999;
     }
 
-    .thumbnail-content {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 19px;
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.2s;
     }
 
-    .thumbnail-content::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.75),
-          transparent 72%
-        ),
-        repeating-linear-gradient(
-          -45deg,
-          rgba(255, 255, 255, 0.025) 0,
-          rgba(255, 255, 255, 0.025) 1px,
-          transparent 1px,
-          transparent 12px
-        );
+    .video-card:hover .thumbnail img {
+      transform: scale(1.025);
     }
 
-    .thumbnail-content strong {
-      position: relative;
-      z-index: 2;
-      max-width: 90%;
-      color: white;
-      font-size: clamp(16px, 2vw, 22px);
-      line-height: 1.04;
-      letter-spacing: -0.7px;
-      text-shadow:
-        0 3px 20px rgba(0, 0, 0, 0.7);
-    }
-
-    .thumbnail-content span {
-      position: relative;
-      z-index: 2;
-      margin-top: 7px;
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .year,
-    .category,
     .duration {
       position: absolute;
-      z-index: 4;
-      padding: 4px 7px;
+      right: 4px;
+      bottom: 4px;
+      padding: 2px 4px;
       color: white;
-      background: rgba(0, 0, 0, 0.78);
-      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.82);
       font-size: 11px;
-      font-weight: 900;
-      backdrop-filter: blur(8px);
+      font-weight: bold;
     }
 
     .year {
-      top: 7px;
-      left: 7px;
-      background: rgba(255, 22, 76, 0.9);
-    }
-
-    .category {
-      top: 7px;
-      right: 7px;
-      max-width: 55%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .category.winter {
-      color: #06131c;
-      background: rgba(211, 243, 255, 0.95);
-    }
-
-    .duration {
-      right: 7px;
-      bottom: 7px;
-    }
-
-    .play {
       position: absolute;
-      z-index: 5;
-      top: 50%;
-      left: 50%;
-      width: 56px;
-      height: 56px;
-      display: grid;
-      place-items: center;
-      padding-left: 3px;
+      top: 4px;
+      left: 4px;
+      padding: 2px 5px;
       color: white;
-      background: rgba(0, 0, 0, 0.73);
-      border:
-        1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 50%;
-      opacity: 0;
-      transform:
-        translate(-50%, -45%) scale(0.85);
-      transition: 0.22s;
+      background: rgba(204, 24, 30, 0.92);
+      font-size: 10px;
+      font-weight: bold;
     }
 
-    .video-card:hover .play {
-      opacity: 1;
-      transform:
-        translate(-50%, -50%) scale(1);
+    .winter-label {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      padding: 2px 5px;
+      color: #164f73;
+      background: rgba(225, 247, 255, 0.94);
+      border: 1px solid #8fc4df;
+      font-size: 10px;
+      font-weight: bold;
     }
 
-    .video-info {
+    .video-details {
       display: grid;
       grid-template-columns:
-        40px minmax(0, 1fr) 34px;
-      gap: 10px;
-      padding-top: 11px;
-    }
-
-    .avatar {
-      width: 39px;
-      height: 39px;
-      display: grid;
-      place-items: center;
-      color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--avatar-1),
-          var(--avatar-2)
-        );
-      border-radius: 50%;
-      font-size: 13px;
-      font-weight: 950;
+        minmax(0, 1fr) 28px;
+      gap: 6px;
+      padding-top: 7px;
     }
 
     .video-title {
-      margin-bottom: 5px;
       overflow: hidden;
       display: -webkit-box;
-      font-size: 14px;
-      font-weight: 850;
-      line-height: 1.38;
+      color: var(--link);
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 1.25;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
 
-    .video-author,
+    .video-title:hover {
+      text-decoration: underline;
+    }
+
+    .video-author {
+      margin-top: 4px;
+      color: #666;
+      font-size: 11px;
+    }
+
+    .video-author span {
+      color: var(--link);
+    }
+
     .video-meta {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.4;
+      margin-top: 2px;
+      color: #777;
+      font-size: 11px;
+      line-height: 1.35;
     }
 
-    .favorite {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      background: transparent;
-      border-radius: 50%;
-      font-size: 20px;
+    .favorite-button {
+      width: 27px;
+      height: 27px;
+      color: #777;
+      background:
+        linear-gradient(#ffffff, #e5e5e5);
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      font-size: 16px;
     }
 
-    .favorite:hover {
-      color: white;
-      background: var(--panel-2);
+    .favorite-button.saved {
+      color: #cc181e;
     }
 
-    .favorite.saved {
-      color: #ff315d;
-    }
-
-    .empty {
+    .empty-state {
       grid-column: 1 / -1;
-      padding: 80px 15px;
-      color: var(--muted);
+      padding: 65px 20px;
+      color: #777;
+      background: white;
+      border: 1px solid #ccc;
       text-align: center;
     }
 
-    .empty strong {
+    .empty-state strong {
       display: block;
-      margin-bottom: 6px;
-      color: var(--text);
-      font-size: 20px;
+      margin-bottom: 7px;
+      color: #333;
+      font-size: 18px;
     }
 
-    .load-wrapper {
-      padding-top: 35px;
+    .load-more-wrapper {
+      padding-top: 25px;
       text-align: center;
     }
 
     .load-more {
-      min-height: 44px;
-      padding: 11px 22px;
-      color: var(--text);
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-weight: 900;
+      min-height: 34px;
+      padding: 0 20px;
+      color: #444;
+      background:
+        linear-gradient(#ffffff, #e4e4e4);
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      font-weight: bold;
+    }
+
+    .database-message {
+      margin-bottom: 14px;
+      padding: 9px 12px;
+      color: #555;
+      background: #fff9d7;
+      border: 1px solid #e2c95f;
+      line-height: 1.4;
+    }
+
+    .database-message.hidden {
+      display: none;
     }
 
     .bottom-nav {
@@ -884,22 +831,19 @@
 
     .toast {
       position: fixed;
-      z-index: 500;
-      bottom: 28px;
+      z-index: 1000;
+      bottom: 25px;
       left: 50%;
       max-width: calc(100% - 30px);
-      padding: 11px 16px;
-      color: #080a0f;
-      background: white;
-      border-radius: 11px;
-      box-shadow: var(--shadow);
-      font-size: 13px;
-      font-weight: 900;
+      padding: 10px 16px;
+      color: white;
+      background: rgba(0, 0, 0, 0.88);
+      border-radius: 2px;
       text-align: center;
       opacity: 0;
       pointer-events: none;
-      transform: translate(-50%, 18px);
-      transition: 0.25s;
+      transform: translate(-50%, 15px);
+      transition: 0.2s;
     }
 
     .toast.show {
@@ -907,26 +851,27 @@
       transform: translate(-50%, 0);
     }
 
-    @media (max-width: 1280px) {
+    @media (max-width: 1200px) {
       .video-grid {
         grid-template-columns:
           repeat(3, minmax(0, 1fr));
       }
 
-      .stats {
+      .banner-counts {
         display: none;
       }
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
       :root {
         --sidebar-width: 0px;
       }
 
       .sidebar {
-        width: 250px;
+        width: 225px;
         transform: translateX(-105%);
-        box-shadow: var(--shadow);
+        box-shadow:
+          3px 0 10px rgba(0, 0, 0, 0.25);
       }
 
       body.menu-open .sidebar {
@@ -937,20 +882,15 @@
         padding-left: 0;
       }
 
-      .content {
-        padding-right: 16px;
-        padding-left: 16px;
-      }
-
       .video-grid {
         grid-template-columns:
           repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 620px) {
       :root {
-        --header-height: 58px;
+        --header-height: 50px;
       }
 
       body {
@@ -961,24 +901,14 @@
           );
       }
 
-      .header {
+      .topbar {
         gap: 7px;
-        padding-right: 8px;
-        padding-left: 8px;
+        padding-right: 7px;
+        padding-left: 7px;
       }
 
       .logo {
-        font-size: 18px;
-      }
-
-      .logo-icon {
-        width: 31px;
-        height: 22px;
-      }
-
-      .logo-icon::after {
-        top: 6px;
-        left: 12px;
+        font-size: 19px;
       }
 
       .desktop-only {
@@ -986,33 +916,34 @@
       }
 
       .mobile-search-button {
-        display: grid;
+        display: block;
       }
 
-      .search {
+      .search-area {
         position: fixed;
-        z-index: 150;
+        z-index: 160;
         top:
           calc(
             var(--header-height) +
             env(safe-area-inset-top) +
-            7px
+            5px
           );
-        right: 8px;
-        left: 8px;
+        right: 7px;
+        left: 7px;
         display: none;
         width: auto;
-        box-shadow: var(--shadow);
+        box-shadow:
+          0 3px 8px rgba(0, 0, 0, 0.28);
       }
 
-      body.search-open .search {
+      body.search-open .search-area {
         display: flex;
       }
 
       .content {
         padding:
-          12px
-          9px
+          10px
+          8px
           calc(
             30px +
             var(--mobile-nav-height) +
@@ -1020,53 +951,40 @@
           );
       }
 
-      .hero {
-        min-height: 245px;
-        padding: 22px 18px;
-        border-radius: 19px;
+      .classic-banner {
+        padding: 14px;
       }
 
-      .hero h1 {
-        margin-top: 14px;
-        font-size: 43px;
-        letter-spacing: -2.5px;
-      }
-
-      .hero p {
-        font-size: 14px;
+      .classic-banner h1 {
+        font-size: 18px;
       }
 
       .winter-banner {
-        grid-template-columns: 1fr;
-        padding: 20px;
-        border-radius: 17px;
-      }
-
-      .winter-banner button {
-        width: max-content;
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .filters {
-        margin-right: -9px;
-        margin-left: -9px;
-        padding: 12px 9px;
-      }
-
-      .result-count {
-        display: none;
+        margin-right: -8px;
+        margin-left: -8px;
+        padding: 8px;
       }
 
       .video-grid {
         grid-template-columns: 1fr;
-        gap: 27px;
+        gap: 21px;
       }
 
       .thumbnail {
-        border-radius: 13px;
+        border-color: #888;
       }
 
       .video-title {
-        font-size: 15px;
+        font-size: 14px;
+      }
+
+      .result-count {
+        display: none;
       }
 
       .bottom-nav {
@@ -1083,12 +1001,14 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         padding:
-          5px
           4px
+          3px
           env(safe-area-inset-bottom);
-        background: rgba(9, 11, 17, 0.94);
-        border-top: 1px solid var(--border);
-        backdrop-filter: blur(24px);
+        background:
+          linear-gradient(#fafafa, #dedede);
+        border-top: 1px solid #aaa;
+        box-shadow:
+          0 -1px 4px rgba(0, 0, 0, 0.15);
       }
 
       .bottom-button {
@@ -1097,26 +1017,20 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 3px;
-        color: var(--muted);
+        gap: 2px;
+        color: #555;
         background: transparent;
-        border-radius: 12px;
+        border: 0;
         font-size: 10px;
-        font-weight: 800;
       }
 
       .bottom-button span:first-child {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .bottom-button.active {
-        color: white;
-        background:
-          rgba(255, 255, 255, 0.06);
-      }
-
-      .bottom-button.winter {
-        color: #c9efff;
+        color: #cc181e;
+        font-weight: bold;
       }
 
       .toast {
@@ -1124,317 +1038,353 @@
           calc(
             var(--mobile-nav-height) +
             env(safe-area-inset-bottom) +
-            14px
+            12px
           );
+      }
+
+      .loading-box {
+        padding: 23px 17px;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="header">
-    <button
-      class="icon-button"
-      id="menuButton"
-      aria-label="Открыть меню"
-    >
+  <!-- ЭКРАН ЗАГРУЗКИ -->
+
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-box">
+      <div class="loading-logo">
+        <span class="vibe">Vibe</span>
+        <span class="tube">Tube</span>
+      </div>
+
+      <div class="loading-spinner" id="loadingSpinner"></div>
+
+      <div class="loading-title" id="loadingTitle">
+        Загружаем старый YouTube
+      </div>
+
+      <div class="loading-status" id="loadingStatus">
+        Подготавливаем настоящие видео…
+      </div>
+
+      <div class="loading-progress" id="loadingProgress">
+        <div
+          class="loading-progress-fill"
+          id="loadingProgressFill"
+        ></div>
+      </div>
+
+      <div class="loading-numbers" id="loadingNumbers">
+        0 блогеров • 0 видео
+      </div>
+
+      <div class="api-setup" id="apiSetup">
+        <p>
+          Вставь ключ YouTube Data API v3.
+          Он нужен для загрузки настоящих роликов.
+        </p>
+
+        <input
+          class="api-input"
+          id="apiKeyInput"
+          type="password"
+          placeholder="Вставь YouTube API key"
+          autocomplete="off"
+        >
+
+        <button class="api-button" id="apiStartButton">
+          Загрузить реальные видео
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- СТАРАЯ ШАПКА -->
+
+  <header class="topbar">
+    <button class="menu-button" id="menuButton">
       ☰
     </button>
 
     <a class="logo" href="#top">
-      <span class="logo-icon"></span>
-      <span>VibeTube</span>
+      <span class="logo-vibe">Vibe</span>
+      <span class="logo-tube">Tube</span>
     </a>
 
-    <div class="search">
+    <div class="search-area">
       <input
         id="searchInput"
         type="search"
-        placeholder="Найти видео или блогера"
+        placeholder="Поиск"
         autocomplete="off"
       >
 
-      <button
-        id="searchButton"
-        aria-label="Поиск"
-      >
-        🔎
+      <button id="searchButton">
+        Найти
       </button>
     </div>
 
-    <div class="header-actions">
+    <div class="header-buttons">
       <button
-        class="icon-button mobile-search-button"
+        class="classic-button mobile-search-button"
         id="mobileSearchButton"
-        aria-label="Открыть поиск"
       >
         🔎
       </button>
 
       <button
-        class="icon-button desktop-only"
+        class="classic-button desktop-only"
         id="randomHeaderButton"
-        aria-label="Случайное видео"
       >
-        🎲
+        Случайное
+      </button>
+
+      <button
+        class="classic-button desktop-only"
+        id="refreshButton"
+      >
+        Обновить
       </button>
     </div>
   </header>
 
+  <!-- БОКОВОЕ МЕНЮ -->
+
   <aside class="sidebar">
     <button
-      class="side-button active"
+      class="sidebar-button active"
       data-action="home"
     >
-      <span class="side-icon">⌂</span>
+      <span class="sidebar-icon">⌂</span>
       <span>Главная</span>
     </button>
 
     <button
-      class="side-button winter"
+      class="sidebar-button winter"
       data-action="winter"
     >
-      <span class="side-icon">❄</span>
+      <span class="sidebar-icon">❄</span>
       <span>Вайб зима 2021</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-action="random"
     >
-      <span class="side-icon">🎲</span>
+      <span class="sidebar-icon">▶</span>
       <span>Случайное видео</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-action="favorites"
     >
-      <span class="side-icon">♥</span>
+      <span class="sidebar-icon">★</span>
       <span>Избранное</span>
     </button>
 
-    <div class="side-line"></div>
-    <div class="side-title">Категории</div>
+    <div class="sidebar-line"></div>
+    <div class="sidebar-section-title">Категории</div>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-category="Minecraft"
     >
-      <span class="side-icon">▣</span>
+      <span class="sidebar-icon">▣</span>
       <span>Minecraft</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-category="Roblox"
     >
-      <span class="side-icon">◈</span>
+      <span class="sidebar-icon">◈</span>
       <span>Roblox</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-category="Brawl Stars"
     >
-      <span class="side-icon">★</span>
+      <span class="sidebar-icon">★</span>
       <span>Brawl Stars</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-category="GTA"
     >
-      <span class="side-icon">🚘</span>
+      <span class="sidebar-icon">🚘</span>
       <span>GTA</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-category="Хорроры"
     >
-      <span class="side-icon">☠</span>
+      <span class="sidebar-icon">☠</span>
       <span>Хорроры</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-category="Челленджи"
     >
-      <span class="side-icon">🏆</span>
+      <span class="sidebar-icon">🏆</span>
       <span>Челленджи</span>
     </button>
 
     <button
-      class="side-button"
+      class="sidebar-button"
       data-category="Смешные моменты"
     >
-      <span class="side-icon">☺</span>
+      <span class="sidebar-icon">☺</span>
       <span>Смешные моменты</span>
     </button>
 
-    <div class="side-line"></div>
+    <div class="sidebar-line"></div>
 
-    <div class="side-info">
-      <strong id="sideVideoCount">
-        0 видео
+    <div class="sidebar-info">
+      <strong id="sidebarVideoCount">
+        0 настоящих видео
       </strong>
 
-      <span id="sideAuthorCount">
+      <span id="sidebarAuthorCount">
         0 блогеров
       </span>
 
-      <br>
-      Все карточки открывают работающий поиск YouTube.
+      <br><br>
+
+      В каталоге показываются только публичные
+      ролики, подтверждённые YouTube API.
     </div>
   </aside>
 
+  <!-- СТРАНИЦА -->
+
   <main class="page" id="top">
     <div class="content">
-      <section class="hero">
-        <div class="hero-content">
-          <span class="hero-badge">
-            ✦ русский YouTube 2016–2021
-          </span>
-
+      <section class="classic-banner">
+        <div>
           <h1>
-            Тот самый<br>
-            <span>YouTube.</span>
+            Добро пожаловать на VibeTube
           </h1>
 
           <p>
-            Более 1000 старых подборок от 70+ блогеров:
-            Евген Бро, Поззи, Робзи, Cool GAMES,
-            Эдисон, Лололошка, Куплинов и многие другие.
+            Настоящие старые видео русскоязычного
+            YouTube за 2016–2021 годы.
           </p>
-
-          <div class="hero-buttons">
-            <button
-              class="primary-button"
-              id="randomHeroButton"
-            >
-              ▶ Случайное видео
-            </button>
-
-            <button
-              class="secondary-button"
-              id="catalogButton"
-            >
-              Смотреть каталог
-            </button>
-          </div>
         </div>
 
-        <div class="stats">
-          <div class="stat">
-            <strong id="heroVideoCount">
-              0
-            </strong>
+        <div class="banner-counts">
+          <div class="banner-count">
+            <strong id="heroVideoCount">0</strong>
             <span>видео</span>
           </div>
 
-          <div class="stat">
-            <strong id="heroAuthorCount">
-              0
-            </strong>
+          <div class="banner-count">
+            <strong id="heroAuthorCount">0</strong>
             <span>блогеров</span>
-          </div>
-
-          <div class="stat">
-            <strong>2016–21</strong>
-            <span>эпоха</span>
           </div>
         </div>
       </section>
 
-      <section
-        class="winter-banner"
-        id="winterBanner"
-      >
+      <section class="winter-banner" id="winterBanner">
         <div>
           <h2>❄ Вайб зима 2021</h2>
 
           <p>
-            Новый год, снег, морозные вечера,
-            Minecraft, Roblox и зимняя ностальгия.
+            Зимние, новогодние и снежные видео
+            конца 2020 и начала 2021 года.
           </p>
         </div>
 
         <button>
-          Открыть подборку
+          Смотреть подборку
         </button>
       </section>
+
+      <div
+        class="database-message hidden"
+        id="databaseMessage"
+      ></div>
 
       <section class="filters" id="catalog">
         <div class="filter-row">
           <button
-            class="chip active"
+            class="filter-button active"
             data-filter="Все"
           >
             Все
           </button>
 
           <button
-            class="chip winter"
+            class="filter-button winter"
             data-filter="Вайб зима 2021"
           >
-            ❄ Вайб зима 2021
+            ❄ Зима 2021
           </button>
 
           <button
-            class="chip"
+            class="filter-button"
             data-filter="Minecraft"
           >
             Minecraft
           </button>
 
           <button
-            class="chip"
+            class="filter-button"
             data-filter="Roblox"
           >
             Roblox
           </button>
 
           <button
-            class="chip"
+            class="filter-button"
             data-filter="Brawl Stars"
           >
             Brawl Stars
           </button>
 
           <button
-            class="chip"
+            class="filter-button"
             data-filter="GTA"
           >
             GTA
           </button>
 
           <button
-            class="chip"
+            class="filter-button"
             data-filter="Хорроры"
           >
             Хорроры
           </button>
 
           <button
-            class="chip"
+            class="filter-button"
             data-filter="Челленджи"
           >
             Челленджи
           </button>
 
           <button
-            class="chip"
+            class="filter-button"
             data-filter="Смешные моменты"
           >
             Смешные моменты
           </button>
+
+          <button
+            class="filter-button"
+            data-filter="Другое"
+          >
+            Другое
+          </button>
         </div>
 
-        <div
-          class="filter-row"
-          style="margin-top: 9px"
-        >
+        <div class="filter-row">
           <select
             class="filter-select"
             id="authorSelect"
@@ -1464,8 +1414,8 @@
             class="filter-select"
             id="sortSelect"
           >
-            <option value="recommended">
-              По рекомендациям
+            <option value="views">
+              Самые популярные
             </option>
 
             <option value="new">
@@ -1488,41 +1438,37 @@
       </section>
 
       <section>
-        <div class="section-header">
+        <div class="section-heading">
           <div>
             <h2 id="sectionTitle">
-              Рекомендации из прошлого
+              Рекомендуемые видео
             </h2>
 
             <p id="sectionSubtitle">
-              Каждая карточка открывает поиск YouTube
+              Только настоящие ролики YouTube
             </p>
           </div>
 
-          <span
-            class="result-count"
-            id="resultCount"
-          >
+          <span class="result-count" id="resultCount">
             0 видео
           </span>
         </div>
 
-        <div
-          class="video-grid"
-          id="videoGrid"
-        ></div>
+        <div class="video-grid" id="videoGrid"></div>
 
-        <div class="load-wrapper">
+        <div class="load-more-wrapper">
           <button
             class="load-more"
             id="loadMoreButton"
           >
-            Показать ещё
+            Показать ещё видео
           </button>
         </div>
       </section>
     </div>
   </main>
+
+  <!-- МОБИЛЬНОЕ МЕНЮ -->
 
   <nav class="bottom-nav">
     <button
@@ -1534,18 +1480,18 @@
     </button>
 
     <button
-      class="bottom-button winter"
+      class="bottom-button"
       data-mobile="winter"
     >
       <span>❄</span>
-      <span>Зима 2021</span>
+      <span>Зима</span>
     </button>
 
     <button
       class="bottom-button"
       data-mobile="random"
     >
-      <span>🎲</span>
+      <span>▶</span>
       <span>Случайное</span>
     </button>
 
@@ -1553,7 +1499,7 @@
       class="bottom-button"
       data-mobile="favorites"
     >
-      <span>♥</span>
+      <span>★</span>
       <span>Избранное</span>
     </button>
 
@@ -1569,348 +1515,419 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const AUTHORS = [
-      "Поззи",
-      "Робзи",
-      "Евген Бро",
-      "Cool GAMES",
-      "EdisonPts",
-      "Лололошка",
-      "Windy31",
-      "Marmok",
-      "Kuplinov Play",
-      "Фиксай",
-      "FixEye",
-      "Компот",
-      "Влад А4",
-      "Глент",
-      "Кобяков",
-      "Brian Maps",
-      "Ивангай",
-      "Дима Масленников",
-      "Mamix",
-      "SlivkiShow",
-      "EugeneSagaz",
-      "TheBrainDit",
-      "Coffi Channel",
-      "NERKIN",
-      "Demaster",
-      "DakPlay",
-      "TUMKA",
-      "Терасер",
-      "Ярик Лапа",
-      "Нубик Кубик",
-      "Лига Кубизма",
-      "BlackSilverUFA",
-      "Булкин",
-      "AlexFox",
-      "Happy Wolf",
-      "Recrent",
-      "Квантум",
-      "FROST",
-      "Zakviel",
-      "Ликс",
-      "FlackJK",
-      "ShadowPriestok",
-      "Viki Show",
-      "Мистер Макс",
-      "Мисс Кэти",
-      "Луномосик",
-      "Magic Five",
-      "Lady Diana",
-      "Like Nastya",
-      "HiMan",
-      "Литвин",
-      "SUBO",
-      "Wylsacom",
-      "Rozetked",
-      "Droider",
-      "Ай, Как Просто",
-      "AcademeG",
-      "Жекич Дубровский",
-      "Ильдар Автоподбор",
-      "Utopia Show",
-      "Макс +100500",
-      "This is Хорошо",
-      "BadComedian",
-      "КликКлак",
-      "Satyr",
-      "Юлик",
-      "Данила Поперечный",
-      "Room Factory",
-      "OneTwo",
-      "Руслан Усачев",
-      "SOBOLEV",
-      "ND Production",
-      "Антон Лапенко",
-      "Чикен Карри",
-      "Дима Гордей",
-      "Давидыч"
-    ];
+    /*
+      ВСТАВЬ СВОЙ КЛЮЧ YOUTUBE DATA API V3 НИЖЕ.
 
-    const VIDEO_TEMPLATES = [
+      Для опубликованного сайта ограничь ключ
+      по HTTP referrer в Google Cloud Console.
+    */
+
+    const YOUTUBE_API_KEY = "";
+
+    const CACHE_KEY = "vibetube_real_videos_v3";
+    const CHANNEL_CACHE_KEY = "vibetube_channel_ids_v3";
+    const SAVED_API_KEY = "vibetube_api_key_v3";
+    const FAVORITES_KEY = "vibetube_favorites_v3";
+
+    const MIN_DATE = "2016-01-01T00:00:00Z";
+    const MAX_DATE = "2022-01-01T00:00:00Z";
+
+    const RESULTS_PER_CREATOR = 30;
+    const WORKER_COUNT = 3;
+
+    const CREATORS = [
       {
-        title:
-          "Майнкрафт, но каждые 30 секунд случается что-то странное",
-        category: "Minecraft"
+        name: "Евген Бро",
+        handles: ["evgenbro", "eugenbro"],
+        query: "Евген Бро"
       },
       {
-        title:
-          "Я нашёл самый секретный дом в Minecraft",
-        category: "Minecraft"
+        name: "Поззи",
+        handles: ["pozzi", "pozzishow"],
+        query: "Поззи"
       },
       {
-        title:
-          "Нуб против профессионала в Minecraft",
-        category: "Minecraft"
+        name: "Робзи",
+        handles: ["robzi", "robzigames"],
+        query: "Робзи"
       },
       {
-        title:
-          "Мы построили самый защищённый дом",
-        category: "Minecraft"
+        name: "Cool GAMES",
+        handles: ["coolgames", "coolgamesyt"],
+        query: "Cool GAMES"
       },
       {
-        title:
-          "Я выжил 100 дней в необычном мире",
-        category: "Minecraft"
+        name: "EdisonPts",
+        handles: ["edisonpts"],
+        query: "EdisonPts"
       },
       {
-        title:
-          "Самый сложный паркур в Roblox",
-        category: "Roblox"
+        name: "Лололошка",
+        handles: ["mrlololoshka", "lololoshka"],
+        query: "Лололошка"
       },
       {
-        title:
-          "Я купил весь донат в Roblox",
-        category: "Roblox"
+        name: "Windy31",
+        handles: ["windy31"],
+        query: "Windy31"
       },
       {
-        title:
-          "Нуб стал самым богатым игроком в Roblox",
-        category: "Roblox"
+        name: "Marmok",
+        handles: ["marmok"],
+        query: "Marmok"
       },
       {
-        title:
-          "Мы нашли секретную комнату в Roblox",
-        category: "Roblox"
+        name: "Kuplinov Play",
+        handles: ["kuplinovplay"],
+        query: "Kuplinov Play"
       },
       {
-        title:
-          "Новая карта и секреты Brawl Stars",
-        category: "Brawl Stars"
+        name: "Фиксай",
+        handles: ["fixai", "fixay"],
+        query: "Фиксай"
       },
       {
-        title:
-          "Открыл редкого бойца в Brawl Stars",
-        category: "Brawl Stars"
+        name: "FixEye",
+        handles: ["fixeye"],
+        query: "FixEye"
       },
       {
-        title:
-          "Самый смешной матч в Brawl Stars",
-        category: "Brawl Stars"
+        name: "Компот",
+        handles: ["compot"],
+        query: "Компот Minecraft"
       },
       {
-        title:
-          "Безумная погоня в GTA 5",
-        category: "GTA"
+        name: "Влад А4",
+        handles: ["a4a4a4a4", "a4"],
+        query: "Влад А4"
       },
       {
-        title:
-          "Купил самую дорогую машину в GTA",
-        category: "GTA"
+        name: "Глент",
+        handles: ["glent"],
+        query: "Глент"
       },
       {
-        title:
-          "Ночная смена в самой страшной игре",
-        category: "Хорроры"
+        name: "Кобяков",
+        handles: ["kobyakov"],
+        query: "Кобяков"
       },
       {
-        title:
-          "Этот монстр нашёл меня",
-        category: "Хорроры"
+        name: "Brian Maps",
+        handles: ["thebrianmaps", "brianmaps"],
+        query: "Brian Maps"
       },
       {
-        title:
-          "Самая страшная игра, в которую я играл",
-        category: "Хорроры"
+        name: "Ивангай",
+        handles: ["eeoneguy", "ivangai"],
+        query: "Ивангай"
       },
       {
-        title:
-          "24 часа выполняю задания подписчиков",
-        category: "Челленджи"
+        name: "Дима Масленников",
+        handles: ["dimamaslennikov"],
+        query: "Дима Масленников"
       },
       {
-        title:
-          "Кто последний выйдет — получит приз",
-        category: "Челленджи"
+        name: "Mamix",
+        handles: ["mamix"],
+        query: "Mamix"
       },
       {
-        title:
-          "Самые смешные моменты года",
-        category: "Смешные моменты"
+        name: "SlivkiShow",
+        handles: ["slivkishow"],
+        query: "SlivkiShow"
+      },
+      {
+        name: "EugeneSagaz",
+        handles: ["eugenesagaz"],
+        query: "EugeneSagaz"
+      },
+      {
+        name: "TheBrainDit",
+        handles: ["thebraindit"],
+        query: "TheBrainDit"
+      },
+      {
+        name: "Coffi Channel",
+        handles: ["coffichannel", "coffi"],
+        query: "Coffi Channel"
+      },
+      {
+        name: "NERKIN",
+        handles: ["nerkin"],
+        query: "NERKIN"
+      },
+      {
+        name: "Demaster",
+        handles: ["demaster"],
+        query: "Demaster Minecraft"
+      },
+      {
+        name: "DakPlay",
+        handles: ["dakplay"],
+        query: "DakPlay"
+      },
+      {
+        name: "TUMKA",
+        handles: ["tumka"],
+        query: "TUMKA"
+      },
+      {
+        name: "Терасер",
+        handles: ["theteraser", "teraser"],
+        query: "Терасер"
+      },
+      {
+        name: "Ярик Лапа",
+        handles: ["yariklapa"],
+        query: "Ярик Лапа"
+      },
+      {
+        name: "Нубик Кубик",
+        handles: ["nubikkubik", "noobikkubik"],
+        query: "Нубик Кубик"
+      },
+      {
+        name: "Лига Кубизма",
+        handles: ["ligakubizma"],
+        query: "Лига Кубизма"
+      },
+      {
+        name: "BlackSilverUFA",
+        handles: ["blacksilverufa"],
+        query: "BlackSilverUFA"
+      },
+      {
+        name: "Булкин",
+        handles: ["bulkin"],
+        query: "Булкин"
+      },
+      {
+        name: "AlexFox",
+        handles: ["alexfox"],
+        query: "AlexFox"
+      },
+      {
+        name: "Happy Wolf",
+        handles: ["happywolf"],
+        query: "Happy Wolf"
+      },
+      {
+        name: "Recrent",
+        handles: ["recrent"],
+        query: "Recrent"
+      },
+      {
+        name: "Квантум",
+        handles: ["quantumgames", "quantum"],
+        query: "Квантум"
+      },
+      {
+        name: "FROST",
+        handles: ["frost"],
+        query: "FROST"
+      },
+      {
+        name: "Zakviel",
+        handles: ["zakviel"],
+        query: "Zakviel"
+      },
+      {
+        name: "Ликс",
+        handles: ["lix", "lixgame"],
+        query: "Ликс"
+      },
+      {
+        name: "FlackJK",
+        handles: ["flackjk"],
+        query: "FlackJK"
+      },
+      {
+        name: "ShadowPriestok",
+        handles: ["shadowpriestok"],
+        query: "ShadowPriestok"
+      },
+      {
+        name: "Utopia Show",
+        handles: ["utopiashow"],
+        query: "Utopia Show"
+      },
+      {
+        name: "Макс +100500",
+        handles: ["adamthomasmoran", "plus100500"],
+        query: "Макс +100500"
+      },
+      {
+        name: "This is Хорошо",
+        handles: ["thisishorosho"],
+        query: "This is Хорошо"
+      },
+      {
+        name: "BadComedian",
+        handles: ["thebadcomedian", "badcomedian"],
+        query: "BadComedian"
+      },
+      {
+        name: "КликКлак",
+        handles: ["clickclack", "klikklak"],
+        query: "КликКлак"
+      },
+      {
+        name: "Satyr",
+        handles: ["satyr"],
+        query: "Satyr"
+      },
+      {
+        name: "Юлик",
+        handles: ["yulik"],
+        query: "Юлик"
+      },
+      {
+        name: "Данила Поперечный",
+        handles: ["spoontamer", "danilapoperechny"],
+        query: "Данила Поперечный"
+      },
+      {
+        name: "Room Factory",
+        handles: ["roomfactory"],
+        query: "Room Factory"
+      },
+      {
+        name: "OneTwo",
+        handles: ["onetwo"],
+        query: "OneTwo"
+      },
+      {
+        name: "Руслан Усачев",
+        handles: ["ruslanusachev"],
+        query: "Руслан Усачев"
+      },
+      {
+        name: "Wylsacom",
+        handles: ["wylsacom"],
+        query: "Wylsacom"
+      },
+      {
+        name: "Rozetked",
+        handles: ["rozetked"],
+        query: "Rozetked"
+      },
+      {
+        name: "Droider",
+        handles: ["droider"],
+        query: "Droider"
+      },
+      {
+        name: "Ай, Как Просто",
+        handles: ["ikakprosto"],
+        query: "Ай Как Просто"
+      },
+      {
+        name: "AcademeG",
+        handles: ["academeg"],
+        query: "AcademeG"
+      },
+      {
+        name: "Жекич Дубровский",
+        handles: ["zhekichdubrovsky"],
+        query: "Жекич Дубровский"
+      },
+      {
+        name: "Ильдар Автоподбор",
+        handles: ["ildarautopodbor"],
+        query: "Ильдар Автоподбор"
+      },
+      {
+        name: "Дима Гордей",
+        handles: ["dimagordey"],
+        query: "Дима Гордей"
+      },
+      {
+        name: "Антон Лапенко",
+        handles: ["lapenko", "antonlapenko"],
+        query: "Антон Лапенко"
       }
     ];
-
-    const WINTER_TEMPLATES = [
-      "Новогоднее выживание в заснеженном мире",
-      "Зимний Minecraft и самый уютный дом",
-      "Мы встретили Новый год в Roblox",
-      "Снежная карта и зимние приключения",
-      "Я построил огромную новогоднюю ёлку",
-      "Морозное выживание с друзьями",
-      "Самый зимний выпуск 2021 года",
-      "Новый год, подарки и секретные испытания"
-    ];
-
-    function createYouTubeSearchUrl(
-      author,
-      title,
-      year
-    ) {
-      const query =
-        `${author} ${title} ${year}`;
-
-      return (
-        "https://www.youtube.com/results" +
-        "?search_query=" +
-        encodeURIComponent(query)
-      );
-    }
-
-    function createVideos() {
-      const videos = [];
-      let number = 1;
-
-      AUTHORS.forEach((author, authorIndex) => {
-        VIDEO_TEMPLATES.forEach(
-          (template, templateIndex) => {
-            const year =
-              2016 +
-              (
-                authorIndex +
-                templateIndex
-              ) % 6;
-
-            videos.push({
-              id: `video-${number}`,
-              title: template.title,
-              author,
-              year,
-              category: template.category,
-              winter: false,
-              duration:
-                `${8 + ((number * 7) % 25)}:` +
-                `${String(
-                  (number * 13) % 60
-                ).padStart(2, "0")}`,
-              views:
-                (
-                  0.4 +
-                  ((number * 17) % 85) / 10
-                )
-                  .toFixed(1)
-                  .replace(".", ",") +
-                " млн",
-              url:
-                createYouTubeSearchUrl(
-                  author,
-                  template.title,
-                  year
-                ),
-              order: number
-            });
-
-            number += 1;
-          }
-        );
-
-        WINTER_TEMPLATES.forEach(
-          (title, winterIndex) => {
-            videos.push({
-              id:
-                `winter-${authorIndex}-${winterIndex}`,
-              title,
-              author,
-              year: 2021,
-              category: "Вайб зима 2021",
-              winter: true,
-              duration:
-                `${10 + ((number * 5) % 22)}:` +
-                `${String(
-                  (number * 11) % 60
-                ).padStart(2, "0")}`,
-              views:
-                (
-                  0.5 +
-                  ((number * 19) % 72) / 10
-                )
-                  .toFixed(1)
-                  .replace(".", ",") +
-                " млн",
-              url:
-                createYouTubeSearchUrl(
-                  author,
-                  title,
-                  2021
-                ),
-              order: number
-            });
-
-            number += 1;
-          }
-        );
-      });
-
-      return videos;
-    }
-
-    const VIDEOS = createVideos();
 
     const state = {
       category: "Все",
       author: "Все",
       year: "Все",
-      sort: "recommended",
+      sort: "views",
       search: "",
       favoritesOnly: false,
-      visible: 28
+      visible: 32
     };
+
+    let videos = [];
+    let syncing = false;
 
     const favorites = new Set(
       JSON.parse(
-        localStorage.getItem(
-          "vibetube_favorites"
-        ) || "[]"
+        localStorage.getItem(FAVORITES_KEY) || "[]"
       )
     );
 
+    const channelCache = JSON.parse(
+      localStorage.getItem(CHANNEL_CACHE_KEY) || "{}"
+    );
+
     const elements = {
-      grid:
+      loadingScreen:
+        document.querySelector("#loadingScreen"),
+
+      loadingSpinner:
+        document.querySelector("#loadingSpinner"),
+
+      loadingTitle:
+        document.querySelector("#loadingTitle"),
+
+      loadingStatus:
+        document.querySelector("#loadingStatus"),
+
+      loadingProgress:
+        document.querySelector("#loadingProgress"),
+
+      loadingProgressFill:
+        document.querySelector("#loadingProgressFill"),
+
+      loadingNumbers:
+        document.querySelector("#loadingNumbers"),
+
+      apiSetup:
+        document.querySelector("#apiSetup"),
+
+      apiKeyInput:
+        document.querySelector("#apiKeyInput"),
+
+      videoGrid:
         document.querySelector("#videoGrid"),
 
-      search:
+      searchInput:
         document.querySelector("#searchInput"),
 
-      author:
+      authorSelect:
         document.querySelector("#authorSelect"),
 
-      year:
+      yearSelect:
         document.querySelector("#yearSelect"),
 
-      sort:
+      sortSelect:
         document.querySelector("#sortSelect"),
 
       resultCount:
         document.querySelector("#resultCount"),
 
-      title:
+      sectionTitle:
         document.querySelector("#sectionTitle"),
 
-      subtitle:
+      sectionSubtitle:
         document.querySelector("#sectionSubtitle"),
 
-      loadMore:
+      loadMoreButton:
         document.querySelector("#loadMoreButton"),
+
+      databaseMessage:
+        document.querySelector("#databaseMessage"),
 
       toast:
         document.querySelector("#toast")
@@ -1929,112 +1946,757 @@
       );
     }
 
-    function getInitials(author) {
-      return author
-        .trim()
-        .split(/\s+/)
-        .map(word => word[0])
-        .join("")
-        .slice(0, 2)
-        .toUpperCase();
+    function getApiKey() {
+      return (
+        YOUTUBE_API_KEY.trim() ||
+        localStorage.getItem(SAVED_API_KEY) ||
+        ""
+      );
     }
 
-    function createColors(text) {
-      let hash = 0;
+    async function youtubeRequest(
+      endpoint,
+      parameters,
+      apiKey
+    ) {
+      const url = new URL(
+        `https://www.googleapis.com/youtube/v3/${endpoint}`
+      );
 
-      for (const character of text) {
-        hash =
-          character.charCodeAt(0) +
-          ((hash << 5) - hash);
+      Object.entries(parameters).forEach(
+        ([key, value]) => {
+          if (
+            value !== undefined &&
+            value !== null &&
+            value !== ""
+          ) {
+            url.searchParams.set(key, value);
+          }
+        }
+      );
+
+      url.searchParams.set("key", apiKey);
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error?.message ||
+          "Ошибка YouTube API"
+        );
       }
 
-      const hue1 =
-        Math.abs(hash) % 360;
+      return data;
+    }
 
-      const hue2 =
-        (hue1 + 70) % 360;
+    function updateLoading(
+      title,
+      status,
+      processed,
+      total,
+      videoCount
+    ) {
+      const percent =
+        total > 0
+          ? Math.round(processed / total * 100)
+          : 0;
 
-      return {
-        avatar1:
-          `hsl(${hue1} 72% 49%)`,
+      elements.loadingTitle.textContent = title;
+      elements.loadingStatus.textContent = status;
 
-        avatar2:
-          `hsl(${hue2} 75% 39%)`,
+      elements.loadingProgressFill.style.width =
+        `${percent}%`;
 
-        thumbnail1:
-          `hsl(${hue1} 65% 25%)`,
+      elements.loadingNumbers.textContent =
+        `${processed}/${total} блогеров • ` +
+        `${videoCount.toLocaleString("ru-RU")} видео`;
+    }
 
-        thumbnail2:
-          `hsla(${hue2}, 80%, 55%, 0.65)`
+    function hideLoadingScreen() {
+      setTimeout(() => {
+        elements.loadingScreen.classList.add("hidden");
+      }, 500);
+    }
+
+    function showLoadingScreen() {
+      elements.loadingScreen.classList.remove("hidden");
+      elements.loadingSpinner.style.display = "block";
+      elements.loadingProgress.style.display = "block";
+      elements.apiSetup.classList.remove("visible");
+    }
+
+    function showApiSetup(message) {
+      elements.loadingSpinner.style.display = "none";
+      elements.loadingProgress.style.display = "none";
+
+      elements.loadingTitle.textContent =
+        "Нужен ключ YouTube API";
+
+      elements.loadingStatus.textContent = message;
+
+      elements.apiSetup.classList.add("visible");
+      elements.apiKeyInput.value =
+        localStorage.getItem(SAVED_API_KEY) || "";
+    }
+
+    function loadCachedVideos() {
+      try {
+        const cached = JSON.parse(
+          localStorage.getItem(CACHE_KEY) || "[]"
+        );
+
+        if (Array.isArray(cached)) {
+          videos = cached.filter(
+            video =>
+              video &&
+              video.id &&
+              video.title &&
+              video.author
+          );
+        }
+      } catch {
+        videos = [];
+      }
+    }
+
+    function saveCachedVideos() {
+      try {
+        localStorage.setItem(
+          CACHE_KEY,
+          JSON.stringify(videos)
+        );
+      } catch (error) {
+        console.warn(
+          "Не удалось сохранить всю базу",
+          error
+        );
+      }
+    }
+
+    function saveChannelCache() {
+      localStorage.setItem(
+        CHANNEL_CACHE_KEY,
+        JSON.stringify(channelCache)
+      );
+    }
+
+    function normalizeText(text = "") {
+      return text
+        .toLowerCase()
+        .replace(/ё/g, "е")
+        .replace(/[^a-zа-я0-9]+/g, "");
+    }
+
+    async function resolveChannel(creator, apiKey) {
+      if (channelCache[creator.name]) {
+        return channelCache[creator.name];
+      }
+
+      for (const rawHandle of creator.handles) {
+        const handle = rawHandle.replace(/^@/, "");
+
+        try {
+          const response = await youtubeRequest(
+            "channels",
+            {
+              part: "snippet",
+              forHandle: handle,
+              maxResults: 1
+            },
+            apiKey
+          );
+
+          const channel = response.items?.[0];
+
+          if (channel?.id) {
+            const result = {
+              id: channel.id,
+              title:
+                channel.snippet?.title ||
+                creator.name
+            };
+
+            channelCache[creator.name] = result;
+            saveChannelCache();
+
+            return result;
+          }
+        } catch (error) {
+          console.warn(
+            `Не найден @${handle}`,
+            error
+          );
+        }
+      }
+
+      const searchResponse = await youtubeRequest(
+        "search",
+        {
+          part: "snippet",
+          type: "channel",
+          q: creator.query,
+          maxResults: 5
+        },
+        apiKey
+      );
+
+      const expected =
+        normalizeText(creator.name);
+
+      const candidates =
+        searchResponse.items || [];
+
+      const best =
+        candidates.find(item => {
+          const title = normalizeText(
+            item.snippet?.title || ""
+          );
+
+          return (
+            title.includes(expected) ||
+            expected.includes(title)
+          );
+        }) ||
+        candidates[0];
+
+      const channelId =
+        best?.snippet?.channelId ||
+        best?.id?.channelId;
+
+      if (!channelId) {
+        return null;
+      }
+
+      const result = {
+        id: channelId,
+        title:
+          best.snippet?.title ||
+          creator.name
       };
+
+      channelCache[creator.name] = result;
+      saveChannelCache();
+
+      return result;
+    }
+
+    function parseDurationSeconds(duration = "") {
+      const match = duration.match(
+        /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
+      );
+
+      if (!match) {
+        return 0;
+      }
+
+      const hours = Number(match[1] || 0);
+      const minutes = Number(match[2] || 0);
+      const seconds = Number(match[3] || 0);
+
+      return (
+        hours * 3600 +
+        minutes * 60 +
+        seconds
+      );
+    }
+
+    function formatDuration(duration = "") {
+      const total =
+        parseDurationSeconds(duration);
+
+      if (!total) {
+        return "";
+      }
+
+      const hours =
+        Math.floor(total / 3600);
+
+      const minutes =
+        Math.floor((total % 3600) / 60);
+
+      const seconds =
+        total % 60;
+
+      if (hours > 0) {
+        return (
+          `${hours}:` +
+          `${String(minutes).padStart(2, "0")}:` +
+          `${String(seconds).padStart(2, "0")}`
+        );
+      }
+
+      return (
+        `${minutes}:` +
+        `${String(seconds).padStart(2, "0")}`
+      );
+    }
+
+    function formatViews(value) {
+      const views = Number(value || 0);
+
+      if (views >= 1000000000) {
+        return (
+          (views / 1000000000)
+            .toFixed(1)
+            .replace(".", ",") +
+          " млрд"
+        );
+      }
+
+      if (views >= 1000000) {
+        return (
+          (views / 1000000)
+            .toFixed(1)
+            .replace(".", ",") +
+          " млн"
+        );
+      }
+
+      if (views >= 1000) {
+        return (
+          Math.round(views / 1000) +
+          " тыс."
+        );
+      }
+
+      return views.toLocaleString("ru-RU");
+    }
+
+    function isWinterVideo(
+      title,
+      publishedAt
+    ) {
+      const date = new Date(publishedAt);
+
+      const winterPeriod =
+        date >= new Date("2020-12-01T00:00:00Z") &&
+        date < new Date("2021-03-01T00:00:00Z");
+
+      const winterWords =
+        /зим|снег|снеж|мороз|новый год|новогод|рождеств|ёлк|елк|л[её]д|замерз|winter|snow|christmas/i;
+
+      return (
+        winterPeriod ||
+        (
+          date.getUTCFullYear() === 2021 &&
+          winterWords.test(title)
+        )
+      );
+    }
+
+    function classifyVideo(
+      title,
+      publishedAt
+    ) {
+      const text = title.toLowerCase();
+
+      if (isWinterVideo(title, publishedAt)) {
+        return "Вайб зима 2021";
+      }
+
+      if (
+        /minecraft|майнкрафт|майн|крипер|бедрок|эндер|skyblock/.test(
+          text
+        )
+      ) {
+        return "Minecraft";
+      }
+
+      if (
+        /roblox|роблокс|робукс|obby|piggy|adopt me/.test(
+          text
+        )
+      ) {
+        return "Roblox";
+      }
+
+      if (
+        /brawl stars|бравл|brawl|бравлер|гем/.test(
+          text
+        )
+      ) {
+        return "Brawl Stars";
+      }
+
+      if (
+        /gta|гта|grand theft auto|samp|самп|black russia/.test(
+          text
+        )
+      ) {
+        return "GTA";
+      }
+
+      if (
+        /хоррор|страш|ужас|маньяк|монстр|зомби|fnaf|baldi|granny|грэнни/.test(
+          text
+        )
+      ) {
+        return "Хорроры";
+      }
+
+      if (
+        /челлендж|24 час|24 часа|кто последний|испытани|challenge/.test(
+          text
+        )
+      ) {
+        return "Челленджи";
+      }
+
+      if (
+        /смешн|прикол|угар|моменты|фейл|мем|нарезка|лучшее/.test(
+          text
+        )
+      ) {
+        return "Смешные моменты";
+      }
+
+      return "Другое";
+    }
+
+    async function fetchCreatorVideos(
+      creator,
+      channel,
+      apiKey
+    ) {
+      const searchResponse =
+        await youtubeRequest(
+          "search",
+          {
+            part: "snippet",
+            channelId: channel.id,
+            type: "video",
+            order: "viewCount",
+            maxResults: RESULTS_PER_CREATOR,
+            publishedAfter: MIN_DATE,
+            publishedBefore: MAX_DATE,
+            videoEmbeddable: "true"
+          },
+          apiKey
+        );
+
+      const searchItems =
+        searchResponse.items || [];
+
+      const videoIds =
+        searchItems
+          .map(item => item.id?.videoId)
+          .filter(Boolean);
+
+      if (!videoIds.length) {
+        return [];
+      }
+
+      const detailsResponse =
+        await youtubeRequest(
+          "videos",
+          {
+            part:
+              "snippet,contentDetails,statistics,status",
+            id: videoIds.join(","),
+            maxResults: 50
+          },
+          apiKey
+        );
+
+      return (detailsResponse.items || [])
+        .filter(item => {
+          const publishedAt =
+            item.snippet?.publishedAt;
+
+          const duration =
+            item.contentDetails?.duration;
+
+          const durationSeconds =
+            parseDurationSeconds(duration);
+
+          const date =
+            new Date(publishedAt);
+
+          return (
+            item.status?.privacyStatus === "public" &&
+            publishedAt &&
+            date >= new Date(MIN_DATE) &&
+            date < new Date(MAX_DATE) &&
+            durationSeconds >= 180
+          );
+        })
+        .map(item => {
+          const publishedAt =
+            item.snippet.publishedAt;
+
+          const title =
+            item.snippet.title;
+
+          return {
+            id: item.id,
+            title,
+            author: creator.name,
+            realChannelTitle:
+              item.snippet.channelTitle,
+            publishedAt,
+            year:
+              new Date(publishedAt)
+                .getUTCFullYear(),
+            category:
+              classifyVideo(
+                title,
+                publishedAt
+              ),
+            winter:
+              isWinterVideo(
+                title,
+                publishedAt
+              ),
+            thumbnail:
+              item.snippet
+                ?.thumbnails
+                ?.high
+                ?.url ||
+              item.snippet
+                ?.thumbnails
+                ?.medium
+                ?.url ||
+              `https://i.ytimg.com/vi/${item.id}/hqdefault.jpg`,
+            duration:
+              formatDuration(
+                item.contentDetails?.duration
+              ),
+            viewCount:
+              Number(
+                item.statistics?.viewCount || 0
+              ),
+            url:
+              `https://www.youtube.com/watch?v=${item.id}`
+          };
+        });
+    }
+
+    function mergeVideos(newVideos) {
+      const map = new Map(
+        videos.map(video => [
+          video.id,
+          video
+        ])
+      );
+
+      newVideos.forEach(video => {
+        map.set(video.id, video);
+      });
+
+      videos = [...map.values()];
+    }
+
+    async function syncRealVideos() {
+      if (syncing) {
+        return;
+      }
+
+      const apiKey = getApiKey();
+
+      if (!apiKey) {
+        showApiSetup(
+          "Без ключа невозможно получить 1000 настоящих видео."
+        );
+
+        return;
+      }
+
+      syncing = true;
+      showLoadingScreen();
+
+      const loadedVideos = [];
+      let completedCreators = 0;
+      let queueIndex = 0;
+
+      updateLoading(
+        "Загружаем настоящие видео",
+        "Подключаемся к каналам…",
+        0,
+        CREATORS.length,
+        videos.length
+      );
+
+      async function worker() {
+        while (queueIndex < CREATORS.length) {
+          const creator =
+            CREATORS[queueIndex];
+
+          queueIndex += 1;
+
+          try {
+            updateLoading(
+              "Загружаем настоящий архив",
+              `Сейчас загружается: ${creator.name}`,
+              completedCreators,
+              CREATORS.length,
+              videos.length + loadedVideos.length
+            );
+
+            const channel =
+              await resolveChannel(
+                creator,
+                apiKey
+              );
+
+            if (channel) {
+              const creatorVideos =
+                await fetchCreatorVideos(
+                  creator,
+                  channel,
+                  apiKey
+                );
+
+              loadedVideos.push(
+                ...creatorVideos
+              );
+
+              mergeVideos(
+                creatorVideos
+              );
+            }
+          } catch (error) {
+            console.error(
+              `Ошибка загрузки ${creator.name}:`,
+              error
+            );
+
+            if (
+              /quota|dailyLimit|keyInvalid|API key|forbidden/i
+                .test(error.message)
+            ) {
+              throw error;
+            }
+          } finally {
+            completedCreators += 1;
+
+            updateLoading(
+              "Загружаем настоящий архив",
+              `Обработано: ${creator.name}`,
+              completedCreators,
+              CREATORS.length,
+              videos.length
+            );
+
+            if (
+              completedCreators % 5 === 0
+            ) {
+              saveCachedVideos();
+              updateAuthors();
+              renderVideos();
+            }
+          }
+        }
+      }
+
+      try {
+        await Promise.all(
+          Array.from(
+            { length: WORKER_COUNT },
+            () => worker()
+          )
+        );
+
+        saveCachedVideos();
+        updateAuthors();
+        renderVideos();
+
+        updateLoading(
+          "Готово",
+          "Все доступные реальные ролики загружены.",
+          CREATORS.length,
+          CREATORS.length,
+          videos.length
+        );
+
+        elements.databaseMessage.classList.remove(
+          "hidden"
+        );
+
+        elements.databaseMessage.textContent =
+          `Загружено ${videos.length.toLocaleString("ru-RU")} ` +
+          `настоящих публичных видео. ` +
+          `Удалённые, приватные ролики и короткие Shorts не добавлены.`;
+
+        setTimeout(
+          hideLoadingScreen,
+          700
+        );
+      } catch (error) {
+        showApiSetup(
+          error.message ||
+          "Не удалось загрузить YouTube."
+        );
+      } finally {
+        syncing = false;
+      }
     }
 
     function getFilteredVideos() {
-      const searchText =
+      const query =
         state.search.toLowerCase();
 
-      let result =
-        VIDEOS.filter(video => {
-          const categoryMatches =
-            state.category === "Все" ||
-            (
-              state.category ===
-              "Вайб зима 2021"
-                ? video.winter
-                : video.category ===
-                  state.category
-            );
-
-          const authorMatches =
-            state.author === "Все" ||
-            video.author === state.author;
-
-          const yearMatches =
-            state.year === "Все" ||
-            String(video.year) ===
-              state.year;
-
-          const favoritesMatch =
-            !state.favoritesOnly ||
-            favorites.has(video.id);
-
-          const searchMatches =
-            !searchText ||
-            (
-              `${video.title} ` +
-              `${video.author} ` +
-              `${video.category}`
-            )
-              .toLowerCase()
-              .includes(searchText);
-
-          return (
-            categoryMatches &&
-            authorMatches &&
-            yearMatches &&
-            favoritesMatch &&
-            searchMatches
+      let result = videos.filter(video => {
+        const categoryMatches =
+          state.category === "Все" ||
+          (
+            state.category === "Вайб зима 2021"
+              ? video.winter
+              : video.category === state.category
           );
-        });
 
-      if (state.sort === "recommended") {
+        const authorMatches =
+          state.author === "Все" ||
+          video.author === state.author;
+
+        const yearMatches =
+          state.year === "Все" ||
+          String(video.year) === state.year;
+
+        const favoritesMatch =
+          !state.favoritesOnly ||
+          favorites.has(video.id);
+
+        const searchMatches =
+          !query ||
+          (
+            `${video.title} ` +
+            `${video.author} ` +
+            `${video.realChannelTitle || ""} ` +
+            `${video.category}`
+          )
+            .toLowerCase()
+            .includes(query);
+
+        return (
+          categoryMatches &&
+          authorMatches &&
+          yearMatches &&
+          favoritesMatch &&
+          searchMatches
+        );
+      });
+
+      if (state.sort === "views") {
         result.sort(
           (a, b) =>
-            a.order - b.order
+            b.viewCount - a.viewCount
         );
       }
 
       if (state.sort === "new") {
         result.sort(
           (a, b) =>
-            b.year - a.year
+            new Date(b.publishedAt) -
+            new Date(a.publishedAt)
         );
       }
 
       if (state.sort === "old") {
         result.sort(
           (a, b) =>
-            a.year - b.year
+            new Date(a.publishedAt) -
+            new Date(b.publishedAt)
         );
       }
 
@@ -2061,10 +2723,10 @@
       return result;
     }
 
-    function createCard(video, index) {
-      const colors =
-        createColors(video.author);
-
+    function createVideoCard(
+      video,
+      index
+    ) {
       const saved =
         favorites.has(video.id);
 
@@ -2073,19 +2735,7 @@
           class="video-card"
           style="
             animation-delay:
-              ${Math.min(index * 14, 230)}ms;
-
-            --avatar-1:
-              ${colors.avatar1};
-
-            --avatar-2:
-              ${colors.avatar2};
-
-            --thumb-1:
-              ${colors.thumbnail1};
-
-            --thumb-2:
-              ${colors.thumbnail2};
+              ${Math.min(index * 10, 180)}ms
           "
         >
           <a
@@ -2094,47 +2744,42 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div class="thumbnail-content">
-              <strong>
-                ${escapeHtml(video.title)}
-              </strong>
-
-              <span>
-                ${escapeHtml(video.author)}
-              </span>
-            </div>
+            <img
+              loading="lazy"
+              src="${escapeHtml(video.thumbnail)}"
+              alt="${escapeHtml(video.title)}"
+              onerror="
+                this.src =
+                'https://i.ytimg.com/vi/${video.id}/hqdefault.jpg'
+              "
+            >
 
             <span class="year">
               ${video.year}
             </span>
 
-            <span
-              class="
-                category
-                ${video.winter ? "winter" : ""}
-              "
-            >
-              ${
-                video.winter
-                  ? "❄ Зима 2021"
-                  : escapeHtml(video.category)
-              }
-            </span>
+            ${
+              video.winter
+                ? `
+                  <span class="winter-label">
+                    ❄ Зима 2021
+                  </span>
+                `
+                : ""
+            }
 
-            <span class="duration">
-              ${escapeHtml(video.duration)}
-            </span>
-
-            <span class="play">
-              ▶
-            </span>
+            ${
+              video.duration
+                ? `
+                  <span class="duration">
+                    ${escapeHtml(video.duration)}
+                  </span>
+                `
+                : ""
+            }
           </a>
 
-          <div class="video-info">
-            <div class="avatar">
-              ${getInitials(video.author)}
-            </div>
-
+          <div class="video-details">
             <div>
               <a
                 class="video-title"
@@ -2146,124 +2791,177 @@
               </a>
 
               <div class="video-author">
-                ${escapeHtml(video.author)} ✓
+                от
+                <span>
+                  ${escapeHtml(video.author)}
+                </span>
               </div>
 
               <div class="video-meta">
-                ${escapeHtml(video.views)}
-                просмотров • ${video.year}
+                ${formatViews(video.viewCount)}
+                просмотров
+                • ${video.year}
               </div>
             </div>
 
             <button
               class="
-                favorite
+                favorite-button
                 ${saved ? "saved" : ""}
               "
               data-favorite="${video.id}"
-              aria-label="Избранное"
+              title="Добавить в избранное"
             >
-              ${saved ? "♥" : "♡"}
+              ${saved ? "★" : "☆"}
             </button>
           </div>
         </article>
       `;
     }
 
-    function render(reset = false) {
+    function renderVideos(reset = false) {
       if (reset) {
-        state.visible = 28;
+        state.visible = 32;
       }
 
       const filtered =
         getFilteredVideos();
 
-      const visible =
+      const visibleVideos =
         filtered.slice(
           0,
           state.visible
         );
 
-      if (!visible.length) {
-        elements.grid.innerHTML = `
-          <div class="empty">
-            <div
-              style="
-                font-size: 52px;
-                margin-bottom: 12px;
-              "
-            >
-              📼
-            </div>
-
+      if (!visibleVideos.length) {
+        elements.videoGrid.innerHTML = `
+          <div class="empty-state">
             <strong>
-              Ничего не найдено
+              Видео не найдены
             </strong>
 
-            Измени поиск или выбранные фильтры.
+            Измени фильтры или поисковый запрос.
           </div>
         `;
       } else {
-        elements.grid.innerHTML =
-          visible
-            .map(createCard)
+        elements.videoGrid.innerHTML =
+          visibleVideos
+            .map(createVideoCard)
             .join("");
       }
 
       elements.resultCount.textContent =
-        `${filtered.length.toLocaleString(
-          "ru-RU"
-        )} видео`;
+        `${filtered.length.toLocaleString("ru-RU")} видео`;
 
-      elements.loadMore.style.display =
+      elements.loadMoreButton.style.display =
         state.visible < filtered.length
           ? "inline-block"
           : "none";
 
-      document.body.classList.toggle(
-        "winter-mode",
-        state.category ===
-          "Вайб зима 2021"
-      );
-
       if (state.favoritesOnly) {
-        elements.title.textContent =
+        elements.sectionTitle.textContent =
           "Избранные видео";
 
-        elements.subtitle.textContent =
-          "Видео, сохранённые на этом устройстве";
+        elements.sectionSubtitle.textContent =
+          "Ролики, сохранённые на этом устройстве";
       } else if (
-        state.category ===
-        "Вайб зима 2021"
+        state.category === "Вайб зима 2021"
       ) {
-        elements.title.textContent =
-          "❄ Вайб зима 2021";
+        elements.sectionTitle.textContent =
+          "Вайб зима 2021";
 
-        elements.subtitle.textContent =
-          "Зимние видео и новогодняя ностальгия";
+        elements.sectionSubtitle.textContent =
+          "Настоящие зимние видео YouTube";
       } else if (state.search) {
-        elements.title.textContent =
-          `Поиск: «${state.search}»`;
+        elements.sectionTitle.textContent =
+          `Результаты поиска: ${state.search}`;
 
-        elements.subtitle.textContent =
-          "Результаты по видео и блогерам";
+        elements.sectionSubtitle.textContent =
+          "Поиск по настоящей базе роликов";
       } else if (
         state.author !== "Все"
       ) {
-        elements.title.textContent =
+        elements.sectionTitle.textContent =
           state.author;
 
-        elements.subtitle.textContent =
-          "Все доступные видео этого блогера";
+        elements.sectionSubtitle.textContent =
+          "Настоящие старые видео этого блогера";
       } else {
-        elements.title.textContent =
-          "Рекомендации из прошлого";
+        elements.sectionTitle.textContent =
+          "Рекомендуемые видео";
 
-        elements.subtitle.textContent =
-          "Каждая карточка открывает работающий поиск YouTube";
+        elements.sectionSubtitle.textContent =
+          "Только настоящие публичные ролики YouTube";
       }
 
       bindFavoriteButtons();
+      updateStatistics();
+    }
+
+    function updateAuthors() {
+      const current =
+        state.author;
+
+      const authors =
+        [...new Set(
+          videos.map(
+            video => video.author
+          )
+        )]
+          .sort(
+            (a, b) =>
+              a.localeCompare(b, "ru")
+          );
+
+      elements.authorSelect.innerHTML = `
+        <option value="Все">
+          Все блогеры
+        </option>
+
+        ${authors
+          .map(author => `
+            <option
+              value="${escapeHtml(author)}"
+            >
+              ${escapeHtml(author)}
+            </option>
+          `)
+          .join("")}
+      `;
+
+      if (authors.includes(current)) {
+        elements.authorSelect.value =
+          current;
+      } else {
+        state.author = "Все";
+      }
+    }
+
+    function updateStatistics() {
+      const authorCount =
+        new Set(
+          videos.map(video => video.author)
+        ).size;
+
+      document.querySelector(
+        "#heroVideoCount"
+      ).textContent =
+        videos.length.toLocaleString("ru-RU");
+
+      document.querySelector(
+        "#heroAuthorCount"
+      ).textContent =
+        authorCount.toLocaleString("ru-RU");
+
+      document.querySelector(
+        "#sidebarVideoCount"
+      ).textContent =
+        `${videos.length.toLocaleString("ru-RU")} настоящих видео`;
+
+      document.querySelector(
+        "#sidebarAuthorCount"
+      ).textContent =
+        `${authorCount.toLocaleString("ru-RU")} блогеров`;
     }
 
     function bindFavoriteButtons() {
@@ -2294,13 +2992,13 @@
               }
 
               localStorage.setItem(
-                "vibetube_favorites",
+                FAVORITES_KEY,
                 JSON.stringify(
                   [...favorites]
                 )
               );
 
-              render();
+              renderVideos();
             }
           );
         });
@@ -2308,9 +3006,7 @@
 
     function showToast(text) {
       elements.toast.textContent = text;
-      elements.toast.classList.add(
-        "show"
-      );
+      elements.toast.classList.add("show");
 
       clearTimeout(
         window.vibetubeToastTimer
@@ -2322,6 +3018,56 @@
             "show"
           );
         }, 1800);
+    }
+
+    function selectCategory(category) {
+      state.category = category;
+      state.favoritesOnly = false;
+
+      document
+        .querySelectorAll("[data-filter]")
+        .forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === category
+          );
+        });
+
+      renderVideos(true);
+
+      document
+        .querySelector("#catalog")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+    }
+
+    function resetHome() {
+      state.category = "Все";
+      state.author = "Все";
+      state.year = "Все";
+      state.search = "";
+      state.favoritesOnly = false;
+
+      elements.searchInput.value = "";
+      elements.authorSelect.value = "Все";
+      elements.yearSelect.value = "Все";
+
+      document
+        .querySelectorAll("[data-filter]")
+        .forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === "Все"
+          );
+        });
+
+      renderVideos(true);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
 
     function openRandomVideo() {
@@ -2347,191 +3093,102 @@
       );
     }
 
-    function selectCategory(category) {
-      state.category = category;
-      state.favoritesOnly = false;
+    document
+      .querySelector("#apiStartButton")
+      .addEventListener("click", () => {
+        const key =
+          elements.apiKeyInput.value.trim();
 
-      document
-        .querySelectorAll(
-          "[data-filter]"
-        )
-        .forEach(button => {
-          button.classList.toggle(
-            "active",
-            button.dataset.filter ===
-              category
-          );
-        });
-
-      render(true);
-
-      document
-        .querySelector("#catalog")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-    }
-
-    function resetHome() {
-      state.category = "Все";
-      state.author = "Все";
-      state.year = "Все";
-      state.search = "";
-      state.favoritesOnly = false;
-
-      elements.search.value = "";
-      elements.author.value = "Все";
-      elements.year.value = "Все";
-
-      document
-        .querySelectorAll(
-          "[data-filter]"
-        )
-        .forEach(button => {
-          button.classList.toggle(
-            "active",
-            button.dataset.filter ===
-              "Все"
-          );
-        });
-
-      render(true);
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    function initializeAuthors() {
-      elements.author.innerHTML = `
-        <option value="Все">
-          Все блогеры
-        </option>
-
-        ${
-          AUTHORS
-            .slice()
-            .sort(
-              (a, b) =>
-                a.localeCompare(b, "ru")
-            )
-            .map(author => `
-              <option
-                value="${escapeHtml(author)}"
-              >
-                ${escapeHtml(author)}
-              </option>
-            `)
-            .join("")
+        if (!key) {
+          return;
         }
-      `;
-    }
 
-    function updateStatistics() {
-      const videoCount =
-        VIDEOS.length.toLocaleString(
-          "ru-RU"
+        localStorage.setItem(
+          SAVED_API_KEY,
+          key
         );
 
-      const authorCount =
-        AUTHORS.length.toLocaleString(
-          "ru-RU"
+        elements.apiSetup.classList.remove(
+          "visible"
         );
 
-      document.querySelector(
-        "#heroVideoCount"
-      ).textContent = videoCount;
+        elements.loadingSpinner.style.display =
+          "block";
 
-      document.querySelector(
-        "#heroAuthorCount"
-      ).textContent = authorCount;
+        elements.loadingProgress.style.display =
+          "block";
 
-      document.querySelector(
-        "#sideVideoCount"
-      ).textContent =
-        `${videoCount} видео`;
-
-      document.querySelector(
-        "#sideAuthorCount"
-      ).textContent =
-        `${authorCount} блогеров`;
-    }
+        syncRealVideos();
+      });
 
     document
       .querySelector("#menuButton")
-      .addEventListener(
-        "click",
-        () => {
-          document.body.classList.toggle(
-            "menu-open"
-          );
-        }
-      );
+      .addEventListener("click", () => {
+        document.body.classList.toggle(
+          "menu-open"
+        );
+      });
 
     document
-      .querySelector(
-        "#mobileSearchButton"
-      )
-      .addEventListener(
-        "click",
-        () => {
-          document.body.classList.toggle(
+      .querySelector("#mobileSearchButton")
+      .addEventListener("click", () => {
+        document.body.classList.toggle(
+          "search-open"
+        );
+
+        if (
+          document.body.classList.contains(
             "search-open"
+          )
+        ) {
+          setTimeout(
+            () => elements.searchInput.focus(),
+            100
           );
-
-          if (
-            document.body.classList.contains(
-              "search-open"
-            )
-          ) {
-            setTimeout(
-              () => elements.search.focus(),
-              100
-            );
-          }
         }
-      );
+      });
 
-    elements.search.addEventListener(
+    elements.searchInput.addEventListener(
       "input",
       event => {
         state.search =
           event.target.value.trim();
 
         state.favoritesOnly = false;
-        render(true);
+
+        renderVideos(true);
       }
     );
 
-    elements.author.addEventListener(
+    elements.authorSelect.addEventListener(
       "change",
       event => {
         state.author =
           event.target.value;
 
         state.favoritesOnly = false;
-        render(true);
+
+        renderVideos(true);
       }
     );
 
-    elements.year.addEventListener(
+    elements.yearSelect.addEventListener(
       "change",
       event => {
         state.year =
           event.target.value;
 
-        render(true);
+        renderVideos(true);
       }
     );
 
-    elements.sort.addEventListener(
+    elements.sortSelect.addEventListener(
       "change",
       event => {
         state.sort =
           event.target.value;
 
-        render(true);
+        renderVideos(true);
       }
     );
 
@@ -2549,9 +3206,7 @@
       });
 
     document
-      .querySelectorAll(
-        "[data-category]"
-      )
+      .querySelectorAll("[data-category]")
       .forEach(button => {
         button.addEventListener(
           "click",
@@ -2577,9 +3232,7 @@
               button.dataset.action;
 
             document
-              .querySelectorAll(
-                "[data-action]"
-              )
+              .querySelectorAll("[data-action]")
               .forEach(item => {
                 item.classList.toggle(
                   "active",
@@ -2601,13 +3254,11 @@
               openRandomVideo();
             }
 
-            if (
-              action === "favorites"
-            ) {
+            if (action === "favorites") {
               state.favoritesOnly = true;
               state.category = "Все";
 
-              render(true);
+              renderVideos(true);
 
               document
                 .querySelector("#catalog")
@@ -2633,9 +3284,7 @@
               button.dataset.mobile;
 
             document
-              .querySelectorAll(
-                "[data-mobile]"
-              )
+              .querySelectorAll("[data-mobile]")
               .forEach(item => {
                 item.classList.toggle(
                   "active",
@@ -2657,13 +3306,11 @@
               openRandomVideo();
             }
 
-            if (
-              action === "favorites"
-            ) {
+            if (action === "favorites") {
               state.favoritesOnly = true;
               state.category = "Все";
 
-              render(true);
+              renderVideos(true);
 
               document
                 .querySelector("#catalog")
@@ -2684,64 +3331,41 @@
 
     document
       .querySelector("#winterBanner")
-      .addEventListener(
-        "click",
-        () => {
-          selectCategory(
-            "Вайб зима 2021"
-          );
-        }
-      );
+      .addEventListener("click", () => {
+        selectCategory(
+          "Вайб зима 2021"
+        );
+      });
 
     document
-      .querySelector(
-        "#randomHeroButton"
-      )
+      .querySelector("#randomHeaderButton")
       .addEventListener(
         "click",
         openRandomVideo
       );
 
     document
-      .querySelector(
-        "#randomHeaderButton"
-      )
-      .addEventListener(
-        "click",
-        openRandomVideo
-      );
-
-    document
-      .querySelector("#catalogButton")
-      .addEventListener(
-        "click",
-        () => {
-          document
-            .querySelector("#catalog")
-            .scrollIntoView({
-              behavior: "smooth"
-            });
-        }
-      );
+      .querySelector("#refreshButton")
+      .addEventListener("click", () => {
+        showLoadingScreen();
+        syncRealVideos();
+      });
 
     document
       .querySelector("#searchButton")
-      .addEventListener(
-        "click",
-        () => {
-          document
-            .querySelector("#catalog")
-            .scrollIntoView({
-              behavior: "smooth"
-            });
-        }
-      );
+      .addEventListener("click", () => {
+        document
+          .querySelector("#catalog")
+          .scrollIntoView({
+            behavior: "smooth"
+          });
+      });
 
-    elements.loadMore.addEventListener(
+    elements.loadMoreButton.addEventListener(
       "click",
       () => {
-        state.visible += 28;
-        render();
+        state.visible += 32;
+        renderVideos();
       }
     );
 
@@ -2750,11 +3374,10 @@
       event => {
         if (
           event.key === "/" &&
-          document.activeElement.tagName !==
-            "INPUT"
+          document.activeElement.tagName !== "INPUT"
         ) {
           event.preventDefault();
-          elements.search.focus();
+          elements.searchInput.focus();
         }
 
         if (event.key === "Escape") {
@@ -2766,9 +3389,45 @@
       }
     );
 
-    initializeAuthors();
-    updateStatistics();
-    render();
+    async function initialize() {
+      loadCachedVideos();
+      updateAuthors();
+      renderVideos();
+
+      if (videos.length > 0) {
+        updateLoading(
+          "Архив загружен",
+          "Открываем сохранённую базу…",
+          CREATORS.length,
+          CREATORS.length,
+          videos.length
+        );
+
+        hideLoadingScreen();
+
+        elements.databaseMessage.classList.remove(
+          "hidden"
+        );
+
+        elements.databaseMessage.textContent =
+          `Из памяти загружено ${videos.length.toLocaleString("ru-RU")} ` +
+          `настоящих видео. Нажми «Обновить», чтобы проверить базу.`;
+
+        return;
+      }
+
+      if (!getApiKey()) {
+        showApiSetup(
+          "Вставь ключ, после чего сайт загрузит реальные видео 2016–2021 годов."
+        );
+
+        return;
+      }
+
+      await syncRealVideos();
+    }
+
+    initialize();
   </script>
 </body>
 </html>
