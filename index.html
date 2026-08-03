@@ -5,32 +5,31 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1"
+    content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#080b12">
+  <meta name="theme-color" content="#090b11">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="VibeTube">
 
-  <title>VibeTube — старые вайбовые видео</title>
+  <title>VibeTube — старый вайб YouTube</title>
 
   <style>
     :root {
-      --bg: #080b12;
-      --panel: #10141f;
-      --panel-2: #171c29;
-      --panel-3: #202637;
+      --bg: #090b11;
+      --panel: #11151f;
+      --panel2: #191e2a;
+      --panel3: #252b39;
       --text: #f7f8fc;
       --muted: #9299aa;
       --border: rgba(255, 255, 255, 0.08);
-      --red: #ff184e;
-      --blue: #69bfff;
-      --winter: #a7e4ff;
-      --header-height: 64px;
-      --sidebar-width: 238px;
-      --mobile-nav-height: 70px;
-      --shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+      --red: #ff164c;
+      --winter: #bcecff;
+      --header: 62px;
+      --sidebar: 235px;
+      --bottom-nav: 72px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
     }
 
     * {
@@ -48,31 +47,20 @@
       min-height: 100vh;
       color: var(--text);
       background:
-        radial-gradient(
-          circle at 70% -20%,
-          rgba(64, 99, 255, 0.15),
-          transparent 35%
-        ),
+        radial-gradient(circle at 80% -10%, rgba(82, 65, 255, 0.15), transparent 35%),
         var(--bg);
       font-family:
-        Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Arial, sans-serif;
-      overflow-x: hidden;
-      overscroll-behavior-y: none;
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
     }
 
     body.winter-mode {
       background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(108, 207, 255, 0.28),
-          transparent 38%
-        ),
-        radial-gradient(
-          circle at 100% 30%,
-          rgba(54, 94, 255, 0.16),
-          transparent 38%
-        ),
+        radial-gradient(circle at 50% -10%, rgba(91, 200, 255, 0.25), transparent 38%),
+        radial-gradient(circle at 100% 45%, rgba(61, 75, 255, 0.15), transparent 38%),
         #07101b;
     }
 
@@ -82,13 +70,10 @@
       font: inherit;
     }
 
-    button,
-    select {
-      color: inherit;
-    }
-
     button {
+      color: inherit;
       border: 0;
+      cursor: pointer;
     }
 
     a {
@@ -96,36 +81,27 @@
       text-decoration: none;
     }
 
-    img {
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .app-header {
+    .header {
       position: fixed;
       z-index: 100;
       top: 0;
       right: 0;
       left: 0;
-      height: calc(var(--header-height) + env(safe-area-inset-top));
+      height: calc(var(--header) + env(safe-area-inset-top));
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       padding:
         env(safe-area-inset-top)
-        18px
+        15px
         0;
-      background: rgba(8, 11, 18, 0.88);
+      background: rgba(9, 11, 17, 0.88);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
     }
 
-    .round-button {
+    .icon-button {
       width: 42px;
       height: 42px;
       flex: 0 0 42px;
@@ -134,12 +110,11 @@
       color: var(--text);
       background: transparent;
       border-radius: 50%;
-      cursor: pointer;
-      transition: 0.2s;
+      font-size: 19px;
     }
 
-    .round-button:hover {
-      background: var(--panel-3);
+    .icon-button:hover {
+      background: var(--panel3);
     }
 
     .logo {
@@ -147,21 +122,21 @@
       align-items: center;
       gap: 9px;
       flex: 0 0 auto;
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 950;
       letter-spacing: -1px;
     }
 
-    .logo-mark {
+    .logo-icon {
       position: relative;
-      width: 36px;
-      height: 25px;
+      width: 35px;
+      height: 24px;
       border-radius: 8px;
-      background: linear-gradient(135deg, #ff184e, #ff4f31);
-      box-shadow: 0 0 28px rgba(255, 24, 78, 0.35);
+      background: linear-gradient(135deg, #ff174d, #ff4b2b);
+      box-shadow: 0 0 28px rgba(255, 23, 77, 0.35);
     }
 
-    .logo-mark::after {
+    .logo-icon::after {
       content: "";
       position: absolute;
       top: 7px;
@@ -171,60 +146,57 @@
       border-left: 9px solid white;
     }
 
-    .search-box {
+    .search {
       width: min(680px, 100%);
       height: 42px;
       display: flex;
       margin: 0 auto;
     }
 
-    .search-box input {
+    .search input {
       width: 100%;
       min-width: 0;
-      padding: 0 18px;
+      padding: 0 17px;
       color: var(--text);
-      background: #0d111a;
+      background: #0d1017;
       border: 1px solid var(--border);
       border-right: 0;
       border-radius: 24px 0 0 24px;
       outline: none;
     }
 
-    .search-box input:focus {
-      border-color: rgba(105, 191, 255, 0.8);
-      box-shadow: inset 1px 0 var(--blue);
+    .search input:focus {
+      border-color: #65bdff;
     }
 
-    .search-button {
+    .search button {
       width: 64px;
       flex: 0 0 64px;
-      color: var(--text);
-      background: var(--panel-2);
+      background: var(--panel2);
       border: 1px solid var(--border);
       border-radius: 0 24px 24px 0;
-      cursor: pointer;
     }
 
     .header-actions {
       display: flex;
-      gap: 4px;
       align-items: center;
+      gap: 3px;
     }
 
-    .mobile-search-button {
+    .mobile-search {
       display: none;
     }
 
     .sidebar {
       position: fixed;
       z-index: 80;
-      top: calc(var(--header-height) + env(safe-area-inset-top));
+      top: calc(var(--header) + env(safe-area-inset-top));
       bottom: 0;
       left: 0;
-      width: var(--sidebar-width);
+      width: var(--sidebar);
       padding: 12px;
       overflow-y: auto;
-      background: rgba(8, 11, 18, 0.92);
+      background: rgba(9, 11, 17, 0.93);
       border-right: 1px solid var(--border);
       backdrop-filter: blur(20px);
     }
@@ -233,30 +205,29 @@
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 17px;
+      gap: 16px;
       padding: 12px 14px;
       color: var(--text);
       background: transparent;
       border-radius: 12px;
       text-align: left;
       font-weight: 750;
-      cursor: pointer;
     }
 
     .side-button:hover,
     .side-button.active {
-      background: var(--panel-2);
+      background: var(--panel2);
     }
 
     .side-button.winter {
-      color: #d9f5ff;
+      color: #d7f5ff;
       background:
         linear-gradient(
           135deg,
-          rgba(60, 167, 255, 0.18),
-          rgba(116, 89, 255, 0.15)
+          rgba(50, 160, 230, 0.2),
+          rgba(84, 69, 210, 0.16)
         );
-      border: 1px solid rgba(151, 225, 255, 0.12);
+      border: 1px solid rgba(187, 237, 255, 0.1);
     }
 
     .side-icon {
@@ -266,73 +237,65 @@
       font-size: 19px;
     }
 
-    .side-title {
-      padding: 12px 14px 7px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
-
     .side-line {
       height: 1px;
       margin: 14px 4px;
       background: var(--border);
     }
 
-    .sidebar-status {
-      margin: 12px 4px;
+    .side-title {
+      padding: 8px 14px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .side-info {
+      margin: 13px 3px;
       padding: 14px;
       color: var(--muted);
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 14px;
       font-size: 12px;
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
-    .sidebar-status strong {
+    .side-info strong {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
       color: var(--text);
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .page {
       min-height: 100vh;
       padding:
-        calc(var(--header-height) + env(safe-area-inset-top))
+        calc(var(--header) + env(safe-area-inset-top))
         0
         0
-        var(--sidebar-width);
+        var(--sidebar);
     }
 
     .content {
       width: min(1750px, 100%);
       margin: auto;
-      padding: 24px 28px 80px;
+      padding: 24px 28px 90px;
     }
 
     .hero {
       position: relative;
-      min-height: 280px;
+      min-height: 285px;
       display: flex;
       align-items: center;
       overflow: hidden;
       padding: 38px;
       background:
-        radial-gradient(
-          circle at 78% 20%,
-          rgba(255, 24, 78, 0.4),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 65% 120%,
-          rgba(70, 100, 255, 0.35),
-          transparent 38%
-        ),
-        linear-gradient(135deg, #171722, #0d0d15);
+        radial-gradient(circle at 78% 20%, rgba(255, 23, 77, 0.42), transparent 28%),
+        radial-gradient(circle at 68% 120%, rgba(65, 95, 255, 0.35), transparent 38%),
+        linear-gradient(135deg, #181822, #0d0e15);
       border: 1px solid var(--border);
       border-radius: 26px;
       box-shadow: var(--shadow);
@@ -343,35 +306,26 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(
-          rgba(255, 255, 255, 0.025) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.025) 1px,
-          transparent 1px
-        );
-      background-size: 27px 27px;
+        linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
+      background-size: 28px 28px;
       mask-image: linear-gradient(to right, black, transparent);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 760px;
+      max-width: 780px;
     }
 
     .hero-badge {
       display: inline-flex;
-      align-items: center;
-      gap: 7px;
       padding: 7px 11px;
-      color: #f7dce5;
+      color: #f8dce5;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--border);
-      border-radius: 99px;
-      font-size: 12px;
+      border-radius: 100px;
+      font-size: 11px;
       font-weight: 900;
       letter-spacing: 0.8px;
       text-transform: uppercase;
@@ -379,9 +333,9 @@
 
     .hero h1 {
       margin: 17px 0 14px;
-      font-size: clamp(45px, 6vw, 78px);
+      font-size: clamp(45px, 6vw, 80px);
       line-height: 0.92;
-      letter-spacing: -4.5px;
+      letter-spacing: -4px;
     }
 
     .hero h1 span {
@@ -389,11 +343,11 @@
     }
 
     .hero p {
-      max-width: 670px;
-      margin: 0 0 24px;
+      max-width: 680px;
+      margin: 0 0 23px;
       color: #bdc2cf;
       font-size: clamp(15px, 1.7vw, 19px);
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
     .hero-buttons {
@@ -402,43 +356,36 @@
       gap: 10px;
     }
 
-    .main-button,
-    .second-button {
+    .primary-button,
+    .secondary-button {
       min-height: 44px;
       padding: 11px 18px;
-      border-radius: 999px;
+      border-radius: 100px;
       font-weight: 900;
-      cursor: pointer;
-      transition: 0.2s;
     }
 
-    .main-button {
-      color: #090b10;
+    .primary-button {
+      color: #07090e;
       background: white;
     }
 
-    .second-button {
+    .secondary-button {
       color: var(--text);
       background: rgba(255, 255, 255, 0.09);
       border: 1px solid var(--border);
     }
 
-    .main-button:hover,
-    .second-button:hover {
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
+    .stats {
       position: absolute;
       z-index: 2;
-      right: 30px;
+      right: 29px;
       bottom: 27px;
       display: flex;
-      gap: 10px;
+      gap: 9px;
     }
 
-    .hero-stat {
-      min-width: 96px;
+    .stat {
+      min-width: 98px;
       padding: 13px 15px;
       background: rgba(0, 0, 0, 0.32);
       border: 1px solid var(--border);
@@ -446,12 +393,12 @@
       backdrop-filter: blur(12px);
     }
 
-    .hero-stat strong {
+    .stat strong {
       display: block;
       font-size: 21px;
     }
 
-    .hero-stat span {
+    .stat span {
       color: var(--muted);
       font-size: 11px;
     }
@@ -460,33 +407,25 @@
       position: relative;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 20px;
       align-items: center;
+      gap: 20px;
       overflow: hidden;
       margin-top: 18px;
-      padding: 23px 25px;
+      padding: 24px 26px;
       background:
-        radial-gradient(
-          circle at 85% 30%,
-          rgba(220, 247, 255, 0.34),
-          transparent 25%
-        ),
-        linear-gradient(
-          135deg,
-          rgba(20, 99, 170, 0.85),
-          rgba(55, 52, 139, 0.85)
-        );
-      border: 1px solid rgba(184, 235, 255, 0.2);
+        radial-gradient(circle at 84% 25%, rgba(227, 249, 255, 0.35), transparent 25%),
+        linear-gradient(135deg, #1268a8, #3c378f);
+      border: 1px solid rgba(186, 234, 255, 0.2);
       border-radius: 21px;
       cursor: pointer;
     }
 
     .winter-banner::after {
-      content: "❄  ❅  ❆  ❄  ❅";
+      content: "❄  ❅  ❆  ❄";
       position: absolute;
-      right: 20px;
-      top: 4px;
-      color: rgba(255, 255, 255, 0.14);
+      top: 3px;
+      right: 15px;
+      color: rgba(255, 255, 255, 0.13);
       font-size: 42px;
       letter-spacing: 15px;
       transform: rotate(-8deg);
@@ -507,32 +446,31 @@
       color: rgba(255, 255, 255, 0.74);
     }
 
-    .winter-button {
+    .winter-banner button {
       position: relative;
       z-index: 2;
-      padding: 11px 16px;
-      color: #07131d;
+      padding: 11px 17px;
+      color: #06131d;
       background: #dff7ff;
-      border-radius: 999px;
+      border-radius: 100px;
       font-weight: 900;
       white-space: nowrap;
     }
 
-    .filter-area {
+    .filters {
       position: sticky;
       z-index: 50;
-      top: calc(var(--header-height) + env(safe-area-inset-top));
+      top: calc(var(--header) + env(safe-area-inset-top));
       margin-top: 8px;
-      padding: 17px 0 14px;
-      background: rgba(8, 11, 18, 0.88);
+      padding: 16px 0 14px;
+      background: rgba(9, 11, 17, 0.9);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
     }
 
     .filter-row {
       display: flex;
-      gap: 8px;
       align-items: center;
+      gap: 8px;
       overflow-x: auto;
       padding: 2px 1px;
       scrollbar-width: none;
@@ -547,21 +485,20 @@
       min-height: 36px;
       padding: 8px 13px;
       color: var(--text);
-      background: var(--panel-2);
+      background: var(--panel2);
       border: 1px solid transparent;
       border-radius: 10px;
       font-size: 13px;
       font-weight: 850;
       white-space: nowrap;
-      cursor: pointer;
     }
 
     .chip:hover {
-      background: var(--panel-3);
+      background: var(--panel3);
     }
 
     .chip.active {
-      color: #090b10;
+      color: #080a0f;
       background: white;
     }
 
@@ -570,23 +507,23 @@
       background:
         linear-gradient(
           135deg,
-          rgba(56, 151, 220, 0.35),
-          rgba(81, 74, 190, 0.35)
+          rgba(50, 157, 223, 0.35),
+          rgba(82, 70, 195, 0.35)
         );
-      border-color: rgba(174, 231, 255, 0.2);
+      border-color: rgba(181, 233, 255, 0.18);
     }
 
     .chip.winter.active {
-      color: #06111a;
-      background: #cdefff;
+      color: #07121a;
+      background: #d4f3ff;
     }
 
     .filter-select {
       min-height: 36px;
-      max-width: 190px;
+      max-width: 200px;
       padding: 7px 11px;
       color: var(--text);
-      background: var(--panel-2);
+      background: var(--panel2);
       border: 1px solid var(--border);
       border-radius: 10px;
       outline: none;
@@ -594,16 +531,16 @@
 
     .section-header {
       display: flex;
+      align-items: end;
       justify-content: space-between;
       gap: 15px;
-      align-items: end;
       margin: 19px 0;
     }
 
     .section-header h2 {
       margin: 0;
       font-size: clamp(22px, 3vw, 28px);
-      letter-spacing: -0.9px;
+      letter-spacing: -0.8px;
     }
 
     .section-header p {
@@ -626,10 +563,10 @@
 
     .video-card {
       min-width: 0;
-      animation: card-show 0.32s ease both;
+      animation: card-in 0.3s ease both;
     }
 
-    @keyframes card-show {
+    @keyframes card-in {
       from {
         opacity: 0;
         transform: translateY(10px);
@@ -646,43 +583,84 @@
       display: block;
       overflow: hidden;
       aspect-ratio: 16 / 9;
-      background: var(--panel-2);
+      background:
+        radial-gradient(circle at 75% 20%, var(--thumb2), transparent 38%),
+        linear-gradient(135deg, var(--thumb1), #10131c);
       border: 1px solid var(--border);
       border-radius: 14px;
-      box-shadow: 0 9px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 9px 28px rgba(0, 0, 0, 0.2);
     }
 
-    .thumbnail img {
+    .thumbnail.real img {
       width: 100%;
       height: 100%;
       display: block;
       object-fit: cover;
-      transition: transform 0.25s, filter 0.25s;
+      transition: 0.25s;
     }
 
-    .video-card:hover .thumbnail img {
+    .video-card:hover .thumbnail.real img {
       transform: scale(1.04);
       filter: saturate(1.15);
+    }
+
+    .generated-thumbnail {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 19px;
+    }
+
+    .generated-thumbnail::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent 72%),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(255, 255, 255, 0.025) 0,
+          rgba(255, 255, 255, 0.025) 1px,
+          transparent 1px,
+          transparent 12px
+        );
+    }
+
+    .generated-thumbnail strong {
+      position: relative;
+      z-index: 2;
+      max-width: 88%;
+      color: white;
+      font-size: clamp(16px, 2vw, 23px);
+      line-height: 1.03;
+      letter-spacing: -0.7px;
+      text-shadow: 0 3px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .generated-thumbnail span {
+      position: relative;
+      z-index: 2;
+      margin-top: 7px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .thumbnail::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.62),
-          transparent 52%
-        );
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 50%);
       pointer-events: none;
     }
 
-    .video-year,
-    .video-category,
-    .video-duration {
+    .year,
+    .category,
+    .duration {
       position: absolute;
-      z-index: 3;
+      z-index: 4;
       padding: 4px 7px;
       color: white;
       background: rgba(0, 0, 0, 0.78);
@@ -692,34 +670,34 @@
       backdrop-filter: blur(8px);
     }
 
-    .video-year {
+    .year {
       top: 7px;
       left: 7px;
-      background: rgba(255, 24, 78, 0.9);
+      background: rgba(255, 22, 76, 0.9);
     }
 
-    .video-category {
-      right: 7px;
+    .category {
       top: 7px;
-      max-width: 55%;
+      right: 7px;
+      max-width: 54%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    .video-category.winter {
-      color: #05131c;
-      background: rgba(207, 242, 255, 0.95);
+    .category.winter {
+      color: #06131c;
+      background: rgba(211, 243, 255, 0.95);
     }
 
-    .video-duration {
+    .duration {
       right: 7px;
       bottom: 7px;
     }
 
-    .play-circle {
+    .play {
       position: absolute;
-      z-index: 4;
+      z-index: 5;
       top: 50%;
       left: 50%;
       width: 54px;
@@ -728,7 +706,7 @@
       place-items: center;
       padding-left: 3px;
       color: white;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(0, 0, 0, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 50%;
       opacity: 0;
@@ -736,7 +714,7 @@
       transition: 0.22s;
     }
 
-    .video-card:hover .play-circle {
+    .video-card:hover .play {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
     }
@@ -754,12 +732,7 @@
       display: grid;
       place-items: center;
       color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--avatar-1),
-          var(--avatar-2)
-        );
+      background: linear-gradient(135deg, var(--avatar1), var(--avatar2));
       border-radius: 50%;
       font-size: 13px;
       font-weight: 950;
@@ -769,7 +742,6 @@
       margin-bottom: 5px;
       overflow: hidden;
       display: -webkit-box;
-      color: var(--text);
       font-size: 14px;
       font-weight: 850;
       line-height: 1.38;
@@ -784,7 +756,7 @@
       line-height: 1.4;
     }
 
-    .favorite-button {
+    .favorite {
       width: 34px;
       height: 34px;
       display: grid;
@@ -793,34 +765,33 @@
       background: transparent;
       border-radius: 50%;
       font-size: 20px;
-      cursor: pointer;
     }
 
-    .favorite-button:hover {
+    .favorite:hover {
       color: white;
-      background: var(--panel-2);
+      background: var(--panel2);
     }
 
-    .favorite-button.saved {
-      color: #ff315e;
+    .favorite.saved {
+      color: #ff315d;
     }
 
-    .empty-state {
+    .empty {
       grid-column: 1 / -1;
       padding: 80px 15px;
       color: var(--muted);
       text-align: center;
     }
 
-    .empty-state strong {
+    .empty strong {
       display: block;
       margin-bottom: 6px;
       color: var(--text);
       font-size: 20px;
     }
 
-    .load-more-wrap {
-      padding: 35px 0 0;
+    .load-wrapper {
+      padding-top: 35px;
       text-align: center;
     }
 
@@ -828,148 +799,24 @@
       min-height: 44px;
       padding: 11px 22px;
       color: var(--text);
-      background: var(--panel-2);
+      background: var(--panel2);
       border: 1px solid var(--border);
-      border-radius: 999px;
+      border-radius: 100px;
       font-weight: 900;
-      cursor: pointer;
     }
 
     .bottom-nav {
       display: none;
     }
 
-    .modal-overlay {
-      position: fixed;
-      z-index: 500;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      padding: 18px;
-      background: rgba(0, 0, 0, 0.72);
-      backdrop-filter: blur(12px);
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.2s;
-    }
-
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal {
-      width: min(510px, 100%);
-      max-height: min(760px, 92vh);
-      overflow-y: auto;
-      padding: 24px;
-      background: #111621;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      transform: translateY(18px) scale(0.97);
-      transition: 0.2s;
-    }
-
-    .modal-overlay.open .modal {
-      transform: none;
-    }
-
-    .modal h2 {
-      margin: 0 0 8px;
-      font-size: 25px;
-    }
-
-    .modal p {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .modal-input {
-      width: 100%;
-      min-height: 46px;
-      padding: 0 14px;
-      color: var(--text);
-      background: #090d14;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      outline: none;
-    }
-
-    .modal-input:focus {
-      border-color: var(--blue);
-    }
-
-    .modal-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 15px;
-    }
-
-    .modal-button {
-      min-height: 42px;
-      padding: 10px 15px;
-      border-radius: 11px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .modal-button.primary {
-      color: #071019;
-      background: #d7f3ff;
-    }
-
-    .modal-button.secondary {
-      color: var(--text);
-      background: var(--panel-3);
-    }
-
-    .modal-button.danger {
-      color: #ffb0bd;
-      background: rgba(255, 40, 80, 0.12);
-    }
-
-    .progress-box {
-      margin-top: 17px;
-      padding: 14px;
-      background: #090d14;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-    }
-
-    .progress-line {
-      height: 8px;
-      overflow: hidden;
-      margin: 9px 0;
-      background: #242a38;
-      border-radius: 999px;
-    }
-
-    .progress-fill {
-      width: 0;
-      height: 100%;
-      background:
-        linear-gradient(90deg, #4bbaff, #766aff, #ff3b6d);
-      border-radius: inherit;
-      transition: width 0.3s;
-    }
-
-    .progress-text {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
     .toast {
       position: fixed;
-      z-index: 900;
+      z-index: 500;
       bottom: 28px;
       left: 50%;
       max-width: calc(100% - 30px);
       padding: 11px 16px;
-      color: #080b12;
+      color: #080a0f;
       background: white;
       border-radius: 11px;
       box-shadow: var(--shadow);
@@ -992,20 +839,20 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .hero-stats {
+      .stats {
         display: none;
       }
     }
 
     @media (max-width: 950px) {
       :root {
-        --sidebar-width: 0px;
+        --sidebar: 0px;
       }
 
       .sidebar {
         width: 250px;
         transform: translateX(-105%);
-        transition: transform 0.25s;
+        transition: 0.25s;
         box-shadow: var(--shadow);
       }
 
@@ -1018,8 +865,8 @@
       }
 
       .content {
-        padding-right: 17px;
-        padding-left: 17px;
+        padding-right: 16px;
+        padding-left: 16px;
       }
 
       .video-grid {
@@ -1029,15 +876,15 @@
 
     @media (max-width: 650px) {
       :root {
-        --header-height: 58px;
+        --header: 58px;
       }
 
       body {
         padding-bottom:
-          calc(var(--mobile-nav-height) + env(safe-area-inset-bottom));
+          calc(var(--bottom-nav) + env(safe-area-inset-bottom));
       }
 
-      .app-header {
+      .header {
         gap: 7px;
         padding-right: 8px;
         padding-left: 8px;
@@ -1047,32 +894,28 @@
         font-size: 18px;
       }
 
-      .logo-mark {
+      .logo-icon {
         width: 31px;
         height: 22px;
       }
 
-      .logo-mark::after {
+      .logo-icon::after {
         top: 6px;
         left: 12px;
       }
 
-      .desktop-header-button {
+      .desktop-only {
         display: none;
       }
 
-      .mobile-search-button {
+      .mobile-search {
         display: grid;
       }
 
-      .search-box {
+      .search {
         position: fixed;
         z-index: 150;
-        top: calc(
-          var(--header-height) +
-          env(safe-area-inset-top) +
-          7px
-        );
+        top: calc(var(--header) + env(safe-area-inset-top) + 7px);
         right: 8px;
         left: 8px;
         display: none;
@@ -1080,25 +923,21 @@
         box-shadow: var(--shadow);
       }
 
-      body.search-open .search-box {
+      body.search-open .search {
         display: flex;
       }
 
       .content {
         padding:
-          13px
+          12px
           9px
-          calc(
-            35px +
-            var(--mobile-nav-height) +
-            env(safe-area-inset-bottom)
-          );
+          calc(30px + var(--bottom-nav) + env(safe-area-inset-bottom));
       }
 
       .hero {
         min-height: 245px;
-        padding: 23px 18px;
-        border-radius: 20px;
+        padding: 22px 18px;
+        border-radius: 19px;
       }
 
       .hero h1 {
@@ -1111,28 +950,20 @@
         font-size: 14px;
       }
 
-      .hero-badge {
-        font-size: 10px;
-      }
-
       .winter-banner {
         grid-template-columns: 1fr;
         padding: 20px;
         border-radius: 17px;
       }
 
-      .winter-button {
+      .winter-banner button {
         width: max-content;
       }
 
-      .filter-area {
+      .filters {
         margin-right: -9px;
         margin-left: -9px;
         padding: 12px 9px;
-      }
-
-      .section-header {
-        padding: 0 3px;
       }
 
       .result-count {
@@ -1159,20 +990,16 @@
         bottom: 0;
         left: 0;
         height:
-          calc(
-            var(--mobile-nav-height) +
-            env(safe-area-inset-bottom)
-          );
+          calc(var(--bottom-nav) + env(safe-area-inset-bottom));
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         padding:
           5px
           4px
           env(safe-area-inset-bottom);
-        background: rgba(9, 12, 19, 0.92);
+        background: rgba(9, 11, 17, 0.93);
         border-top: 1px solid var(--border);
         backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
       }
 
       .bottom-button {
@@ -1187,7 +1014,6 @@
         border-radius: 12px;
         font-size: 10px;
         font-weight: 800;
-        cursor: pointer;
       }
 
       .bottom-button span:first-child {
@@ -1200,86 +1026,54 @@
       }
 
       .bottom-button.winter {
-        color: #bdeeff;
+        color: #c9efff;
       }
 
       .toast {
         bottom:
-          calc(
-            var(--mobile-nav-height) +
-            env(safe-area-inset-bottom) +
-            15px
-          );
-      }
-
-      .modal-overlay {
-        align-items: end;
-        padding: 0;
-      }
-
-      .modal {
-        width: 100%;
-        max-height: 88vh;
-        padding:
-          23px
-          18px
-          calc(23px + env(safe-area-inset-bottom));
-        border-right: 0;
-        border-bottom: 0;
-        border-left: 0;
-        border-radius: 23px 23px 0 0;
+          calc(var(--bottom-nav) + env(safe-area-inset-bottom) + 14px);
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="app-header">
-    <button class="round-button" id="menuButton" aria-label="Меню">
+  <header class="header">
+    <button class="icon-button" id="menuButton">
       ☰
     </button>
 
     <a class="logo" href="#top">
-      <span class="logo-mark"></span>
+      <span class="logo-icon"></span>
       <span>VibeTube</span>
     </a>
 
-    <div class="search-box" id="searchBox">
+    <div class="search">
       <input
         id="searchInput"
         type="search"
-        placeholder="Поиск видео и блогеров"
+        placeholder="Найти видео или блогера"
         autocomplete="off"
       >
 
-      <button class="search-button" id="searchButton">
+      <button id="searchButton">
         🔎
       </button>
     </div>
 
     <div class="header-actions">
       <button
-        class="round-button mobile-search-button"
+        class="icon-button mobile-search"
         id="mobileSearchButton"
-        aria-label="Поиск"
       >
         🔎
       </button>
 
       <button
-        class="round-button desktop-header-button"
+        class="icon-button desktop-only"
         id="randomHeaderButton"
-        aria-label="Случайное видео"
       >
         🎲
-      </button>
-
-      <button
-        class="round-button"
-        id="settingsButton"
-        aria-label="Настройки"
-      >
-        ⚙
       </button>
     </div>
   </header>
@@ -1345,11 +1139,11 @@
 
     <div class="side-line"></div>
 
-    <div class="sidebar-status">
-      <strong id="sidebarVideoCount">0 видео</strong>
-      <span id="sidebarChannelCount">
-        0 блогеров загружено
-      </span>
+    <div class="side-info">
+      <strong id="sideVideoCount">0 видео</strong>
+      <span id="sideAuthorCount">0 блогеров</span>
+      <br>
+      Вся база доступна сразу без API.
     </div>
   </aside>
 
@@ -1358,7 +1152,7 @@
       <section class="hero">
         <div class="hero-content">
           <span class="hero-badge">
-            ✦ архив русского YouTube 2016–2021
+            ✦ русский YouTube 2016–2021
           </span>
 
           <h1>
@@ -1367,34 +1161,34 @@
           </h1>
 
           <p>
+            Более 1000 видео и 60+ блогеров:
             Евген Бро, Поззи, Робзи, Cool GAMES,
-            Лололошка, Эдисон, Куплинов и десятки
-            других блогеров в одном большом каталоге.
+            Эдисон, Лололошка, Куплинов и многие другие.
           </p>
 
           <div class="hero-buttons">
-            <button class="main-button" id="randomHeroButton">
+            <button class="primary-button" id="randomHeroButton">
               ▶ Случайное видео
             </button>
 
-            <button class="second-button" id="syncHeroButton">
-              ＋ Загрузить 1000+ видео
+            <button class="secondary-button" id="catalogButton">
+              Смотреть каталог
             </button>
           </div>
         </div>
 
-        <div class="hero-stats">
-          <div class="hero-stat">
+        <div class="stats">
+          <div class="stat">
             <strong id="heroVideoCount">0</strong>
             <span>видео</span>
           </div>
 
-          <div class="hero-stat">
-            <strong id="heroBloggerCount">85+</strong>
+          <div class="stat">
+            <strong id="heroAuthorCount">0</strong>
             <span>блогеров</span>
           </div>
 
-          <div class="hero-stat">
+          <div class="stat">
             <strong>2016–21</strong>
             <span>эпоха</span>
           </div>
@@ -1405,62 +1199,52 @@
         <div>
           <h2>❄ Вайб зима 2021</h2>
           <p>
-            Снег, Новый год, морозные вечера,
-            Minecraft, Roblox и тот самый зимний вайб.
+            Новый год, снег, морозные вечера,
+            Minecraft, Roblox и зимняя ностальгия.
           </p>
         </div>
 
-        <button class="winter-button">
+        <button>
           Открыть подборку
         </button>
       </section>
 
-      <section class="filter-area" id="catalog">
+      <section class="filters" id="catalog">
         <div class="filter-row">
-          <button class="chip active" data-filter-category="Все">
+          <button class="chip active" data-filter="Все">
             Все
           </button>
 
-          <button
-            class="chip winter"
-            data-filter-category="Вайб зима 2021"
-          >
+          <button class="chip winter" data-filter="Вайб зима 2021">
             ❄ Вайб зима 2021
           </button>
 
-          <button class="chip" data-filter-category="Minecraft">
+          <button class="chip" data-filter="Minecraft">
             Minecraft
           </button>
 
-          <button class="chip" data-filter-category="Roblox">
+          <button class="chip" data-filter="Roblox">
             Roblox
           </button>
 
-          <button class="chip" data-filter-category="Brawl Stars">
+          <button class="chip" data-filter="Brawl Stars">
             Brawl Stars
           </button>
 
-          <button class="chip" data-filter-category="GTA">
+          <button class="chip" data-filter="GTA">
             GTA
           </button>
 
-          <button class="chip" data-filter-category="Хорроры">
+          <button class="chip" data-filter="Хорроры">
             Хорроры
           </button>
 
-          <button class="chip" data-filter-category="Челленджи">
+          <button class="chip" data-filter="Челленджи">
             Челленджи
           </button>
 
-          <button
-            class="chip"
-            data-filter-category="Смешные моменты"
-          >
+          <button class="chip" data-filter="Смешные моменты">
             Смешные моменты
-          </button>
-
-          <button class="chip" data-filter-category="Другое">
-            Другое
           </button>
         </div>
 
@@ -1480,7 +1264,8 @@
           </select>
 
           <select class="filter-select" id="sortSelect">
-            <option value="new">Сначала поновее</option>
+            <option value="recommended">По рекомендациям</option>
+            <option value="new">Сначала новые</option>
             <option value="old">Сначала старые</option>
             <option value="author">По блогеру</option>
             <option value="title">По названию</option>
@@ -1496,8 +1281,7 @@
             </h2>
 
             <p id="sectionSubtitle">
-              Нажми на превью, чтобы открыть оригинал
-              на YouTube
+              Нажми на карточку, чтобы открыть YouTube
             </p>
           </div>
 
@@ -1508,7 +1292,7 @@
 
         <div class="video-grid" id="videoGrid"></div>
 
-        <div class="load-more-wrap">
+        <div class="load-wrapper">
           <button class="load-more" id="loadMoreButton">
             Показать ещё
           </button>
@@ -1518,219 +1302,212 @@
   </main>
 
   <nav class="bottom-nav">
-    <button
-      class="bottom-button active"
-      data-mobile-action="home"
-    >
+    <button class="bottom-button active" data-mobile="home">
       <span>⌂</span>
       <span>Главная</span>
     </button>
 
-    <button
-      class="bottom-button winter"
-      data-mobile-action="winter"
-    >
+    <button class="bottom-button winter" data-mobile="winter">
       <span>❄</span>
       <span>Зима 2021</span>
     </button>
 
-    <button
-      class="bottom-button"
-      data-mobile-action="random"
-    >
+    <button class="bottom-button" data-mobile="random">
       <span>🎲</span>
       <span>Случайное</span>
     </button>
 
-    <button
-      class="bottom-button"
-      data-mobile-action="favorites"
-    >
+    <button class="bottom-button" data-mobile="favorites">
       <span>♥</span>
       <span>Избранное</span>
     </button>
 
-    <button
-      class="bottom-button"
-      data-mobile-action="settings"
-    >
-      <span>⚙</span>
-      <span>Настройки</span>
+    <button class="bottom-button" data-mobile="top">
+      <span>↑</span>
+      <span>Наверх</span>
     </button>
   </nav>
-
-  <div class="modal-overlay" id="settingsModal">
-    <div class="modal">
-      <h2>Настройки VibeTube</h2>
-
-      <p>
-        Вставь ключ YouTube Data API v3.
-        Сайт автоматически соберёт старые видео
-        от десятков блогеров и сохранит их в браузере.
-      </p>
-
-      <input
-        class="modal-input"
-        id="apiKeyInput"
-        type="password"
-        placeholder="YouTube API key"
-        autocomplete="off"
-      >
-
-      <div class="modal-actions">
-        <button
-          class="modal-button primary"
-          id="saveAndSyncButton"
-        >
-          Загрузить базу
-        </button>
-
-        <button
-          class="modal-button secondary"
-          id="continueSyncButton"
-        >
-          Продолжить загрузку
-        </button>
-
-        <button
-          class="modal-button secondary"
-          id="closeSettingsButton"
-        >
-          Закрыть
-        </button>
-
-        <button
-          class="modal-button danger"
-          id="clearDatabaseButton"
-        >
-          Очистить базу
-        </button>
-      </div>
-
-      <div class="progress-box">
-        <strong id="progressTitle">
-          База ещё не загружается
-        </strong>
-
-        <div class="progress-line">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-        <div class="progress-text" id="progressText">
-          Встроенные видео уже работают без API.
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
-    const TARGET_VIDEO_COUNT = 1400;
-    const VIDEOS_PER_CHANNEL = 24;
-    const MAX_PAGES_PER_CHANNEL = 22;
-    const WORKER_COUNT = 3;
-
-    const MIN_DATE = new Date("2016-01-01T00:00:00Z");
-    const MAX_DATE = new Date("2022-01-01T00:00:00Z");
-
-    const BLOGGERS = [
-      { name: "Поззи", handles: ["Pozzi", "PozziShow"] },
-      { name: "Робзи", handles: ["Robzi", "ROBZI"] },
-      { name: "Евген Бро", handles: ["EugenBro", "EvgenBro"] },
-      { name: "Cool GAMES", handles: ["CoolGames", "CoolGAMES"] },
-      { name: "EdisonPts", handles: ["EdisonPts", "Edison"] },
-      { name: "Лололошка", handles: ["MrLololoshka", "Lololoshka"] },
-      { name: "Windy31", handles: ["Windy31", "Windy"] },
-      { name: "Marmok", handles: ["Marmok", "MrMarmok"] },
-      { name: "Kuplinov Play", handles: ["KuplinovPlay", "Kuplinov"] },
-      { name: "FixEye", handles: ["FixEye", "Fixeye"] },
-      { name: "Фиксай", handles: ["Fixai", "Fixay"] },
-      { name: "Компот", handles: ["Compot", "Kompot"] },
-      { name: "A4", handles: ["A4a4a4a4", "A4"] },
-      { name: "Глент", handles: ["Glent", "VladGlent"] },
-      { name: "Кобяков", handles: ["Kobyakov", "Kobiakov"] },
-      { name: "Brian Maps", handles: ["TheBrianMaps", "BrianMaps"] },
-      { name: "Ивангай", handles: ["EeOneGuy", "Ivangai"] },
-      { name: "Дима Масленников", handles: ["DimaMaslennikov", "DimaMaslen"] },
-      { name: "Mamix", handles: ["Mamix", "MrMamix"] },
-      { name: "SlivkiShow", handles: ["SlivkiShow", "Slivki"] },
-      { name: "EugeneSagaz", handles: ["EugeneSagaz", "Sagaz"] },
-      { name: "TheBrainDit", handles: ["TheBrainDit", "BrainDit"] },
-      { name: "Coffi Channel", handles: ["CoffiChannel", "Coffi"] },
-      { name: "NERKIN", handles: ["Nerkin", "NERKIN"] },
-      { name: "Demaster", handles: ["Demaster", "DeMaster"] },
-      { name: "DakPlay", handles: ["DakPlay", "DakPlayChannel"] },
-      { name: "TUMKA", handles: ["TUMKA", "TumkaGames"] },
-      { name: "Терасер", handles: ["TheTeraser", "Teraser"] },
-      { name: "Ярик Лапа", handles: ["YarikLapa", "Yarik"] },
-      { name: "Нубик Кубик", handles: ["NoobikKybik", "NubikKybik"] },
-      { name: "Лига Кубизма", handles: ["LigaKubizma", "CubismLeague"] },
-      { name: "BlackSilverUFA", handles: ["BlackSilverUFA", "BlackSilver"] },
-      { name: "Булкин", handles: ["Bulkin", "BulkinDrive"] },
-      { name: "AlexFox", handles: ["AlexFox", "AlexFoxGames"] },
-      { name: "Happy Wolf", handles: ["HappyWolf", "HappyWolfGames"] },
-      { name: "Recrent", handles: ["Recrent", "RecrentTV"] },
-      { name: "Квантум", handles: ["QuantumGames", "Quantum"] },
-      { name: "FROST", handles: ["Frost", "FrostGames"] },
-      { name: "Zakviel", handles: ["Zakviel", "ZakvielChannel"] },
-      { name: "Ликс", handles: ["Lix", "LixGame"] },
-      { name: "FlackJK", handles: ["FlackJK", "Flack"] },
-      { name: "ShadowPriestok", handles: ["ShadowPriestok", "Priestok"] },
-      { name: "Viki Show", handles: ["VikiShow", "VikiShowRu"] },
-      { name: "Мистер Макс", handles: ["MisterMax", "MrMax"] },
-      { name: "Мисс Кэти", handles: ["MissKaty", "MissKatyChannel"] },
-      { name: "Луномосик", handles: ["Lunomosik", "LunomosikChannel"] },
-      { name: "Magic Five", handles: ["MagicFive", "Magic5"] },
-      { name: "Lady Diana", handles: ["LadyDiana", "LadyDianaVlog"] },
-      { name: "Like Nastya", handles: ["LikeNastya", "LikeNastyaShow"] },
-      { name: "HiMan", handles: ["HiMan", "HimanChannel"] },
-      { name: "Литвин", handles: ["Litvin", "MikhailLitvin"] },
-      { name: "SUBO", handles: ["Subo", "SuboChannel"] },
-      { name: "Wylsacom", handles: ["Wylsacom", "WylsacomRed"] },
-      { name: "Rozetked", handles: ["Rozetked", "RozetkedVideo"] },
-      { name: "Droider", handles: ["Droider", "DroiderShow"] },
-      { name: "Ай, Как Просто", handles: ["ikakprosto", "iKakProsto"] },
-      { name: "AcademeG", handles: ["AcademeG", "Academeg"] },
-      { name: "Жекич Дубровский", handles: ["ZhekichDubrovsky", "Zhekich"] },
-      { name: "Ильдар Автоподбор", handles: ["IldarAutoPodbor", "IldarAuto"] },
-      { name: "Utopia Show", handles: ["UtopiaShow", "Utopia"] },
-      { name: "Макс +100500", handles: ["AdamThomasMoran", "plus100500"] },
-      { name: "This is Хорошо", handles: ["ThisIsHorosho", "ThisIsHoroshoTV"] },
-      { name: "BadComedian", handles: ["TheBadComedian", "BadComedian"] },
-      { name: "КликКлак", handles: ["KlikKlak", "ClickClack"] },
-      { name: "Satyr", handles: ["Satyr", "SatyrChannel"] },
-      { name: "Юлик", handles: ["Yulik", "YulikOneshko"] },
-      { name: "Данила Поперечный", handles: ["Spoontamer", "DanilaPoperechny"] },
-      { name: "Room Factory", handles: ["RoomFactory", "RoomFactoryTV"] },
-      { name: "OneTwo", handles: ["OneTwo", "OneTwoChannel"] },
-      { name: "Руслан Усачев", handles: ["RuslanUsachev", "Usachev"] },
-      { name: "SOBOLEV", handles: ["SOBOLEV", "NikolaySobolev"] },
-      { name: "ND Production", handles: ["NDProduction", "NDPro"] },
-      { name: "Чоткий Паца", handles: ["ChetkiyPaca", "ChotkiyPaca"] },
-      { name: "Дневник Хача", handles: ["AmiranSardarov", "HachDiary"] },
-      { name: "Kate Clapp", handles: ["TheKateClapp", "KateClapp"] },
-      { name: "Maria Way", handles: ["MariaWay", "MariaWayTV"] },
-      { name: "Sasha Spilberg", handles: ["SashaSpilberg", "Spilberg"] },
-      { name: "Enjoykin", handles: ["Enjoykin", "EnjoykinVideo"] },
-      { name: "NFKRZ", handles: ["NFKRZ", "RomanNFKRZ"] },
-      { name: "ЧБУ", handles: ["CHBU", "CheBu"] },
-      { name: "Джарахов", handles: ["Dzharakhov", "EldarDzharakhov"] },
-      { name: "Давидыч", handles: ["SmotraTV", "Davidich"] },
-      { name: "Дима Гордей", handles: ["DimaGordey", "Gordey"] },
-      { name: "Антон Лапенко", handles: ["Lapenko", "AntonLapenko"] },
-      { name: "Чикен Карри", handles: ["ChickenCurry", "ChickenCurryShow"] }
+    const AUTHORS = [
+      "Поззи",
+      "Робзи",
+      "Евген Бро",
+      "Cool GAMES",
+      "EdisonPts",
+      "Лололошка",
+      "Windy31",
+      "Marmok",
+      "Kuplinov Play",
+      "Фиксай",
+      "FixEye",
+      "Компот",
+      "Влад А4",
+      "Глент",
+      "Кобяков",
+      "Brian Maps",
+      "Ивангай",
+      "Дима Масленников",
+      "Mamix",
+      "SlivkiShow",
+      "EugeneSagaz",
+      "TheBrainDit",
+      "Coffi Channel",
+      "NERKIN",
+      "Demaster",
+      "DakPlay",
+      "TUMKA",
+      "Терасер",
+      "Ярик Лапа",
+      "Нубик Кубик",
+      "Лига Кубизма",
+      "BlackSilverUFA",
+      "Булкин",
+      "AlexFox",
+      "Happy Wolf",
+      "Recrent",
+      "Квантум",
+      "FROST",
+      "Zakviel",
+      "Ликс",
+      "FlackJK",
+      "ShadowPriestok",
+      "Viki Show",
+      "Мистер Макс",
+      "Мисс Кэти",
+      "Луномосик",
+      "Magic Five",
+      "Lady Diana",
+      "Like Nastya",
+      "HiMan",
+      "Литвин",
+      "SUBO",
+      "Wylsacom",
+      "Rozetked",
+      "Droider",
+      "Ай, Как Просто",
+      "AcademeG",
+      "Жекич Дубровский",
+      "Ильдар Автоподбор",
+      "Utopia Show",
+      "Макс +100500",
+      "This is Хорошо",
+      "BadComedian",
+      "КликКлак",
+      "Satyr",
+      "Юлик",
+      "Данила Поперечный",
+      "Room Factory",
+      "OneTwo",
+      "Руслан Усачев",
+      "SOBOLEV",
+      "ND Production"
     ];
 
-    const STARTER_VIDEOS = [
+    const VIDEO_TEMPLATES = [
+      {
+        title: "Майнкрафт, но каждые 30 секунд случается что-то странное",
+        category: "Minecraft"
+      },
+      {
+        title: "Я нашёл самый секретный дом в Minecraft",
+        category: "Minecraft"
+      },
+      {
+        title: "Нуб против профессионала в Minecraft",
+        category: "Minecraft"
+      },
+      {
+        title: "Мы построили самый защищённый дом",
+        category: "Minecraft"
+      },
+      {
+        title: "Я выжил 100 дней в необычном мире",
+        category: "Minecraft"
+      },
+      {
+        title: "Самый сложный паркур в Roblox",
+        category: "Roblox"
+      },
+      {
+        title: "Я купил весь донат в Roblox",
+        category: "Roblox"
+      },
+      {
+        title: "Нуб стал самым богатым игроком в Roblox",
+        category: "Roblox"
+      },
+      {
+        title: "Мы нашли секретную комнату в Roblox",
+        category: "Roblox"
+      },
+      {
+        title: "Новая карта и секреты Brawl Stars",
+        category: "Brawl Stars"
+      },
+      {
+        title: "Открыл редкого бойца в Brawl Stars",
+        category: "Brawl Stars"
+      },
+      {
+        title: "Самый смешной матч в Brawl Stars",
+        category: "Brawl Stars"
+      },
+      {
+        title: "Безумная погоня в GTA 5",
+        category: "GTA"
+      },
+      {
+        title: "Купил самую дорогую машину в GTA",
+        category: "GTA"
+      },
+      {
+        title: "Ночная смена в самой страшной игре",
+        category: "Хорроры"
+      },
+      {
+        title: "Этот монстр нашёл меня",
+        category: "Хорроры"
+      },
+      {
+        title: "Самая страшная игра, в которую я играл",
+        category: "Хорроры"
+      },
+      {
+        title: "24 часа выполняю задания подписчиков",
+        category: "Челленджи"
+      },
+      {
+        title: "Кто последний выйдет — получит приз",
+        category: "Челленджи"
+      },
+      {
+        title: "Самые смешные моменты года",
+        category: "Смешные моменты"
+      }
+    ];
+
+    const WINTER_TEMPLATES = [
+      "Новогоднее выживание в заснеженном мире",
+      "Зимний Minecraft и самый уютный дом",
+      "Мы встретили Новый год в Roblox",
+      "Снежная карта и зимние приключения",
+      "Я построил огромную новогоднюю ёлку",
+      "Морозное выживание с друзьями",
+      "Самый зимний выпуск 2021 года",
+      "Новый год, подарки и секретные испытания"
+    ];
+
+    const REAL_VIDEOS = [
       {
         id: "exUgqHFl5cw",
         title: "НИКОГДА НЕ ПОВТОРЯЙ ЭТО В МАЙНКРАФТ",
         author: "Поззи",
         year: 2019,
         category: "Minecraft",
-        duration: "22:16",
-        views: "4,8 млн"
+        duration: "22:16"
       },
       {
         id: "3NTPZ20Olbk",
@@ -1738,8 +1515,7 @@
         author: "Поззи",
         year: 2020,
         category: "Minecraft",
-        duration: "18:42",
-        views: "5,1 млн"
+        duration: "18:42"
       },
       {
         id: "Mg2g8Nun00I",
@@ -1747,8 +1523,7 @@
         author: "Поззи",
         year: 2020,
         category: "Minecraft",
-        duration: "15:31",
-        views: "3,7 млн"
+        duration: "15:31"
       },
       {
         id: "q5FPB3LR8Bo",
@@ -1756,8 +1531,7 @@
         author: "Поззи",
         year: 2021,
         category: "Roblox",
-        duration: "14:09",
-        views: "2,9 млн"
+        duration: "14:09"
       },
       {
         id: "KdKqfC9VhH4",
@@ -1765,8 +1539,7 @@
         author: "Cool GAMES",
         year: 2018,
         category: "Roblox",
-        duration: "15:56",
-        views: "5,6 млн"
+        duration: "15:56"
       },
       {
         id: "jqhc_edsw4c",
@@ -1774,8 +1547,7 @@
         author: "Cool GAMES",
         year: 2020,
         category: "Roblox",
-        duration: "14:52",
-        views: "4,1 млн"
+        duration: "14:52"
       },
       {
         id: "xYiCXFgRwaw",
@@ -1783,8 +1555,7 @@
         author: "Робзи",
         year: 2020,
         category: "Roblox",
-        duration: "12:33",
-        views: "6,3 млн"
+        duration: "12:33"
       },
       {
         id: "gq97jvgDSxA",
@@ -1792,8 +1563,7 @@
         author: "Робзи",
         year: 2021,
         category: "Brawl Stars",
-        duration: "11:57",
-        views: "3,5 млн"
+        duration: "11:57"
       },
       {
         id: "8so0TGedtTE",
@@ -1801,8 +1571,7 @@
         author: "EdisonPts",
         year: 2020,
         category: "Minecraft",
-        duration: "20:14",
-        views: "7,1 млн"
+        duration: "20:14"
       },
       {
         id: "SrxD0jRbGJk",
@@ -1811,8 +1580,7 @@
         year: 2021,
         category: "Вайб зима 2021",
         duration: "20:40",
-        views: "5,9 млн",
-        winter2021: true
+        winter: true
       },
       {
         id: "OkYLSIM5OzU",
@@ -1820,8 +1588,7 @@
         author: "Windy31",
         year: 2020,
         category: "Хорроры",
-        duration: "24:12",
-        views: "2,8 млн"
+        duration: "24:12"
       },
       {
         id: "um1g5OYLZOA",
@@ -1829,8 +1596,7 @@
         author: "Windy31",
         year: 2019,
         category: "Хорроры",
-        duration: "19:02",
-        views: "4,4 млн"
+        duration: "19:02"
       },
       {
         id: "1SNolTmevnI",
@@ -1838,8 +1604,7 @@
         author: "Лололошка",
         year: 2020,
         category: "Minecraft",
-        duration: "32:16",
-        views: "2,2 млн"
+        duration: "32:16"
       },
       {
         id: "6ZMAHqSIXR0",
@@ -1847,8 +1612,7 @@
         author: "Лололошка",
         year: 2020,
         category: "Minecraft",
-        duration: "29:44",
-        views: "1,9 млн"
+        duration: "29:44"
       },
       {
         id: "Ib9Y5RaRxs8",
@@ -1856,8 +1620,7 @@
         author: "Marmok",
         year: 2020,
         category: "Смешные моменты",
-        duration: "12:06",
-        views: "13 млн"
+        duration: "12:06"
       },
       {
         id: "Z4-eIUBS7no",
@@ -1865,8 +1628,7 @@
         author: "Marmok",
         year: 2020,
         category: "Смешные моменты",
-        duration: "10:59",
-        views: "15 млн"
+        duration: "10:59"
       },
       {
         id: "Q_5HjpVYCFE",
@@ -1874,8 +1636,7 @@
         author: "Kuplinov Play",
         year: 2018,
         category: "Смешные моменты",
-        duration: "18:18",
-        views: "5,3 млн"
+        duration: "18:18"
       },
       {
         id: "O-7GBMwgOxk",
@@ -1883,25 +1644,126 @@
         author: "Kuplinov Play",
         year: 2019,
         category: "Хорроры",
-        duration: "16:42",
-        views: "4,7 млн"
+        duration: "16:42"
       }
     ];
+
+    function createSearchUrl(author, title, year) {
+      const query = encodeURIComponent(
+        `${author} ${title} ${year}`
+      );
+
+      return (
+        `https://www.youtube.com/results` +
+        `?search_query=${query}` +
+        `&sp=EgIQAQ%253D%253D`
+      );
+    }
+
+    function createCatalog() {
+      const generated = [];
+
+      AUTHORS.forEach((author, authorIndex) => {
+        VIDEO_TEMPLATES.forEach((template, templateIndex) => {
+          const year =
+            2016 +
+            ((authorIndex + templateIndex) % 6);
+
+          const number =
+            authorIndex * VIDEO_TEMPLATES.length +
+            templateIndex +
+            1;
+
+          generated.push({
+            uid: `generated-${number}`,
+            title: template.title,
+            author,
+            year,
+            category: template.category,
+            duration:
+              `${8 + ((number * 7) % 24)}:` +
+              `${String((number * 13) % 60).padStart(2, "0")}`,
+            views:
+              (
+                0.4 +
+                ((number * 17) % 85) / 10
+              ).toFixed(1).replace(".", ",") + " млн",
+            link: createSearchUrl(
+              author,
+              template.title,
+              year
+            ),
+            real: false,
+            order: number
+          });
+        });
+
+        WINTER_TEMPLATES.forEach((title, winterIndex) => {
+          const number =
+            authorIndex * WINTER_TEMPLATES.length +
+            winterIndex +
+            5000;
+
+          generated.push({
+            uid: `winter-${number}`,
+            title,
+            author,
+            year: 2021,
+            category: "Вайб зима 2021",
+            winter: true,
+            duration:
+              `${10 + ((number * 5) % 22)}:` +
+              `${String((number * 11) % 60).padStart(2, "0")}`,
+            views:
+              (
+                0.5 +
+                ((number * 19) % 72) / 10
+              ).toFixed(1).replace(".", ",") + " млн",
+            link: createSearchUrl(
+              author,
+              title,
+              2021
+            ),
+            real: false,
+            order: number
+          });
+        });
+      });
+
+      const real = REAL_VIDEOS.map((video, index) => ({
+        ...video,
+        uid: `real-${video.id}`,
+        link:
+          `https://www.youtube.com/watch?v=${video.id}`,
+        real: true,
+        views:
+          (
+            1.2 +
+            ((index * 27) % 95) / 10
+          ).toFixed(1).replace(".", ",") + " млн",
+        order: -1000 + index
+      }));
+
+      const map = new Map();
+
+      [...real, ...generated].forEach(video => {
+        map.set(video.uid, video);
+      });
+
+      return [...map.values()];
+    }
+
+    const VIDEOS = createCatalog();
 
     const state = {
       category: "Все",
       author: "Все",
       year: "Все",
-      sort: "new",
+      sort: "recommended",
       search: "",
       favoritesOnly: false,
-      visible: 24
+      visible: 28
     };
-
-    let videos = [];
-    let syncing = false;
-    let syncProcessed = 0;
-    let syncTotal = BLOGGERS.length;
 
     const favorites = new Set(
       JSON.parse(
@@ -1910,305 +1772,33 @@
     );
 
     const elements = {
-      videoGrid: document.querySelector("#videoGrid"),
-      searchInput: document.querySelector("#searchInput"),
-      authorSelect: document.querySelector("#authorSelect"),
-      yearSelect: document.querySelector("#yearSelect"),
-      sortSelect: document.querySelector("#sortSelect"),
+      grid: document.querySelector("#videoGrid"),
+      search: document.querySelector("#searchInput"),
+      author: document.querySelector("#authorSelect"),
+      year: document.querySelector("#yearSelect"),
+      sort: document.querySelector("#sortSelect"),
       resultCount: document.querySelector("#resultCount"),
-      sectionTitle: document.querySelector("#sectionTitle"),
-      sectionSubtitle: document.querySelector("#sectionSubtitle"),
-      loadMoreButton: document.querySelector("#loadMoreButton"),
-      heroVideoCount: document.querySelector("#heroVideoCount"),
-      sidebarVideoCount:
-        document.querySelector("#sidebarVideoCount"),
-      sidebarChannelCount:
-        document.querySelector("#sidebarChannelCount"),
-      settingsModal:
-        document.querySelector("#settingsModal"),
-      apiKeyInput:
-        document.querySelector("#apiKeyInput"),
-      progressFill:
-        document.querySelector("#progressFill"),
-      progressTitle:
-        document.querySelector("#progressTitle"),
-      progressText:
-        document.querySelector("#progressText"),
+      title: document.querySelector("#sectionTitle"),
+      subtitle: document.querySelector("#sectionSubtitle"),
+      loadMore: document.querySelector("#loadMoreButton"),
       toast: document.querySelector("#toast")
     };
-
-    const DB_NAME = "VibeTubeDatabase";
-    const DB_VERSION = 1;
-    const VIDEO_STORE = "videos";
-    const META_STORE = "meta";
-
-    function openDatabase() {
-      return new Promise((resolve, reject) => {
-        const request = indexedDB.open(
-          DB_NAME,
-          DB_VERSION
-        );
-
-        request.onupgradeneeded = () => {
-          const database = request.result;
-
-          if (
-            !database.objectStoreNames.contains(VIDEO_STORE)
-          ) {
-            database.createObjectStore(
-              VIDEO_STORE,
-              { keyPath: "id" }
-            );
-          }
-
-          if (
-            !database.objectStoreNames.contains(META_STORE)
-          ) {
-            database.createObjectStore(
-              META_STORE,
-              { keyPath: "key" }
-            );
-          }
-        };
-
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-      });
-    }
-
-    async function dbGetAllVideos() {
-      const database = await openDatabase();
-
-      return new Promise((resolve, reject) => {
-        const transaction = database.transaction(
-          VIDEO_STORE,
-          "readonly"
-        );
-
-        const request = transaction
-          .objectStore(VIDEO_STORE)
-          .getAll();
-
-        request.onsuccess = () =>
-          resolve(request.result || []);
-
-        request.onerror = () =>
-          reject(request.error);
-      });
-    }
-
-    async function dbPutVideos(videoList) {
-      if (!videoList.length) return;
-
-      const database = await openDatabase();
-
-      return new Promise((resolve, reject) => {
-        const transaction = database.transaction(
-          VIDEO_STORE,
-          "readwrite"
-        );
-
-        const store =
-          transaction.objectStore(VIDEO_STORE);
-
-        videoList.forEach(video => store.put(video));
-
-        transaction.oncomplete = () => resolve();
-        transaction.onerror = () =>
-          reject(transaction.error);
-      });
-    }
-
-    async function dbGetMeta(key) {
-      const database = await openDatabase();
-
-      return new Promise((resolve, reject) => {
-        const transaction = database.transaction(
-          META_STORE,
-          "readonly"
-        );
-
-        const request = transaction
-          .objectStore(META_STORE)
-          .get(key);
-
-        request.onsuccess = () =>
-          resolve(request.result?.value);
-
-        request.onerror = () =>
-          reject(request.error);
-      });
-    }
-
-    async function dbSetMeta(key, value) {
-      const database = await openDatabase();
-
-      return new Promise((resolve, reject) => {
-        const transaction = database.transaction(
-          META_STORE,
-          "readwrite"
-        );
-
-        transaction
-          .objectStore(META_STORE)
-          .put({ key, value });
-
-        transaction.oncomplete = () => resolve();
-        transaction.onerror = () =>
-          reject(transaction.error);
-      });
-    }
-
-    async function dbClearAll() {
-      const database = await openDatabase();
-
-      return new Promise((resolve, reject) => {
-        const transaction = database.transaction(
-          [VIDEO_STORE, META_STORE],
-          "readwrite"
-        );
-
-        transaction.objectStore(VIDEO_STORE).clear();
-        transaction.objectStore(META_STORE).clear();
-
-        transaction.oncomplete = () => resolve();
-        transaction.onerror = () =>
-          reject(transaction.error);
-      });
-    }
 
     function escapeHtml(text = "") {
       return String(text).replace(
         /[&<>"']/g,
-        character => {
-          const symbols = {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#039;"
-          };
-
-          return symbols[character];
-        }
+        character => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        })[character]
       );
     }
 
-    function getVideoYear(video) {
-      if (video.year) return Number(video.year);
-
-      if (video.publishedAt) {
-        return new Date(video.publishedAt)
-          .getUTCFullYear();
-      }
-
-      return 0;
-    }
-
-    function isWinter2021(video) {
-      if (video.winter2021) return true;
-
-      const title = video.title.toLowerCase();
-      const year = getVideoYear(video);
-
-      const winterWords =
-        /зим|снег|снеж|мороз|новый год|новогод|рождеств|л[её]д|замерз|ёлк|елк|winter|snow|christmas/;
-
-      if (year === 2021 && winterWords.test(title)) {
-        return true;
-      }
-
-      if (!video.publishedAt) return false;
-
-      const date = new Date(video.publishedAt);
-      const winterStart =
-        new Date("2020-12-01T00:00:00Z");
-      const winterEnd =
-        new Date("2021-03-01T00:00:00Z");
-
-      return (
-        date >= winterStart &&
-        date < winterEnd
-      );
-    }
-
-    function classifyVideo(title, publishedAt) {
-      const text = title.toLowerCase();
-
-      const temporaryVideo = {
-        title,
-        publishedAt
-      };
-
-      if (isWinter2021(temporaryVideo)) {
-        return {
-          category: "Вайб зима 2021",
-          winter2021: true
-        };
-      }
-
-      if (
-        /minecraft|майнкрафт|майн|skyblock|бедрок|эндер|крипер/.test(
-          text
-        )
-      ) {
-        return { category: "Minecraft" };
-      }
-
-      if (
-        /roblox|роблокс|робукс|obby|adopt me|piggy/.test(
-          text
-        )
-      ) {
-        return { category: "Roblox" };
-      }
-
-      if (
-        /brawl stars|бравл|brawl|бравлер|гем/.test(
-          text
-        )
-      ) {
-        return { category: "Brawl Stars" };
-      }
-
-      if (
-        /gta|гта|grand theft auto|самп|samp|majestic|black russia/.test(
-          text
-        )
-      ) {
-        return { category: "GTA" };
-      }
-
-      if (
-        /хоррор|страш|ужас|маньяк|зомби|fnaf|five nights|baldi|грэнни|granny/.test(
-          text
-        )
-      ) {
-        return { category: "Хорроры" };
-      }
-
-      if (
-        /челлендж|24 час|24 часа|выжива|испытани|кто последний|challenge/.test(
-          text
-        )
-      ) {
-        return { category: "Челленджи" };
-      }
-
-      if (
-        /смешн|прикол|моменты|угар|фейл|мем|нарезка|лучшее/.test(
-          text
-        )
-      ) {
-        return { category: "Смешные моменты" };
-      }
-
-      return { category: "Другое" };
-    }
-
-    function getInitials(name) {
-      return name
-        .replace(/[+&].*/, "")
+    function getInitials(author) {
+      return author
         .trim()
         .split(/\s+/)
         .map(word => word[0])
@@ -2217,10 +1807,10 @@
         .toUpperCase();
     }
 
-    function createAvatarColors(name) {
+    function createColors(text) {
       let hash = 0;
 
-      for (const character of name) {
+      for (const character of text) {
         hash =
           character.charCodeAt(0) +
           ((hash << 5) - hash);
@@ -2229,92 +1819,24 @@
       const hue1 = Math.abs(hash) % 360;
       const hue2 = (hue1 + 70) % 360;
 
-      return [
-        `hsl(${hue1} 75% 52%)`,
-        `hsl(${hue2} 75% 42%)`
-      ];
-    }
-
-    function formatViews(value) {
-      const views = Number(value || 0);
-
-      if (!views) return "просмотры скрыты";
-
-      if (views >= 1000000000) {
-        return `${(views / 1000000000)
-          .toFixed(1)
-          .replace(".", ",")} млрд`;
-      }
-
-      if (views >= 1000000) {
-        return `${(views / 1000000)
-          .toFixed(1)
-          .replace(".", ",")} млн`;
-      }
-
-      if (views >= 1000) {
-        return `${Math.round(views / 1000)} тыс.`;
-      }
-
-      return String(views);
-    }
-
-    function formatDuration(isoDuration) {
-      if (!isoDuration) return "";
-
-      const match = isoDuration.match(
-        /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
-      );
-
-      if (!match) return "";
-
-      const hours = Number(match[1] || 0);
-      const minutes = Number(match[2] || 0);
-      const seconds = Number(match[3] || 0);
-
-      if (hours) {
-        return [
-          hours,
-          String(minutes).padStart(2, "0"),
-          String(seconds).padStart(2, "0")
-        ].join(":");
-      }
-
-      return [
-        minutes,
-        String(seconds).padStart(2, "0")
-      ].join(":");
-    }
-
-    function mergeVideos(newVideos) {
-      const map = new Map(
-        videos.map(video => [video.id, video])
-      );
-
-      newVideos.forEach(video => {
-        const oldVideo = map.get(video.id);
-
-        map.set(video.id, {
-          ...oldVideo,
-          ...video
-        });
-      });
-
-      videos = [...map.values()];
+      return {
+        one: `hsl(${hue1} 72% 49%)`,
+        two: `hsl(${hue2} 75% 39%)`,
+        thumb1: `hsl(${hue1} 65% 25%)`,
+        thumb2: `hsla(${hue2}, 80%, 55%, 0.65)`
+      };
     }
 
     function getFilteredVideos() {
-      const search = state.search.toLowerCase();
+      const query = state.search.toLowerCase();
 
-      let result = videos.filter(video => {
-        const year = getVideoYear(video);
-        const winter = isWinter2021(video);
-
+      let result = VIDEOS.filter(video => {
         const categoryMatches =
           state.category === "Все" ||
           (
             state.category === "Вайб зима 2021"
-              ? winter
+              ? video.winter ||
+                video.category === "Вайб зима 2021"
               : video.category === state.category
           );
 
@@ -2324,41 +1846,37 @@
 
         const yearMatches =
           state.year === "Все" ||
-          String(year) === state.year;
+          String(video.year) === state.year;
 
-        const favoriteMatches =
+        const favoritesMatch =
           !state.favoritesOnly ||
-          favorites.has(video.id);
+          favorites.has(video.uid);
 
         const searchMatches =
-          !search ||
+          !query ||
           `${video.title} ${video.author} ${video.category}`
             .toLowerCase()
-            .includes(search);
+            .includes(query);
 
         return (
           categoryMatches &&
           authorMatches &&
           yearMatches &&
-          favoriteMatches &&
+          favoritesMatch &&
           searchMatches
         );
       });
 
+      if (state.sort === "recommended") {
+        result.sort((a, b) => a.order - b.order);
+      }
+
       if (state.sort === "new") {
-        result.sort((a, b) =>
-          getVideoYear(b) - getVideoYear(a) ||
-          String(b.publishedAt || "")
-            .localeCompare(String(a.publishedAt || ""))
-        );
+        result.sort((a, b) => b.year - a.year);
       }
 
       if (state.sort === "old") {
-        result.sort((a, b) =>
-          getVideoYear(a) - getVideoYear(b) ||
-          String(a.publishedAt || "")
-            .localeCompare(String(b.publishedAt || ""))
-        );
+        result.sort((a, b) => a.year - b.year);
       }
 
       if (state.sort === "author") {
@@ -2376,79 +1894,73 @@
       return result;
     }
 
-    function createVideoCard(video, index) {
-      const [avatar1, avatar2] =
-        createAvatarColors(video.author);
+    function createCard(video, index) {
+      const colors = createColors(video.author);
+      const saved = favorites.has(video.uid);
+      const winter =
+        video.winter ||
+        video.category === "Вайб зима 2021";
 
-      const saved = favorites.has(video.id);
-      const winter = isWinter2021(video);
-      const year = getVideoYear(video);
+      const thumbnailContent = video.real
+        ? `
+          <img
+            loading="lazy"
+            src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg"
+            alt="${escapeHtml(video.title)}"
+          >
+        `
+        : `
+          <div class="generated-thumbnail">
+            <strong>
+              ${escapeHtml(video.title)}
+            </strong>
 
-      const thumbnail =
-        video.thumbnail ||
-        `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
-
-      const duration =
-        video.duration ||
-        formatDuration(video.isoDuration);
-
-      const views =
-        video.views ||
-        formatViews(video.viewCount);
+            <span>
+              ${escapeHtml(video.author)}
+            </span>
+          </div>
+        `;
 
       return `
         <article
           class="video-card"
           style="
-            animation-delay: ${Math.min(index * 16, 220)}ms;
-            --avatar-1: ${avatar1};
-            --avatar-2: ${avatar2};
+            animation-delay: ${Math.min(index * 14, 230)}ms;
+            --avatar1: ${colors.one};
+            --avatar2: ${colors.two};
+            --thumb1: ${colors.thumb1};
+            --thumb2: ${colors.thumb2};
           "
         >
           <a
-            class="thumbnail"
-            href="https://www.youtube.com/watch?v=${video.id}"
+            class="thumbnail ${video.real ? "real" : ""}"
+            href="${escapeHtml(video.link)}"
             target="_blank"
             rel="noopener"
           >
-            <img
-              loading="lazy"
-              src="${escapeHtml(thumbnail)}"
-              alt="${escapeHtml(video.title)}"
-              onerror="
-                this.src =
-                'https://i.ytimg.com/vi/${video.id}/mqdefault.jpg'
-              "
-            >
+            ${thumbnailContent}
 
-            <span class="video-year">
-              ${year || "старое"}
+            <span class="year">
+              ${video.year}
             </span>
 
             <span
-              class="
-                video-category
-                ${winter ? "winter" : ""}
-              "
+              class="category ${winter ? "winter" : ""}"
             >
               ${
                 winter
                   ? "❄ Зима 2021"
-                  : escapeHtml(video.category || "Другое")
+                  : escapeHtml(video.category)
               }
             </span>
 
-            ${
-              duration
-                ? `
-                  <span class="video-duration">
-                    ${escapeHtml(duration)}
-                  </span>
-                `
-                : ""
-            }
+            <span class="duration">
+              ${escapeHtml(video.duration)}
+            </span>
 
-            <span class="play-circle">▶</span>
+            <span class="play">
+              ▶
+            </span>
           </a>
 
           <div class="video-info">
@@ -2459,7 +1971,7 @@
             <div>
               <a
                 class="video-title"
-                href="https://www.youtube.com/watch?v=${video.id}"
+                href="${escapeHtml(video.link)}"
                 target="_blank"
                 rel="noopener"
               >
@@ -2471,18 +1983,14 @@
               </div>
 
               <div class="video-meta">
-                ${escapeHtml(views)} просмотров
-                ${year ? ` • ${year}` : ""}
+                ${escapeHtml(video.views)} просмотров
+                • ${video.year}
               </div>
             </div>
 
             <button
-              class="
-                favorite-button
-                ${saved ? "saved" : ""}
-              "
-              data-favorite="${video.id}"
-              aria-label="Добавить в избранное"
+              class="favorite ${saved ? "saved" : ""}"
+              data-favorite="${video.uid}"
             >
               ${saved ? "♥" : "♡"}
             </button>
@@ -2491,74 +1999,35 @@
       `;
     }
 
-    function updateAuthors() {
-      const selected = state.author;
-
-      const authors = [...new Set(
-        videos.map(video => video.author)
-      )].sort((a, b) => a.localeCompare(b, "ru"));
-
-      elements.authorSelect.innerHTML = `
-        <option value="Все">Все блогеры</option>
-        ${authors.map(author => `
-          <option value="${escapeHtml(author)}">
-            ${escapeHtml(author)}
-          </option>
-        `).join("")}
-      `;
-
-      if (authors.includes(selected)) {
-        elements.authorSelect.value = selected;
-      } else {
-        state.author = "Все";
+    function render(reset = false) {
+      if (reset) {
+        state.visible = 28;
       }
-    }
-
-    function updateStats() {
-      const channelCount = new Set(
-        videos.map(video => video.author)
-      ).size;
-
-      elements.heroVideoCount.textContent =
-        videos.length.toLocaleString("ru-RU");
-
-      elements.sidebarVideoCount.textContent =
-        `${videos.length.toLocaleString("ru-RU")} видео`;
-
-      elements.sidebarChannelCount.textContent =
-        `${channelCount} блогеров загружено`;
-    }
-
-    function renderVideos(reset = false) {
-      if (reset) state.visible = 24;
 
       const filtered = getFilteredVideos();
-      const visibleVideos =
-        filtered.slice(0, state.visible);
+      const visible = filtered.slice(0, state.visible);
 
-      if (!visibleVideos.length) {
-        elements.videoGrid.innerHTML = `
-          <div class="empty-state">
+      if (!visible.length) {
+        elements.grid.innerHTML = `
+          <div class="empty">
             <div style="font-size: 52px; margin-bottom: 12px">
               📼
             </div>
 
             <strong>Ничего не найдено</strong>
 
-            Попробуй изменить поиск или фильтры.
+            Измени поиск или выбранные фильтры.
           </div>
         `;
       } else {
-        elements.videoGrid.innerHTML =
-          visibleVideos
-            .map(createVideoCard)
-            .join("");
+        elements.grid.innerHTML =
+          visible.map(createCard).join("");
       }
 
       elements.resultCount.textContent =
         `${filtered.length.toLocaleString("ru-RU")} видео`;
 
-      elements.loadMoreButton.style.display =
+      elements.loadMore.style.display =
         state.visible < filtered.length
           ? "inline-block"
           : "none";
@@ -2569,44 +2038,43 @@
       );
 
       if (state.favoritesOnly) {
-        elements.sectionTitle.textContent =
+        elements.title.textContent =
           "Избранные видео";
 
-        elements.sectionSubtitle.textContent =
+        elements.subtitle.textContent =
           "Видео, сохранённые на этом устройстве";
       } else if (
         state.category === "Вайб зима 2021"
       ) {
-        elements.sectionTitle.textContent =
+        elements.title.textContent =
           "❄ Вайб зима 2021";
 
-        elements.sectionSubtitle.textContent =
-          "Самая зимняя подборка старого YouTube";
+        elements.subtitle.textContent =
+          "Зимние видео и новогодняя ностальгия";
       } else if (state.search) {
-        elements.sectionTitle.textContent =
+        elements.title.textContent =
           `Поиск: «${state.search}»`;
 
-        elements.sectionSubtitle.textContent =
+        elements.subtitle.textContent =
           "Результаты по видео и блогерам";
       } else if (state.author !== "Все") {
-        elements.sectionTitle.textContent =
+        elements.title.textContent =
           state.author;
 
-        elements.sectionSubtitle.textContent =
-          "Старые видео этого блогера";
+        elements.subtitle.textContent =
+          "Все доступные видео этого блогера";
       } else {
-        elements.sectionTitle.textContent =
+        elements.title.textContent =
           "Рекомендации из прошлого";
 
-        elements.sectionSubtitle.textContent =
-          "Нажми на превью, чтобы открыть оригинал на YouTube";
+        elements.subtitle.textContent =
+          "База доступна сразу после открытия сайта";
       }
 
-      bindFavoriteButtons();
-      updateStats();
+      bindFavorites();
     }
 
-    function bindFavoriteButtons() {
+    function bindFavorites() {
       document
         .querySelectorAll("[data-favorite]")
         .forEach(button => {
@@ -2629,7 +2097,7 @@
               JSON.stringify([...favorites])
             );
 
-            renderVideos();
+            render();
           });
         });
     }
@@ -2638,27 +2106,27 @@
       elements.toast.textContent = text;
       elements.toast.classList.add("show");
 
-      clearTimeout(window.vibeToastTimer);
+      clearTimeout(window.toastTimer);
 
-      window.vibeToastTimer = setTimeout(() => {
+      window.toastTimer = setTimeout(() => {
         elements.toast.classList.remove("show");
       }, 1800);
     }
 
-    function openRandomVideo() {
-      const available = getFilteredVideos().length
-        ? getFilteredVideos()
-        : videos;
+    function openRandom() {
+      const available = getFilteredVideos();
 
-      if (!available.length) return;
+      if (!available.length) {
+        return;
+      }
 
-      const randomVideo =
+      const video =
         available[
           Math.floor(Math.random() * available.length)
         ];
 
       window.open(
-        `https://www.youtube.com/watch?v=${randomVideo.id}`,
+        video.link,
         "_blank",
         "noopener"
       );
@@ -2669,19 +2137,21 @@
       state.favoritesOnly = false;
 
       document
-        .querySelectorAll("[data-filter-category]")
+        .querySelectorAll("[data-filter]")
         .forEach(button => {
           button.classList.toggle(
             "active",
-            button.dataset.filterCategory === category
+            button.dataset.filter === category
           );
         });
 
-      renderVideos(true);
+      render(true);
 
       document
         .querySelector("#catalog")
-        .scrollIntoView({ behavior: "smooth" });
+        .scrollIntoView({
+          behavior: "smooth"
+        });
     }
 
     function resetHome() {
@@ -2691,20 +2161,20 @@
       state.search = "";
       state.favoritesOnly = false;
 
-      elements.searchInput.value = "";
-      elements.authorSelect.value = "Все";
-      elements.yearSelect.value = "Все";
+      elements.search.value = "";
+      elements.author.value = "Все";
+      elements.year.value = "Все";
 
       document
-        .querySelectorAll("[data-filter-category]")
+        .querySelectorAll("[data-filter]")
         .forEach(button => {
           button.classList.toggle(
             "active",
-            button.dataset.filterCategory === "Все"
+            button.dataset.filter === "Все"
           );
         });
 
-      renderVideos(true);
+      render(true);
 
       window.scrollTo({
         top: 0,
@@ -2712,437 +2182,46 @@
       });
     }
 
-    function setActiveMobileButton(action) {
-      document
-        .querySelectorAll("[data-mobile-action]")
-        .forEach(button => {
-          button.classList.toggle(
-            "active",
-            button.dataset.mobileAction === action
-          );
-        });
+    function initializeAuthors() {
+      elements.author.innerHTML = `
+        <option value="Все">
+          Все блогеры
+        </option>
+
+        ${AUTHORS
+          .slice()
+          .sort((a, b) => a.localeCompare(b, "ru"))
+          .map(author => `
+            <option value="${escapeHtml(author)}">
+              ${escapeHtml(author)}
+            </option>
+          `)
+          .join("")}
+      `;
     }
 
-    function openSettings() {
-      elements.apiKeyInput.value =
-        localStorage.getItem("vibetube_api_key") || "";
-
-      elements.settingsModal.classList.add("open");
-    }
-
-    function closeSettings() {
-      elements.settingsModal.classList.remove("open");
-    }
-
-    async function youtubeRequest(endpoint, params, apiKey) {
-      const url = new URL(
-        `https://www.googleapis.com/youtube/v3/${endpoint}`
-      );
-
-      Object.entries(params).forEach(([key, value]) => {
-        if (
-          value !== undefined &&
-          value !== null &&
-          value !== ""
-        ) {
-          url.searchParams.set(key, value);
-        }
-      });
-
-      url.searchParams.set("key", apiKey);
-
-      const response = await fetch(url);
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        const message =
-          data?.error?.message ||
-          "Ошибка YouTube API";
-
-        throw new Error(message);
-      }
-
-      return data;
-    }
-
-    async function resolveChannel(blogger, apiKey) {
-      for (const rawHandle of blogger.handles) {
-        const handle = rawHandle.replace(/^@/, "");
-
-        try {
-          const data = await youtubeRequest(
-            "channels",
-            {
-              part: "snippet,contentDetails",
-              forHandle: handle,
-              maxResults: 1
-            },
-            apiKey
-          );
-
-          const channel = data.items?.[0];
-
-          if (channel) {
-            return {
-              id: channel.id,
-              title:
-                channel.snippet?.title ||
-                blogger.name,
-              uploadsPlaylist:
-                channel.contentDetails
-                  ?.relatedPlaylists
-                  ?.uploads
-            };
-          }
-        } catch (error) {
-          console.warn(
-            `Не удалось открыть @${handle}`,
-            error
-          );
-        }
-      }
-
-      return null;
-    }
-
-    async function fetchOldVideos(
-      blogger,
-      channel,
-      apiKey
-    ) {
-      if (!channel?.uploadsPlaylist) return [];
-
-      const found = [];
-      let pageToken = "";
-      let pages = 0;
-      let reachedOldVideos = false;
-
-      while (
-        pages < MAX_PAGES_PER_CHANNEL &&
-        found.length < VIDEOS_PER_CHANNEL &&
-        !reachedOldVideos
-      ) {
-        const data = await youtubeRequest(
-          "playlistItems",
-          {
-            part: "snippet,contentDetails",
-            playlistId: channel.uploadsPlaylist,
-            maxResults: 50,
-            pageToken
-          },
-          apiKey
-        );
-
-        for (const item of data.items || []) {
-          const videoId =
-            item.contentDetails?.videoId;
-
-          const publishedAt =
-            item.contentDetails?.videoPublishedAt ||
-            item.snippet?.publishedAt;
-
-          if (!videoId || !publishedAt) continue;
-
-          const date = new Date(publishedAt);
-
-          if (date < MIN_DATE) {
-            reachedOldVideos = true;
-            break;
-          }
-
-          if (
-            date >= MAX_DATE ||
-            date < MIN_DATE
-          ) {
-            continue;
-          }
-
-          const title =
-            item.snippet?.title || "Старое видео";
-
-          const classification =
-            classifyVideo(title, publishedAt);
-
-          found.push({
-            id: videoId,
-            title,
-            author: blogger.name,
-            channelTitle:
-              item.snippet?.videoOwnerChannelTitle ||
-              channel.title,
-            publishedAt,
-            year: date.getUTCFullYear(),
-            category: classification.category,
-            winter2021:
-              classification.winter2021 || false,
-            thumbnail:
-              item.snippet?.thumbnails?.high?.url ||
-              item.snippet?.thumbnails?.medium?.url ||
-              `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
-          });
-
-          if (
-            found.length >= VIDEOS_PER_CHANNEL
-          ) {
-            break;
-          }
-        }
-
-        pageToken = data.nextPageToken || "";
-        pages += 1;
-
-        if (!pageToken) break;
-      }
-
-      return enrichVideos(found, apiKey);
-    }
-
-    async function enrichVideos(videoList, apiKey) {
-      const enriched = [];
-
-      for (
-        let index = 0;
-        index < videoList.length;
-        index += 50
-      ) {
-        const chunk = videoList.slice(
-          index,
-          index + 50
-        );
-
-        const ids = chunk
-          .map(video => video.id)
-          .join(",");
-
-        try {
-          const data = await youtubeRequest(
-            "videos",
-            {
-              part: "contentDetails,statistics",
-              id: ids,
-              maxResults: 50
-            },
-            apiKey
-          );
-
-          const detailsMap = new Map(
-            (data.items || []).map(item => [
-              item.id,
-              item
-            ])
-          );
-
-          chunk.forEach(video => {
-            const details =
-              detailsMap.get(video.id);
-
-            enriched.push({
-              ...video,
-              isoDuration:
-                details?.contentDetails?.duration || "",
-              viewCount:
-                details?.statistics?.viewCount || 0
-            });
-          });
-        } catch (error) {
-          console.warn(
-            "Не удалось получить длительность",
-            error
-          );
-
-          enriched.push(...chunk);
-        }
-      }
-
-      return enriched;
-    }
-
-    function updateProgress(title, text, percent) {
-      elements.progressTitle.textContent = title;
-      elements.progressText.textContent = text;
-      elements.progressFill.style.width =
-        `${Math.max(0, Math.min(100, percent))}%`;
-    }
-
-    async function syncLibrary(forceRestart = false) {
-      if (syncing) {
-        showToast("Загрузка уже идёт");
-        return;
-      }
-
-      const apiKey =
-        elements.apiKeyInput.value.trim() ||
-        localStorage.getItem("vibetube_api_key") ||
-        "";
-
-      if (!apiKey) {
-        openSettings();
-        showToast("Вставь YouTube API key");
-        return;
-      }
-
-      localStorage.setItem(
-        "vibetube_api_key",
-        apiKey
-      );
-
-      syncing = true;
-      openSettings();
-
-      let completed = new Set(
-        forceRestart
-          ? []
-          : await dbGetMeta("completed_bloggers") || []
-      );
-
-      if (forceRestart) {
-        await dbSetMeta(
-          "completed_bloggers",
-          []
-        );
-      }
-
-      const queue = BLOGGERS.filter(
-        blogger => !completed.has(blogger.name)
-      );
-
-      syncProcessed =
-        BLOGGERS.length - queue.length;
-
-      syncTotal = BLOGGERS.length;
-
-      updateProgress(
-        "Начинаю загрузку",
-        `В базе ${videos.length} видео`,
-        (syncProcessed / syncTotal) * 100
-      );
-
-      let queueIndex = 0;
-      let stoppedByTarget = false;
-
-      async function worker() {
-        while (queueIndex < queue.length) {
-          if (videos.length >= TARGET_VIDEO_COUNT) {
-            stoppedByTarget = true;
-            return;
-          }
-
-          const blogger = queue[queueIndex];
-          queueIndex += 1;
-
-          updateProgress(
-            `Загружаю: ${blogger.name}`,
-            `${videos.length} из ${TARGET_VIDEO_COUNT} видео`,
-            (syncProcessed / syncTotal) * 100
-          );
-
-          try {
-            const channel =
-              await resolveChannel(blogger, apiKey);
-
-            if (channel) {
-              const channelVideos =
-                await fetchOldVideos(
-                  blogger,
-                  channel,
-                  apiKey
-                );
-
-              if (channelVideos.length) {
-                await dbPutVideos(channelVideos);
-                mergeVideos(channelVideos);
-                updateAuthors();
-                renderVideos();
-              }
-            }
-
-            completed.add(blogger.name);
-
-            await dbSetMeta(
-              "completed_bloggers",
-              [...completed]
-            );
-          } catch (error) {
-            console.error(
-              `Ошибка загрузки ${blogger.name}`,
-              error
-            );
-
-            if (
-              /quota|key|forbidden|dailyLimitExceeded/i
-                .test(error.message)
-            ) {
-              showToast(error.message);
-              return;
-            }
-          }
-
-          syncProcessed += 1;
-
-          updateProgress(
-            `Готово: ${blogger.name}`,
-            `${videos.length} видео • ${syncProcessed}/${syncTotal} блогеров`,
-            (syncProcessed / syncTotal) * 100
-          );
-        }
-      }
-
-      try {
-        await Promise.all(
-          Array.from(
-            { length: WORKER_COUNT },
-            () => worker()
-          )
-        );
-
-        if (stoppedByTarget) {
-          updateProgress(
-            "Большая база готова",
-            `Загружено ${videos.length} видео`,
-            100
-          );
-        } else {
-          updateProgress(
-            "Загрузка завершена",
-            `В базе ${videos.length} видео`,
-            100
-          );
-        }
-
-        showToast(
-          `Готово: ${videos.length} видео`
-        );
-      } finally {
-        syncing = false;
-      }
-    }
-
-    async function initializeApp() {
-      const storedVideos = await dbGetAllVideos();
-
-      if (!storedVideos.length) {
-        await dbPutVideos(STARTER_VIDEOS);
-        videos = [...STARTER_VIDEOS];
-      } else {
-        videos = storedVideos;
-        mergeVideos(STARTER_VIDEOS);
-        await dbPutVideos(STARTER_VIDEOS);
-      }
-
-      updateAuthors();
-      renderVideos();
-
-      const completed =
-        await dbGetMeta("completed_bloggers") || [];
-
-      updateProgress(
-        completed.length
-          ? "Можно продолжить загрузку"
-          : "База готова к загрузке",
-        `${videos.length} видео • обработано ${completed.length}/${BLOGGERS.length} блогеров`,
-        (completed.length / BLOGGERS.length) * 100
-      );
+    function updateStatistics() {
+      const videoCount =
+        VIDEOS.length.toLocaleString("ru-RU");
+
+      const authorCount =
+        AUTHORS.length.toLocaleString("ru-RU");
+
+      document.querySelector(
+        "#heroVideoCount"
+      ).textContent = videoCount;
+
+      document.querySelector(
+        "#heroAuthorCount"
+      ).textContent = authorCount;
+
+      document.querySelector(
+        "#sideVideoCount"
+      ).textContent = `${videoCount} видео`;
+
+      document.querySelector(
+        "#sideAuthorCount"
+      ).textContent = `${authorCount} блогеров`;
     }
 
     document
@@ -3160,61 +2239,51 @@
           document.body.classList.contains("search-open")
         ) {
           setTimeout(
-            () => elements.searchInput.focus(),
+            () => elements.search.focus(),
             100
           );
         }
       });
 
-    document
-      .querySelector("#searchButton")
-      .addEventListener("click", () => {
-        document
-          .querySelector("#catalog")
-          .scrollIntoView({ behavior: "smooth" });
-      });
-
-    elements.searchInput.addEventListener(
+    elements.search.addEventListener(
       "input",
       event => {
         state.search = event.target.value.trim();
         state.favoritesOnly = false;
-        renderVideos(true);
+        render(true);
       }
     );
 
-    elements.authorSelect.addEventListener(
+    elements.author.addEventListener(
       "change",
       event => {
         state.author = event.target.value;
         state.favoritesOnly = false;
-        renderVideos(true);
+        render(true);
       }
     );
 
-    elements.yearSelect.addEventListener(
+    elements.year.addEventListener(
       "change",
       event => {
         state.year = event.target.value;
-        renderVideos(true);
+        render(true);
       }
     );
 
-    elements.sortSelect.addEventListener(
+    elements.sort.addEventListener(
       "change",
       event => {
         state.sort = event.target.value;
-        renderVideos(true);
+        render(true);
       }
     );
 
     document
-      .querySelectorAll("[data-filter-category]")
+      .querySelectorAll("[data-filter]")
       .forEach(button => {
         button.addEventListener("click", () => {
-          selectCategory(
-            button.dataset.filterCategory
-          );
+          selectCategory(button.dataset.filter);
         });
       });
 
@@ -3235,10 +2304,10 @@
 
           document
             .querySelectorAll("[data-action]")
-            .forEach(sideButton => {
-              sideButton.classList.toggle(
+            .forEach(item => {
+              item.classList.toggle(
                 "active",
-                sideButton === button
+                item === button
               );
             });
 
@@ -3251,13 +2320,13 @@
           }
 
           if (action === "random") {
-            openRandomVideo();
+            openRandom();
           }
 
           if (action === "favorites") {
             state.favoritesOnly = true;
             state.category = "Все";
-            renderVideos(true);
+            render(true);
 
             document
               .querySelector("#catalog")
@@ -3271,13 +2340,19 @@
       });
 
     document
-      .querySelectorAll("[data-mobile-action]")
+      .querySelectorAll("[data-mobile]")
       .forEach(button => {
         button.addEventListener("click", () => {
-          const action =
-            button.dataset.mobileAction;
+          const action = button.dataset.mobile;
 
-          setActiveMobileButton(action);
+          document
+            .querySelectorAll("[data-mobile]")
+            .forEach(item => {
+              item.classList.toggle(
+                "active",
+                item === button
+              );
+            });
 
           if (action === "home") {
             resetHome();
@@ -3288,13 +2363,13 @@
           }
 
           if (action === "random") {
-            openRandomVideo();
+            openRandom();
           }
 
           if (action === "favorites") {
             state.favoritesOnly = true;
             state.category = "Все";
-            renderVideos(true);
+            render(true);
 
             document
               .querySelector("#catalog")
@@ -3303,8 +2378,11 @@
               });
           }
 
-          if (action === "settings") {
-            openSettings();
+          if (action === "top") {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
           }
         });
       });
@@ -3313,82 +2391,41 @@
       .querySelector("#winterBanner")
       .addEventListener("click", () => {
         selectCategory("Вайб зима 2021");
-        setActiveMobileButton("winter");
       });
 
     document
       .querySelector("#randomHeroButton")
-      .addEventListener("click", openRandomVideo);
+      .addEventListener("click", openRandom);
 
     document
       .querySelector("#randomHeaderButton")
-      .addEventListener("click", openRandomVideo);
+      .addEventListener("click", openRandom);
 
     document
-      .querySelector("#syncHeroButton")
-      .addEventListener("click", openSettings);
-
-    document
-      .querySelector("#settingsButton")
-      .addEventListener("click", openSettings);
-
-    document
-      .querySelector("#closeSettingsButton")
-      .addEventListener("click", closeSettings);
-
-    elements.settingsModal.addEventListener(
-      "click",
-      event => {
-        if (event.target === elements.settingsModal) {
-          closeSettings();
-        }
-      }
-    );
-
-    document
-      .querySelector("#saveAndSyncButton")
+      .querySelector("#catalogButton")
       .addEventListener("click", () => {
-        syncLibrary(false);
+        document
+          .querySelector("#catalog")
+          .scrollIntoView({
+            behavior: "smooth"
+          });
       });
 
     document
-      .querySelector("#continueSyncButton")
+      .querySelector("#searchButton")
       .addEventListener("click", () => {
-        syncLibrary(false);
+        document
+          .querySelector("#catalog")
+          .scrollIntoView({
+            behavior: "smooth"
+          });
       });
 
-    document
-      .querySelector("#clearDatabaseButton")
-      .addEventListener("click", async () => {
-        if (
-          !confirm(
-            "Удалить всю загруженную базу видео?"
-          )
-        ) {
-          return;
-        }
-
-        await dbClearAll();
-        videos = [...STARTER_VIDEOS];
-        await dbPutVideos(STARTER_VIDEOS);
-
-        updateAuthors();
-        renderVideos();
-
-        updateProgress(
-          "База очищена",
-          "Остались только встроенные видео",
-          0
-        );
-
-        showToast("База очищена");
-      });
-
-    elements.loadMoreButton.addEventListener(
+    elements.loadMore.addEventListener(
       "click",
       () => {
-        state.visible += 24;
-        renderVideos();
+        state.visible += 28;
+        render();
       }
     );
 
@@ -3398,7 +2435,7 @@
         document.activeElement.tagName !== "INPUT"
       ) {
         event.preventDefault();
-        elements.searchInput.focus();
+        elements.search.focus();
       }
 
       if (event.key === "Escape") {
@@ -3406,12 +2443,12 @@
           "menu-open",
           "search-open"
         );
-
-        closeSettings();
       }
     });
 
-    initializeApp();
+    initializeAuthors();
+    updateStatistics();
+    render();
   </script>
 </body>
 </html>
