@@ -2,15 +2,19 @@
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
+
   <meta name="theme-color" content="#d92727">
+
   <meta
     name="description"
     content="VibeTube — каталог старых атмосферных русскоязычных видео YouTube."
   >
+
   <title>VibeTube — старый YouTube снова рядом</title>
 
   <style>
@@ -50,11 +54,11 @@
     }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
       transition: background 0.25s ease, color 0.25s ease;
     }
 
@@ -89,8 +93,8 @@
 
     .loader {
       position: fixed;
-      inset: 0;
       z-index: 9999;
+      inset: 0;
       display: grid;
       place-content: center;
       gap: 18px;
@@ -100,15 +104,15 @@
     }
 
     .loader.is-hidden {
-      opacity: 0;
       visibility: hidden;
+      opacity: 0;
       pointer-events: none;
     }
 
     .loader-logo {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       font-size: 36px;
       font-weight: 700;
       letter-spacing: -2px;
@@ -117,7 +121,7 @@
     .loader-logo b {
       margin-left: 4px;
       padding: 6px 8px;
-      color: white;
+      color: #ffffff;
       background: var(--accent);
       border-radius: 6px;
       letter-spacing: -1px;
@@ -160,12 +164,12 @@
       position: fixed;
       z-index: 1000;
       top: 0;
-      left: 0;
       right: 0;
-      height: var(--header-height);
+      left: 0;
       display: flex;
       align-items: center;
       gap: 16px;
+      height: var(--header-height);
       padding: 0 18px;
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -176,11 +180,11 @@
       width: 40px;
       height: 40px;
       padding: 0;
+      font-size: 21px;
+      background: transparent;
       border: 0;
       border-radius: 50%;
-      background: transparent;
       cursor: pointer;
-      font-size: 21px;
       transition: background 0.2s ease, transform 0.2s ease;
     }
 
@@ -198,8 +202,8 @@
 
     .brand {
       display: flex;
-      align-items: center;
       flex: 0 0 auto;
+      align-items: center;
       font-size: 23px;
       font-weight: 700;
       letter-spacing: -1.4px;
@@ -208,15 +212,15 @@
     .brand b {
       margin-left: 3px;
       padding: 4px 5px;
-      color: white;
+      color: #ffffff;
       background: var(--accent);
       border-radius: 4px;
       letter-spacing: -0.8px;
     }
 
     .brand small {
-      margin-left: 4px;
       align-self: flex-start;
+      margin-left: 4px;
       color: var(--muted);
       font-size: 9px;
       letter-spacing: 0;
@@ -249,11 +253,11 @@
     .search button {
       width: 62px;
       height: 38px;
+      font-size: 20px;
+      background: var(--surface-2);
       border: 1px solid var(--border);
       border-radius: 0 3px 3px 0;
-      background: var(--surface-2);
       cursor: pointer;
-      font-size: 20px;
     }
 
     .search button:hover {
@@ -290,9 +294,9 @@
       gap: 14px;
       min-height: 42px;
       padding: 7px 12px;
-      border-radius: 4px;
       color: var(--text);
       font-size: 14px;
+      border-radius: 4px;
       transition: background 0.18s ease;
     }
 
@@ -311,9 +315,9 @@
 
     .nav-icon {
       width: 23px;
-      text-align: center;
       color: var(--muted);
       font-size: 18px;
+      text-align: center;
     }
 
     .nav-count {
@@ -358,16 +362,25 @@
     .hero {
       position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       min-height: 250px;
       overflow: hidden;
       padding: 40px;
-      color: white;
-      border-radius: 8px;
+      color: #ffffff;
       background:
-        radial-gradient(circle at 85% 20%, rgba(255,255,255,.18), transparent 24%),
-        linear-gradient(120deg, #202020 0%, #4c1818 45%, #ba2525 100%);
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(255, 255, 255, 0.18),
+          transparent 24%
+        ),
+        linear-gradient(
+          120deg,
+          #202020 0%,
+          #4c1818 45%,
+          #ba2525 100%
+        );
+      border-radius: 8px;
       box-shadow: var(--shadow);
     }
 
@@ -424,14 +437,14 @@
     .secondary-button {
       min-height: 42px;
       padding: 0 18px;
+      font-weight: 700;
       border-radius: 4px;
       cursor: pointer;
-      font-weight: 700;
       transition: transform 0.18s ease, background 0.18s ease;
     }
 
     .primary-button {
-      color: white;
+      color: #ffffff;
       background: var(--accent);
       border: 1px solid var(--accent);
     }
@@ -447,7 +460,7 @@
     }
 
     .hero .secondary-button {
-      color: white;
+      color: #ffffff;
       background: rgba(255, 255, 255, 0.1);
       border-color: rgba(255, 255, 255, 0.35);
     }
@@ -465,7 +478,7 @@
       height: 122px;
       margin-right: 35px;
       padding: 16px;
-      color: #222;
+      color: #222222;
       background: #ded8bd;
       border: 7px solid #c5bea2;
       border-radius: 11px;
@@ -485,8 +498,18 @@
       height: 44px;
       margin: 10px 0 7px;
       background:
-        radial-gradient(circle at 27% 50%, #222 0 12px, #777 13px 17px, transparent 18px),
-        radial-gradient(circle at 73% 50%, #222 0 12px, #777 13px 17px, transparent 18px),
+        radial-gradient(
+          circle at 27% 50%,
+          #222222 0 12px,
+          #777777 13px 17px,
+          transparent 18px
+        ),
+        radial-gradient(
+          circle at 73% 50%,
+          #222222 0 12px,
+          #777777 13px 17px,
+          transparent 18px
+        ),
         #7d6d60;
       border-radius: 7px;
     }
@@ -503,8 +526,8 @@
 
     .section-heading {
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
+      justify-content: space-between;
       gap: 16px;
       margin-bottom: 15px;
     }
@@ -528,10 +551,10 @@
     .text-button {
       padding: 6px 0;
       color: var(--accent);
+      font-weight: 700;
       background: transparent;
       border: 0;
       cursor: pointer;
-      font-weight: 700;
     }
 
     .recommendations {
@@ -547,8 +570,8 @@
       min-width: 210px;
       min-height: 140px;
       overflow: hidden;
+      background: #222222;
       border-radius: 6px;
-      background: #222;
       box-shadow: var(--shadow);
     }
 
@@ -562,18 +585,21 @@
     }
 
     .recommendation:hover img {
-      transform: scale(1.04);
       opacity: 0.55;
+      transform: scale(1.04);
     }
 
     .recommendation-info {
       position: absolute;
-      left: 0;
       right: 0;
       bottom: 0;
+      left: 0;
       padding: 34px 12px 12px;
-      color: white;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.92));
+      color: #ffffff;
+      background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.92)
+      );
     }
 
     .recommendation-info strong {
@@ -667,8 +693,8 @@
     }
 
     .video-thumb:hover img {
-      transform: scale(1.035);
       filter: brightness(0.87);
+      transform: scale(1.035);
     }
 
     .video-thumb::after {
@@ -680,7 +706,7 @@
       place-content: center;
       width: 48px;
       height: 34px;
-      color: white;
+      color: #ffffff;
       background: rgba(210, 25, 25, 0.92);
       border-radius: 8px;
       opacity: 0;
@@ -702,13 +728,13 @@
       place-content: center;
       width: 35px;
       height: 35px;
-      color: white;
+      color: #ffffff;
+      font-size: 20px;
       background: rgba(0, 0, 0, 0.72);
       border: 0;
       border-radius: 50%;
-      cursor: pointer;
-      font-size: 20px;
       opacity: 0;
+      cursor: pointer;
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
@@ -812,8 +838,8 @@
     }
 
     .author-card:hover {
-      transform: translateY(-3px);
       box-shadow: var(--shadow);
+      transform: translateY(-3px);
     }
 
     .author-avatar {
@@ -822,11 +848,11 @@
       width: 64px;
       height: 64px;
       margin: 0 auto 11px;
-      color: white;
-      background: linear-gradient(135deg, #d92727, #6e1414);
-      border-radius: 50%;
+      color: #ffffff;
       font-size: 20px;
       font-weight: 700;
+      background: linear-gradient(135deg, #d92727, #6e1414);
+      border-radius: 50%;
     }
 
     .author-card strong {
@@ -851,7 +877,6 @@
 
     .skeleton {
       height: 225px;
-      border-radius: 5px;
       background:
         linear-gradient(
           90deg,
@@ -860,6 +885,7 @@
           var(--surface-2) 60%
         );
       background-size: 300% 100%;
+      border-radius: 5px;
       animation: skeleton 1.3s infinite;
     }
 
@@ -899,7 +925,7 @@
       bottom: 22px;
       max-width: min(360px, calc(100vw - 32px));
       padding: 13px 17px;
-      color: white;
+      color: #ffffff;
       background: #242424;
       border-radius: 5px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
@@ -980,8 +1006,8 @@
 
       .topbar {
         display: grid;
-        grid-template-columns: auto 1fr auto;
         grid-template-rows: 55px 47px;
+        grid-template-columns: auto 1fr auto;
         gap: 0 8px;
         height: var(--header-height);
         padding: 0 10px 9px;
@@ -996,8 +1022,8 @@
       }
 
       .search {
-        grid-column: 1 / -1;
         grid-row: 2;
+        grid-column: 1 / -1;
         width: 100%;
       }
 
@@ -1039,15 +1065,15 @@
       .filters {
         position: fixed;
         z-index: 1000;
-        left: 10px;
         right: 10px;
         bottom: 10px;
+        left: 10px;
         display: grid;
-        max-height: calc(100vh - 130px);
-        overflow-y: auto;
         grid-template-columns: 1fr;
+        max-height: calc(100vh - 130px);
         margin: 0;
         padding: 18px;
+        overflow-y: auto;
         transform: translateY(calc(100% + 40px));
         transition: transform 0.25s ease;
       }
@@ -1064,13 +1090,13 @@
         display: block;
         min-height: 46px;
         padding: 0 18px;
-        color: white;
+        color: #ffffff;
+        font-weight: 700;
         background: var(--accent);
         border: 0;
         border-radius: 23px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.28);
         cursor: pointer;
-        font-weight: 700;
       }
 
       .video-grid,
@@ -1101,10 +1127,12 @@
 <body>
   <div id="loader" class="loader">
     <div class="loader-logo">
-      <span>Vibe</span><b>Tube</b>
+      <span>Vibe</span>
+      <b>Tube</b>
     </div>
 
     <div class="loader-bar"></div>
+
     <p>Возвращаем старый вайб…</p>
   </div>
 
@@ -1119,7 +1147,9 @@
     </button>
 
     <a class="brand" href="#home">
-      <span>Vibe</span><b>Tube</b><small>BETA</small>
+      <span>Vibe</span>
+      <b>Tube</b>
+      <small>BETA</small>
     </a>
 
     <form id="searchForm" class="search">
@@ -1129,7 +1159,10 @@
         placeholder="Поиск видео и авторов"
         autocomplete="off"
       >
-      <button type="submit" aria-label="Найти">⌕</button>
+
+      <button type="submit" aria-label="Найти">
+        ⌕
+      </button>
     </form>
 
     <div class="topbar-actions">
@@ -1168,8 +1201,8 @@
       </div>
 
       <p class="sidebar-note">
-        Сайт работает без YouTube API. Все карточки открывают прямую
-        страницу конкретного видео.
+        Сайт работает без YouTube API. Все карточки открывают
+        прямую страницу конкретного видео.
       </p>
     </aside>
 
@@ -1180,7 +1213,9 @@
             Архив старого русскоязычного YouTube
           </span>
 
-          <h1 id="pageTitle">Старый вайб снова рядом</h1>
+          <h1 id="pageTitle">
+            Старый вайб снова рядом
+          </h1>
 
           <p id="pageDescription">
             Roblox, Minecraft, летсплеи и ролики, которые хочется
@@ -1188,11 +1223,19 @@
           </p>
 
           <div class="hero-actions">
-            <button id="randomHeroButton" class="primary-button" type="button">
+            <button
+              id="randomHeroButton"
+              class="primary-button"
+              type="button"
+            >
               Случайное видео
             </button>
 
-            <button id="catalogButton" class="secondary-button" type="button">
+            <button
+              id="catalogButton"
+              class="secondary-button"
+              type="button"
+            >
               Смотреть каталог
             </button>
           </div>
@@ -1213,7 +1256,10 @@
           </div>
         </div>
 
-        <div id="recommendations" class="recommendations"></div>
+        <div
+          id="recommendations"
+          class="recommendations"
+        ></div>
       </section>
 
       <section id="authorsSection" class="section hidden">
@@ -1224,7 +1270,10 @@
           </div>
         </div>
 
-        <div id="authorsGrid" class="authors-grid"></div>
+        <div
+          id="authorsGrid"
+          class="authors-grid"
+        ></div>
       </section>
 
       <section id="catalog" class="section">
@@ -1234,7 +1283,11 @@
             <h2 id="resultTitle">Все видео</h2>
           </div>
 
-          <button id="clearFiltersButton" class="text-button" type="button">
+          <button
+            id="clearFiltersButton"
+            class="text-button"
+            type="button"
+          >
             Сбросить фильтры
           </button>
         </div>
@@ -1242,6 +1295,7 @@
         <div id="filters" class="filters">
           <label>
             <span>Год</span>
+
             <select id="yearFilter">
               <option value="all">Все годы</option>
             </select>
@@ -1249,6 +1303,7 @@
 
           <label>
             <span>Категория</span>
+
             <select id="categoryFilter">
               <option value="all">Все категории</option>
             </select>
@@ -1256,6 +1311,7 @@
 
           <label>
             <span>Блогер</span>
+
             <select id="authorFilter">
               <option value="all">Все авторы</option>
             </select>
@@ -1263,23 +1319,52 @@
 
           <label>
             <span>Сортировка</span>
+
             <select id="sortFilter">
-              <option value="recommended">Рекомендуемые</option>
-              <option value="newest">Сначала новые</option>
-              <option value="oldest">Сначала старые</option>
-              <option value="popular">По просмотрам</option>
-              <option value="title">По названию</option>
+              <option value="recommended">
+                Рекомендуемые
+              </option>
+
+              <option value="newest">
+                Сначала новые
+              </option>
+
+              <option value="oldest">
+                Сначала старые
+              </option>
+
+              <option value="popular">
+                По просмотрам
+              </option>
+
+              <option value="title">
+                По названию
+              </option>
             </select>
           </label>
         </div>
 
-        <div id="skeletonGrid" class="skeleton-grid"></div>
-        <div id="videoGrid" class="video-grid"></div>
+        <div
+          id="skeletonGrid"
+          class="skeleton-grid"
+        ></div>
 
-        <div id="emptyState" class="empty-state hidden">
+        <div
+          id="videoGrid"
+          class="video-grid"
+        ></div>
+
+        <div
+          id="emptyState"
+          class="empty-state hidden"
+        >
           <div>📼</div>
+
           <h3>Ничего не найдено</h3>
-          <p>Измени запрос или сбрось фильтры.</p>
+
+          <p>
+            Измени запрос или сбрось фильтры.
+          </p>
         </div>
 
         <div id="sentinel" class="sentinel"></div>
@@ -1287,7 +1372,11 @@
     </main>
   </div>
 
-  <button id="mobileFilterButton" class="mobile-filter-button" type="button">
+  <button
+    id="mobileFilterButton"
+    class="mobile-filter-button"
+    type="button"
+  >
     Фильтры
   </button>
 
@@ -1295,226 +1384,680 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    /*
-      Для добавления новых видео скопируй объект внутри массива VIDEOS.
+    const CHANNELS = {
+      "EugenBro":
+        "https://www.youtube.com/@eugenbroyt",
 
-      Обязательные поля:
-      id, title, author, publishedAt, year, channelUrl,
-      category, tags, views, collections.
+      "Поззи":
+        "https://www.youtube.com/user/PozzitifonShow",
 
-      Ссылка и превью формируются автоматически по Video ID.
-    */
+      "The РОБЛОКСЕРЫ":
+        "https://www.youtube.com/channel/UCxwTm-BRIxkfNgiWSFaC2OA",
 
-    const VIDEOS = [
-      {
-        id: "TscOOJhfeeQ",
-        title:
-          "Майнкрафт Выживание в деревне ЕвгенБро Майнкрафт ПЕ 2018 Minecraft PE",
-        author: "EugenBro",
-        publishedAt: "2018-01-11",
-        year: 2018,
-        channelUrl: "https://www.youtube.com/@eugenbroyt",
-        category: "Minecraft",
-        tags: [
-          "майнкрафт",
-          "выживание",
-          "деревня",
-          "старый летсплей"
-        ],
-        views: 575087,
-        collections: [
+      "Компот":
+        "https://www.youtube.com/@tastycompot",
+
+      "Юлик":
+        "https://www.youtube.com/@juliusspeak",
+
+      "Nazzy":
+        "https://www.youtube.com/@NazzyChannel",
+
+      "Kuplinov ► Play":
+        "https://www.youtube.com/channel/UCdKuE7a2QZeHPhDntXVZ91w",
+
+      "Робзи":
+        "https://www.youtube.com/@robzi"
+    };
+
+    const VIDEO_ROWS = [
+      [
+        "TscOOJhfeeQ",
+        "Майнкрафт Выживание в деревне ЕвгенБро Майнкрафт ПЕ 2018 Minecraft PE",
+        "EugenBro",
+        "2018-01-11",
+        2018,
+        "Minecraft",
+        575087
+      ],
+
+      [
+        "tx_lPosu2uk",
+        "Майнкрафт Выживание в деревне ЕвгенБро Майнкрафт ПЕ 2018 Minecraft PE",
+        "EugenBro",
+        "2018-01-17",
+        2018,
+        "Minecraft",
+        256755
+      ],
+
+      [
+        "0BpRVhWEWKc",
+        "ВАМПИРЫ ВЕРНУЛИСЬ Майнкрафт Выживание в деревне ЕвгенБро Minecraft 2018",
+        "EugenBro",
+        "2018-06-06",
+        2018,
+        "Minecraft",
+        null
+      ],
+
+      [
+        "UorNaZp_oJc",
+        "ПОБЕГ ОТ ПОЗЗИ! | Roblox",
+        "Поззи",
+        "2018-04-07",
+        2018,
+        "Roblox",
+        null
+      ],
+
+      [
+        "BsSZ9nEbvw4",
+        "ПОЗЗИ СТАЛ ЗОМБИ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2018-05-26",
+        2018,
+        "Roblox",
+        null
+      ],
+
+      [
+        "geNP7PUCpi0",
+        "Я УЗНАЛ САМУЮ СЕКРЕТНУЮ ТАЙНУ В МАЙНКРАФТ | Компот Minecraft",
+        "Компот",
+        "2018-07-14",
+        2018,
+        "Minecraft",
+        1980850
+      ],
+
+      [
+        "2GmHlzZSfpU",
+        "НИКОГДА НЕ ДЕЛАЙ ЭТОГО В ДЕРЕВНЕ ЖИТЕЛЕЙ В МАЙНКРАФТ | Компот Minecraft",
+        "Компот",
+        "2018-07-28",
+        2018,
+        "Minecraft",
+        5723936
+      ],
+
+      [
+        "HTzgFIUFH64",
+        "ЮЛИК И ЛОЛОЛОШКА ВЫЖИВАЮТ В МАЙНКРАФТ С МОДАМИ",
+        "Юлик",
+        "2019-10-05",
+        2019,
+        "Minecraft",
+        1481880
+      ],
+
+      [
+        "yPu6u4u77NI",
+        "НОВЫЙ ГОД в МАЙНКРАФТ",
+        "Nazzy",
+        "2019-12-30",
+        2019,
+        "Minecraft",
+        186821
+      ],
+
+      [
+        "RU8lnyiDTNM",
+        "Я СПАС ДЕРЕВНЮ ЖИТЕЛЕЙ ОТ НАВОДНЕНИЯ В МАЙНКРАФТ | Компот Minecraft",
+        "Компот",
+        "2018-10-15",
+        2018,
+        "Minecraft",
+        4961114
+      ],
+
+      [
+        "I6yPNJU-Clg",
+        "КАК СДЕЛАТЬ НОВОГОДНИЙ МАЙНКРАФТ",
+        "Компот",
+        "2019-12-12",
+        2019,
+        "Minecraft",
+        538563
+      ],
+
+      [
+        "65NjyfAx__c",
+        "КЛОН BRAWL STARS В ROBLOX",
+        "The РОБЛОКСЕРЫ",
+        "2021",
+        2021,
+        "Roblox",
+        null
+      ],
+
+      [
+        "qG-ojrbUSNQ",
+        "КТО ИЗ НАС ПРЕДАТЕЛЬ?! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2021",
+        2021,
+        "Roblox",
+        null
+      ],
+
+      [
+        "C26HcgKta_o",
+        "КТО САМЫЙ ТОЛСТЫЙ РОБЛОКСЕР В СИМУЛЯТОРЕ ТОЛСТЯКА?! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "xAwFCHw1pEM",
+        "ЭТА БИТВА БУДЕТ ЛЕГЕНДАРНОЙ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "JjTdUvNYE4U",
+        "РАСТЕНИЯ ПРОТИВ ЗОМБИ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "llpfmO0hMNo",
+        "КТО ИЗ НАС ПОБЕДИТ? | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "QdFBW8zs6hA",
+        "КТО КОРОЛЬ ЭТОЙ ГОРЫ? | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "zzVSV9n_iSc",
+        "ОНИ НАС ПРЕДАЛИ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "-t73EBsJpXI",
+        "МЫ СТАЛИ БАНДИТАМИ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "gFujp-VkG3c",
+        "АИД И ДЕМАСТЕР ПРОШЛИ СМЕРТЕЛЬНОЕ ИСПЫТАНИЕ С ЛАВОЙ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "OGQHLUJTJEs",
+        "ПОЗЗИ И АЛЬБЕРТ УСТРОИЛИ ОГРАБЛЕНИЕ ВЕКА! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "z8Xh-nvpCh0",
+        "АИД И ДЕМАСТЕР ЗАСТРЯЛИ В ЛАБИРИНТЕ СМЕРТИ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "Ooaxqi-5aVo",
+        "ПОЗЗИ И АЛЬБЕРТ ПРОТИВ КУБА СМЕРТИ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "B3V9RIT9Xz8",
+        "АИД И ДЕМАСТЕР ВЫЖИВАЮТ В ЛАБИРИНТЕ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "cnYn83yayKM",
+        "СУПЕРГЕРОЙСКИЙ ПОБЕГ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "GO_gNIa4Flg",
+        "СЕКРЕТНЫЕ ТРЕНИРОВКИ ХАБИБА РОБЛОКСЕРА?! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "5Uobcdj2590",
+        "ОЧЕНЬ СТРАШНЫЙ ЛИФТ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "RHPGw_pmCzw",
+        "КТО ИЗ НАС ШПИОН?! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "u-tjddIiTFE",
+        "РОБЛОКСЕРЫ СТАЛИ СУПЕРГЕРОЯМИ И УСТРОИЛИ БИТВУ",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "ZjBGtogy48U",
+        "ВЫЖИТЬ ВО ВРЕМЯ КРУШЕНИЯ ТИТАНИКА! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "0Uof0Xa0FkQ",
+        "ДОЖДЬ ИЗ БОМБ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "DXo6U8plupg",
+        "КТО КРУЧЕ НА БЕЗУМНОЙ АРЕНЕ?! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "2zIaG4wN_xc",
+        "ПРЯТКИ ОТ МИНЬОНОВ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "Bahuj7-nECs",
+        "УГАРНЫЙ ТРОЛЛИНГ МОМО! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "TxhU2qdi8mQ",
+        "ЗОМБИ ПЫТАЮТСЯ НАС УБИТЬ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2020",
+        2020,
+        "Roblox",
+        null
+      ],
+
+      [
+        "w_8C51W_WJc",
+        "КТО САМЫЙ БЫСТРЫЙ? | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2019",
+        2019,
+        "Roblox",
+        null
+      ],
+
+      [
+        "pMrJ8-sWkoE",
+        "ДЕМАСТЕР КОСМИЧЕСКИЙ ШАХТЕР! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2019",
+        2019,
+        "Roblox",
+        null
+      ],
+
+      [
+        "wSWgM_3o4FQ",
+        "КНИГА С МОНСТРАМИ! | Roblox",
+        "The РОБЛОКСЕРЫ",
+        "2019",
+        2019,
+        "Roblox",
+        null
+      ],
+
+      [
+        "dIGxXG93DHg",
+        "НОВЫЙ ЗОВ ► Call of Cthulhu 2018 #1",
+        "Kuplinov ► Play",
+        "2018-10-30",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "Yu2btxBkUdU",
+        "ОККУЛЬТНЫЕ РИТУАЛЫ ► Call of Cthulhu 2018 #4",
+        "Kuplinov ► Play",
+        "2018-11-02",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "5wfqiS8BLpI",
+        "БРОДЯГА ► Call of Cthulhu 2018 #5",
+        "Kuplinov ► Play",
+        "2018-11-03",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "cYiS8sHS2o0",
+        "ПЕРЕСЕЛЕНИЕ РАЗУМА ► Call of Cthulhu 2018 #6",
+        "Kuplinov ► Play",
+        "2018-11-04",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "NTKiPwBaa_o",
+        "ЧЕРТОВЩИНА В БОЛЬНИЦЕ ► Call of Cthulhu 2018 #7",
+        "Kuplinov ► Play",
+        "2018-11-05",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "vAeDpGUDR6E",
+        "ИЗГНАНИЕ БРОДЯГИ ► Call of Cthulhu 2018 #8",
+        "Kuplinov ► Play",
+        "2018-11-06",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "AKh8bbPCQIM",
+        "ЭКШОН ► Call of Cthulhu 2018 #9",
+        "Kuplinov ► Play",
+        "2018-11-07",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "xd4Vda4U-Ns",
+        "ДВЕ КОНЦОВКИ ► Call of Cthulhu 2018 #10",
+        "Kuplinov ► Play",
+        "2018-11-08",
+        2018,
+        "Прохождения",
+        null
+      ],
+
+      [
+        "3yLlOjpeBR0",
+        "ПОЗЗИ И ВИНДИ ИГРАЮТ В ROBLOX 🔥",
+        "Поззи",
+        "2019-07-25",
+        2019,
+        "Roblox",
+        1964343
+      ],
+
+      [
+        "c1BNPUrt0E8",
+        "Я ВСТРЕТИЛ КОМПОТА ИЗ ПРОШЛОГО В МАЙНКРАФТ | Компот Minecraft",
+        "Компот",
+        "2020-07-19",
+        2020,
+        "Minecraft",
+        8214334
+      ],
+
+      [
+        "Z1qsTRv-ZlU",
+        "РОБЗИ ТАЙКОН! ЛУЧШИЙ ТАЙКОН 2019 ГОДА! ROBLOX",
+        "Робзи",
+        "2019-07-17",
+        2019,
+        "Roblox",
+        1871256
+      ],
+
+      [
+        "jI5HLsrV180",
+        "ЧТО ГРИФЕР И ХАКЕР СДЕЛАЛИ С МОИМ ДОМОМ В МАЙНКРАФТ | Компот Minecraft",
+        "Компот",
+        "2019-06-29",
+        2019,
+        "Minecraft",
+        12670036
+      ]
+    ];
+
+    const VIDEOS = VIDEO_ROWS.map(
+      ([
+        id,
+        title,
+        author,
+        publishedAt,
+        year,
+        category,
+        views
+      ]) => {
+        const normalizedTitle =
+          title.toLocaleLowerCase("ru");
+
+        const isRoblox =
+          category === "Roblox";
+
+        const isMinecraft =
+          category === "Minecraft";
+
+        const isWinter =
+          year === 2021 ||
+          normalizedTitle.includes("новый год") ||
+          normalizedTitle.includes("новогод");
+
+        const tags = [
+          category.toLocaleLowerCase("ru"),
+          author.toLocaleLowerCase("ru"),
+          isRoblox ? "старый roblox" : "",
+          isMinecraft ? "старый minecraft" : "",
+          category === "Прохождения"
+            ? "старое прохождение"
+            : "",
+          isWinter ? "зима 2021" : "",
+          "ностальгия"
+        ].filter(Boolean);
+
+        const collections = [
           "nostalgia",
           "old-letsplays",
-          "winter-2021"
-        ]
-      },
-      {
-        id: "tx_lPosu2uk",
-        title:
-          "Майнкрафт Выживание в деревне ЕвгенБро Майнкрафт ПЕ 2018 Minecraft PE",
-        author: "EugenBro",
-        publishedAt: "2018-01-17",
-        year: 2018,
-        channelUrl: "https://www.youtube.com/@eugenbroyt",
-        category: "Minecraft",
-        tags: [
-          "майнкрафт",
-          "выживание",
-          "деревня",
-          "2018"
-        ],
-        views: 256755,
-        collections: [
-          "nostalgia",
-          "old-letsplays"
-        ]
-      },
-      {
-        id: "0BpRVhWEWKc",
-        title:
-          "ВАМПИРЫ ВЕРНУЛИСЬ Майнкрафт Выживание в деревне ЕвгенБро Minecraft 2018",
-        author: "EugenBro",
-        publishedAt: "2018-06-06",
-        year: 2018,
-        channelUrl: "https://www.youtube.com/@eugenbroyt",
-        category: "Minecraft",
-        tags: [
-          "майнкрафт",
-          "вампиры",
-          "деревня",
-          "прохождение"
-        ],
-        views: null,
-        collections: [
-          "nostalgia",
-          "old-letsplays"
-        ]
-      },
-      {
-        id: "UorNaZp_oJc",
-        title: "ПОБЕГ ОТ ПОЗЗИ! | Roblox",
-        author: "Поззи",
-        publishedAt: "2018-04-07",
-        year: 2018,
-        channelUrl: "https://www.youtube.com/@pozzigamer",
-        category: "Roblox",
-        tags: [
-          "roblox",
-          "побег",
-          "поззи",
-          "старый роблокс"
-        ],
-        views: null,
-        collections: [
-          "nostalgia",
-          "old-letsplays",
-          "winter-2021"
-        ]
-      },
-      {
-        id: "BsSZ9nEbvw4",
-        title: "ПОЗЗИ СТАЛ ЗОМБИ! | Roblox",
-        author: "The РОБЛОКСЕРЫ",
-        publishedAt: "2018-05-26",
-        year: 2018,
-        channelUrl:
-          "https://www.youtube.com/channel/UCxwTm-BRIxkfNgiWSFaC2OA",
-        category: "Roblox",
-        tags: [
-          "roblox",
-          "зомби",
-          "поззи",
-          "смешное"
-        ],
-        views: null,
-        collections: [
-          "nostalgia",
-          "old-letsplays"
-        ]
-      },
-      {
-        id: "geNP7PUCpi0",
-        title:
-          "Я УЗНАЛ САМУЮ СЕКРЕТНУЮ ТАЙНУ В МАЙНКРАФТ | Компот Minecraft",
-        author: "Компот",
-        publishedAt: "2018-07-14",
-        year: 2018,
-        channelUrl: "https://www.youtube.com/@Compot",
-        category: "Minecraft",
-        tags: [
-          "майнкрафт",
-          "тайна",
-          "компот",
-          "приключение"
-        ],
-        views: 1980850,
-        collections: [
-          "nostalgia",
-          "popular"
-        ]
-      },
-      {
-        id: "2GmHlzZSfpU",
-        title:
-          "НИКОГДА НЕ ДЕЛАЙ ЭТОГО В ДЕРЕВНЕ ЖИТЕЛЕЙ В МАЙНКРАФТ | Компот Minecraft",
-        author: "Компот",
-        publishedAt: "2018-07-28",
-        year: 2018,
-        channelUrl: "https://www.youtube.com/@Compot",
-        category: "Minecraft",
-        tags: [
-          "майнкрафт",
-          "жители",
-          "компот",
-          "деревня"
-        ],
-        views: 5723936,
-        collections: [
-          "nostalgia",
-          "popular"
-        ]
-      },
-      {
-        id: "HTzgFIUFH64",
-        title:
-          "ЮЛИК И ЛОЛОЛОШКА ВЫЖИВАЮТ В МАЙНКРАФТ С МОДАМИ",
-        author: "Юлик",
-        publishedAt: "2019-10-05",
-        year: 2019,
-        channelUrl: "https://www.youtube.com/@juliusspeak",
-        category: "Minecraft",
-        tags: [
-          "майнкрафт",
-          "лололошка",
-          "юлик",
-          "моды",
-          "выживание"
-        ],
-        views: 1481880,
-        collections: [
-          "nostalgia",
-          "old-letsplays",
-          "popular"
-        ]
-      },
-      {
-        id: "yPu6u4u77NI",
-        title: "НОВЫЙ ГОД в МАЙНКРАФТ",
-        author: "Nazzy",
-        publishedAt: "2019-12-30",
-        year: 2019,
-        channelUrl: "https://www.youtube.com/@NazzyChannel",
-        category: "Minecraft",
-        tags: [
-          "майнкрафт",
-          "новый год",
-          "зима",
-          "друзья"
-        ],
-        views: 186821,
-        collections: [
-          "winter-2021",
-          "nostalgia"
-        ]
+          isWinter ? "winter-2021" : "",
+          Number.isFinite(views) && views >= 1000000
+            ? "popular"
+            : ""
+        ].filter(Boolean);
+
+        return {
+          id,
+          title,
+          author,
+          publishedAt,
+          year,
+          channelUrl:
+            CHANNELS[author] ||
+            "https://www.youtube.com/",
+
+          category,
+          tags,
+          duration: null,
+          views,
+          collections,
+
+          url:
+            `https://www.youtube.com/watch?v=${id}`,
+
+          thumbnail:
+            `https://img.youtube.com/vi/${id}/hqdefault.jpg`
+        };
       }
-    ].map((video) => ({
-      ...video,
-      url: `https://www.youtube.com/watch?v=${video.id}`,
-      thumbnail: `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`
-    }));
+    );
 
     const NAVIGATION = [
-      { id: "home", label: "Главная", icon: "⌂" },
-      { id: "winter-2021", label: "Вайб зима 2021", icon: "❄" },
-      { id: "roblox", label: "Roblox", icon: "▣" },
-      { id: "minecraft", label: "Minecraft", icon: "▦" },
-      { id: "old-letsplays", label: "Старые летсплеи", icon: "▶" },
-      { id: "nostalgia", label: "Ностальгия", icon: "◷" },
-      { id: "popular", label: "Популярное", icon: "↗" },
-      { id: "random", label: "Случайное видео", icon: "⤨" },
-      { id: "authors", label: "Все авторы", icon: "♙" },
-      { id: "favorites", label: "Избранное", icon: "♥" },
-      { id: "history", label: "История", icon: "↶" }
+      {
+        id: "home",
+        label: "Главная",
+        icon: "⌂"
+      },
+
+      {
+        id: "winter-2021",
+        label: "Вайб зима 2021",
+        icon: "❄"
+      },
+
+      {
+        id: "roblox",
+        label: "Roblox",
+        icon: "▣"
+      },
+
+      {
+        id: "minecraft",
+        label: "Minecraft",
+        icon: "▦"
+      },
+
+      {
+        id: "old-letsplays",
+        label: "Старые летсплеи",
+        icon: "▶"
+      },
+
+      {
+        id: "nostalgia",
+        label: "Ностальгия",
+        icon: "◷"
+      },
+
+      {
+        id: "popular",
+        label: "Популярное",
+        icon: "↗"
+      },
+
+      {
+        id: "random",
+        label: "Случайное видео",
+        icon: "⤨"
+      },
+
+      {
+        id: "authors",
+        label: "Все авторы",
+        icon: "♙"
+      },
+
+      {
+        id: "favorites",
+        label: "Избранное",
+        icon: "♥"
+      },
+
+      {
+        id: "history",
+        label: "История",
+        icon: "↶"
+      }
     ];
 
     const PAGE_TEXT = {
@@ -1522,38 +2065,47 @@
         "Старый вайб снова рядом",
         "Roblox, Minecraft, летсплеи и ролики, которые хочется пересмотреть вечером."
       ],
+
       "winter-2021": [
         "Вайб зима 2021",
         "Снег за окном, каникулы и знакомые ролики из старого YouTube."
       ],
+
       roblox: [
         "Старый Roblox",
         "Побеги, хорроры, челленджи и атмосфера старого Roblox."
       ],
+
       minecraft: [
         "Старый Minecraft",
         "Деревни, выживание, моды и ламповые приключения."
       ],
+
       "old-letsplays": [
         "Старые летсплеи",
         "Длинные прохождения, живые реакции и знакомые голоса."
       ],
+
       nostalgia: [
         "Ностальгия",
         "Видео, которые возвращают атмосферу старого русскоязычного YouTube."
       ],
+
       popular: [
         "Популярное",
         "Самые просматриваемые ролики из локальной базы."
       ],
+
       authors: [
         "Все авторы",
         "Авторы, представленные в текущей версии каталога."
       ],
+
       favorites: [
         "Избранное",
         "Видео, сохранённые на этом устройстве."
       ],
+
       history: [
         "История",
         "Недавно открытые видео. История хранится только в браузере."
@@ -1561,9 +2113,14 @@
     };
 
     const STORAGE = {
-      favorites: "vibetube-favorites",
-      history: "vibetube-history",
-      theme: "vibetube-theme"
+      favorites:
+        "vibetube-favorites",
+
+      history:
+        "vibetube-history",
+
+      theme:
+        "vibetube-theme"
     };
 
     const state = {
@@ -1574,61 +2131,172 @@
       author: "all",
       sort: "recommended",
       filteredVideos: [],
-      visibleCount: 8,
-      pageSize: 8,
-      favorites: new Set(readStorage(STORAGE.favorites, [])),
-      history: readStorage(STORAGE.history, [])
+      visibleCount: 12,
+      pageSize: 12,
+
+      favorites: new Set(
+        readStorage(
+          STORAGE.favorites,
+          []
+        )
+      ),
+
+      history: readStorage(
+        STORAGE.history,
+        []
+      )
     };
 
     const elements = {
-      loader: document.getElementById("loader"),
-      navigation: document.getElementById("navigation"),
-      sidebar: document.getElementById("sidebar"),
-      backdrop: document.getElementById("backdrop"),
-      menuButton: document.getElementById("menuButton"),
-      themeButton: document.getElementById("themeButton"),
+      loader:
+        document.getElementById("loader"),
+
+      navigation:
+        document.getElementById("navigation"),
+
+      sidebar:
+        document.getElementById("sidebar"),
+
+      backdrop:
+        document.getElementById("backdrop"),
+
+      menuButton:
+        document.getElementById("menuButton"),
+
+      themeButton:
+        document.getElementById("themeButton"),
+
       randomHeaderButton:
-        document.getElementById("randomHeaderButton"),
+        document.getElementById(
+          "randomHeaderButton"
+        ),
+
       randomHeroButton:
-        document.getElementById("randomHeroButton"),
-      catalogButton: document.getElementById("catalogButton"),
+        document.getElementById(
+          "randomHeroButton"
+        ),
+
+      catalogButton:
+        document.getElementById(
+          "catalogButton"
+        ),
+
       mobileFilterButton:
-        document.getElementById("mobileFilterButton"),
-      filters: document.getElementById("filters"),
-      searchForm: document.getElementById("searchForm"),
-      searchInput: document.getElementById("searchInput"),
-      pageTitle: document.getElementById("pageTitle"),
+        document.getElementById(
+          "mobileFilterButton"
+        ),
+
+      filters:
+        document.getElementById("filters"),
+
+      searchForm:
+        document.getElementById("searchForm"),
+
+      searchInput:
+        document.getElementById("searchInput"),
+
+      pageTitle:
+        document.getElementById("pageTitle"),
+
       pageDescription:
-        document.getElementById("pageDescription"),
-      videoCount: document.getElementById("videoCount"),
-      authorCount: document.getElementById("authorCount"),
+        document.getElementById(
+          "pageDescription"
+        ),
+
+      videoCount:
+        document.getElementById("videoCount"),
+
+      authorCount:
+        document.getElementById("authorCount"),
+
       recommendationSection:
-        document.getElementById("recommendationSection"),
+        document.getElementById(
+          "recommendationSection"
+        ),
+
       recommendations:
-        document.getElementById("recommendations"),
+        document.getElementById(
+          "recommendations"
+        ),
+
       authorsSection:
-        document.getElementById("authorsSection"),
-      authorsGrid: document.getElementById("authorsGrid"),
-      catalog: document.getElementById("catalog"),
-      resultLabel: document.getElementById("resultLabel"),
-      resultTitle: document.getElementById("resultTitle"),
+        document.getElementById(
+          "authorsSection"
+        ),
+
+      authorsGrid:
+        document.getElementById(
+          "authorsGrid"
+        ),
+
+      catalog:
+        document.getElementById("catalog"),
+
+      resultLabel:
+        document.getElementById(
+          "resultLabel"
+        ),
+
+      resultTitle:
+        document.getElementById(
+          "resultTitle"
+        ),
+
       clearFiltersButton:
-        document.getElementById("clearFiltersButton"),
-      yearFilter: document.getElementById("yearFilter"),
+        document.getElementById(
+          "clearFiltersButton"
+        ),
+
+      yearFilter:
+        document.getElementById(
+          "yearFilter"
+        ),
+
       categoryFilter:
-        document.getElementById("categoryFilter"),
-      authorFilter: document.getElementById("authorFilter"),
-      sortFilter: document.getElementById("sortFilter"),
-      skeletonGrid: document.getElementById("skeletonGrid"),
-      videoGrid: document.getElementById("videoGrid"),
-      emptyState: document.getElementById("emptyState"),
-      sentinel: document.getElementById("sentinel"),
-      toast: document.getElementById("toast")
+        document.getElementById(
+          "categoryFilter"
+        ),
+
+      authorFilter:
+        document.getElementById(
+          "authorFilter"
+        ),
+
+      sortFilter:
+        document.getElementById(
+          "sortFilter"
+        ),
+
+      skeletonGrid:
+        document.getElementById(
+          "skeletonGrid"
+        ),
+
+      videoGrid:
+        document.getElementById(
+          "videoGrid"
+        ),
+
+      emptyState:
+        document.getElementById(
+          "emptyState"
+        ),
+
+      sentinel:
+        document.getElementById(
+          "sentinel"
+        ),
+
+      toast:
+        document.getElementById("toast")
     };
 
     function readStorage(key, fallback) {
       try {
-        const value = JSON.parse(localStorage.getItem(key));
+        const value = JSON.parse(
+          localStorage.getItem(key)
+        );
+
         return value ?? fallback;
       } catch {
         return fallback;
@@ -1637,40 +2305,73 @@
 
     function writeStorage(key, value) {
       try {
-        localStorage.setItem(key, JSON.stringify(value));
+        localStorage.setItem(
+          key,
+          JSON.stringify(value)
+        );
       } catch {
-        console.warn("Не удалось сохранить данные в localStorage.");
+        console.warn(
+          "Не удалось сохранить данные в localStorage."
+        );
       }
     }
 
     function escapeHtml(value = "") {
       return String(value).replace(
         /[&<>"']/g,
-        (character) =>
-          ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#039;"
-          })[character]
+        (character) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        })[character]
       );
     }
 
     function fallbackThumbnail() {
       const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
-          <rect width="640" height="360" fill="#242424"/>
-          <rect x="240" y="125" width="160" height="105" rx="16" fill="#d92727"/>
-          <path d="M305 151L372 178L305 205Z" fill="#fff"/>
-          <text x="320" y="285" text-anchor="middle" fill="#ddd"
-            font-family="Arial" font-size="22">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 640 360"
+        >
+          <rect
+            width="640"
+            height="360"
+            fill="#242424"
+          />
+
+          <rect
+            x="240"
+            y="125"
+            width="160"
+            height="105"
+            rx="16"
+            fill="#d92727"
+          />
+
+          <path
+            d="M305 151L372 178L305 205Z"
+            fill="#ffffff"
+          />
+
+          <text
+            x="320"
+            y="285"
+            text-anchor="middle"
+            fill="#dddddd"
+            font-family="Arial"
+            font-size="22"
+          >
             Превью недоступно
           </text>
         </svg>
       `;
 
-      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+      return (
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(svg)
+      );
     }
 
     function formatViews(views) {
@@ -1679,10 +2380,18 @@
       }
 
       return (
-        new Intl.NumberFormat("ru-RU", {
-          notation: views >= 10000 ? "compact" : "standard",
-          maximumFractionDigits: 1
-        }).format(views) + " просмотров"
+        new Intl.NumberFormat(
+          "ru-RU",
+          {
+            notation:
+              views >= 10000
+                ? "compact"
+                : "standard",
+
+            maximumFractionDigits: 1
+          }
+        ).format(views) +
+        " просмотров"
       );
     }
 
@@ -1690,135 +2399,240 @@
       return name
         .split(/\s+/)
         .slice(0, 2)
-        .map((word) => word.charAt(0))
+        .map((word) =>
+          word.charAt(0)
+        )
         .join("")
         .toUpperCase();
     }
 
     function showToast(message) {
       elements.toast.textContent = message;
-      elements.toast.classList.add("is-visible");
+
+      elements.toast.classList.add(
+        "is-visible"
+      );
 
       clearTimeout(showToast.timer);
 
-      showToast.timer = setTimeout(() => {
-        elements.toast.classList.remove("is-visible");
-      }, 2200);
+      showToast.timer = setTimeout(
+        () => {
+          elements.toast.classList.remove(
+            "is-visible"
+          );
+        },
+        2200
+      );
     }
 
     function buildNavigation() {
-      elements.navigation.innerHTML = NAVIGATION.map((item) => {
-        const count =
-          item.id === "favorites" || item.id === "history"
-            ? `<span class="nav-count" data-count="${item.id}"></span>`
-            : "";
+      elements.navigation.innerHTML =
+        NAVIGATION.map((item) => {
+          const count =
+            item.id === "favorites" ||
+            item.id === "history"
+              ? `
+                <span
+                  class="nav-count"
+                  data-count="${item.id}"
+                ></span>
+              `
+              : "";
 
-        return `
-          <a
-            class="nav-link"
-            data-section="${item.id}"
-            href="#${item.id}"
-          >
-            <span class="nav-icon">${item.icon}</span>
-            <span>${item.label}</span>
-            ${count}
-          </a>
-        `;
-      }).join("");
+          return `
+            <a
+              class="nav-link"
+              data-section="${item.id}"
+              href="#${item.id}"
+            >
+              <span class="nav-icon">
+                ${item.icon}
+              </span>
+
+              <span>
+                ${item.label}
+              </span>
+
+              ${count}
+            </a>
+          `;
+        }).join("");
     }
 
     function buildFilters() {
-      const years = [...new Set(VIDEOS.map((video) => video.year))]
-        .sort((a, b) => b - a);
+      const years = [
+        ...new Set(
+          VIDEOS.map(
+            (video) => video.year
+          )
+        )
+      ].sort(
+        (a, b) => b - a
+      );
 
       const categories = [
-        ...new Set(VIDEOS.map((video) => video.category))
-      ].sort((a, b) => a.localeCompare(b, "ru"));
+        ...new Set(
+          VIDEOS.map(
+            (video) => video.category
+          )
+        )
+      ].sort(
+        (a, b) =>
+          a.localeCompare(b, "ru")
+      );
 
       const authors = [
-        ...new Set(VIDEOS.map((video) => video.author))
-      ].sort((a, b) => a.localeCompare(b, "ru"));
+        ...new Set(
+          VIDEOS.map(
+            (video) => video.author
+          )
+        )
+      ].sort(
+        (a, b) =>
+          a.localeCompare(b, "ru")
+      );
 
       elements.yearFilter.innerHTML =
-        `<option value="all">Все годы</option>` +
-        years
-          .map((year) => `<option value="${year}">${year}</option>`)
-          .join("");
+        `
+          <option value="all">
+            Все годы
+          </option>
+        ` +
+        years.map(
+          (year) => `
+            <option value="${year}">
+              ${year}
+            </option>
+          `
+        ).join("");
 
       elements.categoryFilter.innerHTML =
-        `<option value="all">Все категории</option>` +
-        categories
-          .map(
-            (category) =>
-              `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`
-          )
-          .join("");
+        `
+          <option value="all">
+            Все категории
+          </option>
+        ` +
+        categories.map(
+          (category) => `
+            <option value="${escapeHtml(category)}">
+              ${escapeHtml(category)}
+            </option>
+          `
+        ).join("");
 
       elements.authorFilter.innerHTML =
-        `<option value="all">Все авторы</option>` +
-        authors
-          .map(
-            (author) =>
-              `<option value="${escapeHtml(author)}">${escapeHtml(author)}</option>`
-          )
-          .join("");
+        `
+          <option value="all">
+            Все авторы
+          </option>
+        ` +
+        authors.map(
+          (author) => `
+            <option value="${escapeHtml(author)}">
+              ${escapeHtml(author)}
+            </option>
+          `
+        ).join("");
 
-      elements.videoCount.textContent = VIDEOS.length;
-      elements.authorCount.textContent = authors.length;
+      elements.videoCount.textContent =
+        VIDEOS.length;
+
+      elements.authorCount.textContent =
+        authors.length;
     }
 
     function updateNavigationCounts() {
-      const favoritesCount = document.querySelector(
-        '[data-count="favorites"]'
-      );
+      const favoritesCount =
+        document.querySelector(
+          '[data-count="favorites"]'
+        );
 
-      const historyCount = document.querySelector(
-        '[data-count="history"]'
-      );
+      const historyCount =
+        document.querySelector(
+          '[data-count="history"]'
+        );
 
       if (favoritesCount) {
         favoritesCount.textContent =
-          state.favorites.size > 0 ? state.favorites.size : "";
+          state.favorites.size > 0
+            ? state.favorites.size
+            : "";
       }
 
       if (historyCount) {
         historyCount.textContent =
-          state.history.length > 0 ? state.history.length : "";
+          state.history.length > 0
+            ? state.history.length
+            : "";
       }
     }
 
     function matchesSection(video) {
       switch (state.section) {
         case "winter-2021":
-          return video.collections.includes("winter-2021");
+          return video.collections.includes(
+            "winter-2021"
+          );
 
         case "roblox":
-          return video.category.toLowerCase() === "roblox";
+          return (
+            video.category.toLowerCase() ===
+            "roblox"
+          );
 
         case "minecraft":
-          return video.category.toLowerCase() === "minecraft";
+          return (
+            video.category.toLowerCase() ===
+            "minecraft"
+          );
 
         case "old-letsplays":
-          return video.collections.includes("old-letsplays");
+          return video.collections.includes(
+            "old-letsplays"
+          );
 
         case "nostalgia":
-          return video.collections.includes("nostalgia");
+          return video.collections.includes(
+            "nostalgia"
+          );
 
         case "popular":
           return (
             Number.isFinite(video.views) ||
-            video.collections.includes("popular")
+            video.collections.includes(
+              "popular"
+            )
           );
 
         case "favorites":
-          return state.favorites.has(video.id);
+          return state.favorites.has(
+            video.id
+          );
 
         case "history":
-          return state.history.includes(video.id);
+          return state.history.includes(
+            video.id
+          );
 
         default:
           return true;
       }
+    }
+
+    function getDateValue(video) {
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          video.publishedAt
+        )
+      ) {
+        return new Date(
+          video.publishedAt
+        ).getTime();
+      }
+
+      return new Date(
+        `${video.year}-01-01`
+      ).getTime();
     }
 
     function sortVideos(videos) {
@@ -1826,7 +2640,12 @@
 
       if (state.section === "history") {
         const order = new Map(
-          state.history.map((id, index) => [id, index])
+          state.history.map(
+            (id, index) => [
+              id,
+              index
+            ]
+          )
         );
 
         return result.sort(
@@ -1838,91 +2657,127 @@
 
       switch (state.sort) {
         case "newest":
-          return result.sort((a, b) =>
-            b.publishedAt.localeCompare(a.publishedAt)
+          return result.sort(
+            (a, b) =>
+              getDateValue(b) -
+              getDateValue(a)
           );
 
         case "oldest":
-          return result.sort((a, b) =>
-            a.publishedAt.localeCompare(b.publishedAt)
+          return result.sort(
+            (a, b) =>
+              getDateValue(a) -
+              getDateValue(b)
           );
 
         case "popular":
           return result.sort(
-            (a, b) => (b.views || 0) - (a.views || 0)
+            (a, b) =>
+              (b.views || 0) -
+              (a.views || 0)
           );
 
         case "title":
-          return result.sort((a, b) =>
-            a.title.localeCompare(b.title, "ru")
+          return result.sort(
+            (a, b) =>
+              a.title.localeCompare(
+                b.title,
+                "ru"
+              )
           );
 
         default:
-          return result.sort((a, b) => {
-            const popularDifference =
-              Number(b.collections.includes("popular")) -
-              Number(a.collections.includes("popular"));
+          return result.sort(
+            (a, b) => {
+              const popularDifference =
+                Number(
+                  b.collections.includes(
+                    "popular"
+                  )
+                ) -
+                Number(
+                  a.collections.includes(
+                    "popular"
+                  )
+                );
 
-            if (popularDifference !== 0) {
-              return popularDifference;
+              if (
+                popularDifference !== 0
+              ) {
+                return popularDifference;
+              }
+
+              return (
+                getDateValue(b) -
+                getDateValue(a)
+              );
             }
-
-            return a.year - b.year;
-          });
+          );
       }
     }
 
     function applyFilters() {
-      const query = state.query.trim().toLocaleLowerCase("ru");
+      const query =
+        state.query
+          .trim()
+          .toLocaleLowerCase("ru");
 
-      let filtered = VIDEOS.filter((video) => {
-        if (!matchesSection(video)) {
-          return false;
-        }
-
-        if (
-          state.year !== "all" &&
-          String(video.year) !== state.year
-        ) {
-          return false;
-        }
-
-        if (
-          state.category !== "all" &&
-          video.category !== state.category
-        ) {
-          return false;
-        }
-
-        if (
-          state.author !== "all" &&
-          video.author !== state.author
-        ) {
-          return false;
-        }
-
-        if (query) {
-          const text = [
-            video.title,
-            video.author,
-            video.category,
-            ...video.tags
-          ]
-            .join(" ")
-            .toLocaleLowerCase("ru");
-
-          if (!text.includes(query)) {
+      let filtered =
+        VIDEOS.filter((video) => {
+          if (!matchesSection(video)) {
             return false;
           }
-        }
 
-        return true;
-      });
+          if (
+            state.year !== "all" &&
+            String(video.year) !==
+              state.year
+          ) {
+            return false;
+          }
 
-      filtered = sortVideos(filtered);
+          if (
+            state.category !== "all" &&
+            video.category !==
+              state.category
+          ) {
+            return false;
+          }
 
-      state.filteredVideos = filtered;
-      state.visibleCount = state.pageSize;
+          if (
+            state.author !== "all" &&
+            video.author !==
+              state.author
+          ) {
+            return false;
+          }
+
+          if (query) {
+            const text = [
+              video.title,
+              video.author,
+              video.category,
+              ...video.tags
+            ]
+              .join(" ")
+              .toLocaleLowerCase("ru");
+
+            if (!text.includes(query)) {
+              return false;
+            }
+          }
+
+          return true;
+        });
+
+      filtered =
+        sortVideos(filtered);
+
+      state.filteredVideos =
+        filtered;
+
+      state.visibleCount =
+        state.pageSize;
 
       renderVideos();
       updateResultTitle();
@@ -1930,13 +2785,17 @@
     }
 
     function updateResultTitle() {
-      const navItem = NAVIGATION.find(
-        (item) => item.id === state.section
-      );
+      const navItem =
+        NAVIGATION.find(
+          (item) =>
+            item.id === state.section
+        );
 
-      elements.resultLabel.textContent = state.query
-        ? `Поиск: «${state.query}»`
-        : navItem?.label || "Каталог";
+      elements.resultLabel.textContent =
+        state.query
+          ? `Поиск: «${state.query}»`
+          : navItem?.label ||
+            "Каталог";
 
       elements.resultTitle.textContent =
         `${state.filteredVideos.length} видео`;
@@ -1945,20 +2804,38 @@
     function addToHistory(videoId) {
       state.history = [
         videoId,
-        ...state.history.filter((id) => id !== videoId)
+        ...state.history.filter(
+          (id) => id !== videoId
+        )
       ].slice(0, 50);
 
-      writeStorage(STORAGE.history, state.history);
+      writeStorage(
+        STORAGE.history,
+        state.history
+      );
+
       updateNavigationCounts();
     }
 
     function toggleFavorite(videoId) {
-      if (state.favorites.has(videoId)) {
-        state.favorites.delete(videoId);
-        showToast("Удалено из избранного");
+      if (
+        state.favorites.has(videoId)
+      ) {
+        state.favorites.delete(
+          videoId
+        );
+
+        showToast(
+          "Удалено из избранного"
+        );
       } else {
-        state.favorites.add(videoId);
-        showToast("Добавлено в избранное");
+        state.favorites.add(
+          videoId
+        );
+
+        showToast(
+          "Добавлено в избранное"
+        );
       }
 
       writeStorage(
@@ -1968,7 +2845,9 @@
 
       updateNavigationCounts();
 
-      if (state.section === "favorites") {
+      if (
+        state.section === "favorites"
+      ) {
         applyFilters();
       } else {
         renderVideos();
@@ -1976,8 +2855,13 @@
     }
 
     function createVideoCard(video) {
-      const card = document.createElement("article");
-      card.className = "video-card";
+      const card =
+        document.createElement(
+          "article"
+        );
+
+      card.className =
+        "video-card";
 
       card.innerHTML = `
         <a
@@ -1997,14 +2881,20 @@
 
           <button
             class="favorite-button ${
-              state.favorites.has(video.id) ? "is-active" : ""
+              state.favorites.has(video.id)
+                ? "is-active"
+                : ""
             }"
             type="button"
             data-favorite="${video.id}"
             aria-label="Добавить в избранное"
             title="Избранное"
           >
-            ${state.favorites.has(video.id) ? "♥" : "♡"}
+            ${
+              state.favorites.has(video.id)
+                ? "♥"
+                : "♡"
+            }
           </button>
         </a>
 
@@ -2030,7 +2920,9 @@
           </a>
 
           <div class="video-meta">
-            ${formatViews(video.views)} • ${video.year}
+            ${formatViews(video.views)}
+            •
+            ${video.year}
           </div>
 
           <span class="badge">
@@ -2039,52 +2931,77 @@
         </div>
       `;
 
-      const image = card.querySelector("img");
+      const image =
+        card.querySelector("img");
 
       image.addEventListener(
         "error",
         () => {
-          image.src = fallbackThumbnail();
+          image.src =
+            fallbackThumbnail();
         },
-        { once: true }
+        {
+          once: true
+        }
       );
 
       card
-        .querySelectorAll("[data-watch]")
+        .querySelectorAll(
+          "[data-watch]"
+        )
         .forEach((link) => {
-          link.addEventListener("click", () => {
-            addToHistory(video.id);
-          });
+          link.addEventListener(
+            "click",
+            () => {
+              addToHistory(
+                video.id
+              );
+            }
+          );
         });
 
-      const favoriteButton = card.querySelector(
-        "[data-favorite]"
-      );
+      const favoriteButton =
+        card.querySelector(
+          "[data-favorite]"
+        );
 
-      favoriteButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        toggleFavorite(video.id);
-      });
+      favoriteButton.addEventListener(
+        "click",
+        (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          toggleFavorite(
+            video.id
+          );
+        }
+      );
 
       return card;
     }
 
     function renderVideos() {
-      const videos = state.filteredVideos.slice(
-        0,
-        state.visibleCount
-      );
+      const videos =
+        state.filteredVideos.slice(
+          0,
+          state.visibleCount
+        );
 
-      elements.videoGrid.innerHTML = "";
+      elements.videoGrid.innerHTML =
+        "";
 
-      const fragment = document.createDocumentFragment();
+      const fragment =
+        document.createDocumentFragment();
 
       videos.forEach((video) => {
-        fragment.appendChild(createVideoCard(video));
+        fragment.appendChild(
+          createVideoCard(video)
+        );
       });
 
-      elements.videoGrid.appendChild(fragment);
+      elements.videoGrid.appendChild(
+        fragment
+      );
 
       elements.emptyState.classList.toggle(
         "hidden",
@@ -2093,12 +3010,22 @@
     }
 
     function renderRecommendations() {
-      const selected = [...VIDEOS]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, Math.min(4, VIDEOS.length));
+      const selected =
+        [...VIDEOS]
+          .sort(
+            () =>
+              Math.random() - 0.5
+          )
+          .slice(
+            0,
+            Math.min(
+              4,
+              VIDEOS.length
+            )
+          );
 
-      elements.recommendations.innerHTML = selected
-        .map(
+      elements.recommendations.innerHTML =
+        selected.map(
           (video) => `
             <a
               class="recommendation"
@@ -2114,22 +3041,33 @@
               >
 
               <div class="recommendation-info">
-                <strong>${escapeHtml(video.title)}</strong>
+                <strong>
+                  ${escapeHtml(video.title)}
+                </strong>
+
                 <small>
-                  ${escapeHtml(video.author)} • ${video.year}
+                  ${escapeHtml(video.author)}
+                  •
+                  ${video.year}
                 </small>
               </div>
             </a>
           `
-        )
-        .join("");
+        ).join("");
 
       elements.recommendations
-        .querySelectorAll("[data-recommendation]")
+        .querySelectorAll(
+          "[data-recommendation]"
+        )
         .forEach((item) => {
-          item.addEventListener("click", () => {
-            addToHistory(item.dataset.recommendation);
-          });
+          item.addEventListener(
+            "click",
+            () => {
+              addToHistory(
+                item.dataset.recommendation
+              );
+            }
+          );
         });
 
       elements.recommendations
@@ -2138,22 +3076,35 @@
           image.addEventListener(
             "error",
             () => {
-              image.src = fallbackThumbnail();
+              image.src =
+                fallbackThumbnail();
             },
-            { once: true }
+            {
+              once: true
+            }
           );
         });
     }
 
     function renderAuthors() {
-      const authors = [...new Set(VIDEOS.map((video) => video.author))]
-        .sort((a, b) => a.localeCompare(b, "ru"));
+      const authors = [
+        ...new Set(
+          VIDEOS.map(
+            (video) => video.author
+          )
+        )
+      ].sort(
+        (a, b) =>
+          a.localeCompare(b, "ru")
+      );
 
-      elements.authorsGrid.innerHTML = authors
-        .map((author) => {
-          const videosCount = VIDEOS.filter(
-            (video) => video.author === author
-          ).length;
+      elements.authorsGrid.innerHTML =
+        authors.map((author) => {
+          const videosCount =
+            VIDEOS.filter(
+              (video) =>
+                video.author === author
+            ).length;
 
           return `
             <button
@@ -2165,21 +3116,35 @@
                 ${escapeHtml(getInitials(author))}
               </span>
 
-              <strong>${escapeHtml(author)}</strong>
-              <small>${videosCount} видео</small>
+              <strong>
+                ${escapeHtml(author)}
+              </strong>
+
+              <small>
+                ${videosCount} видео
+              </small>
             </button>
           `;
-        })
-        .join("");
+        }).join("");
 
       elements.authorsGrid
-        .querySelectorAll("[data-author-card]")
+        .querySelectorAll(
+          "[data-author-card]"
+        )
         .forEach((button) => {
-          button.addEventListener("click", () => {
-            state.author = button.dataset.authorCard;
-            elements.authorFilter.value = state.author;
-            location.hash = "home";
-          });
+          button.addEventListener(
+            "click",
+            () => {
+              state.author =
+                button.dataset.authorCard;
+
+              elements.authorFilter.value =
+                state.author;
+
+              location.hash =
+                "home";
+            }
+          );
         });
     }
 
@@ -2190,12 +3155,20 @@
           : VIDEOS;
 
       if (source.length === 0) {
-        showToast("В базе пока нет видео");
+        showToast(
+          "В базе пока нет видео"
+        );
+
         return;
       }
 
       const video =
-        source[Math.floor(Math.random() * source.length)];
+        source[
+          Math.floor(
+            Math.random() *
+            source.length
+          )
+        ];
 
       addToHistory(video.id);
 
@@ -2207,7 +3180,12 @@
     }
 
     function setSection(section) {
-      if (!NAVIGATION.some((item) => item.id === section)) {
+      if (
+        !NAVIGATION.some(
+          (item) =>
+            item.id === section
+        )
+      ) {
         section = "home";
       }
 
@@ -2219,20 +3197,29 @@
       state.section = section;
 
       document
-        .querySelectorAll(".nav-link")
+        .querySelectorAll(
+          ".nav-link"
+        )
         .forEach((link) => {
           link.classList.toggle(
             "is-active",
-            link.dataset.section === section
+            link.dataset.section ===
+              section
           );
         });
 
-      const pageText = PAGE_TEXT[section] || PAGE_TEXT.home;
+      const pageText =
+        PAGE_TEXT[section] ||
+        PAGE_TEXT.home;
 
-      elements.pageTitle.textContent = pageText[0];
-      elements.pageDescription.textContent = pageText[1];
+      elements.pageTitle.textContent =
+        pageText[0];
 
-      const isAuthors = section === "authors";
+      elements.pageDescription.textContent =
+        pageText[1];
+
+      const isAuthors =
+        section === "authors";
 
       elements.authorsSection.classList.toggle(
         "hidden",
@@ -2246,7 +3233,11 @@
 
       elements.recommendationSection.classList.toggle(
         "hidden",
-        ["authors", "favorites", "history"].includes(section)
+        [
+          "authors",
+          "favorites",
+          "history"
+        ].includes(section)
       );
 
       if (isAuthors) {
@@ -2265,129 +3256,218 @@
       state.author = "all";
       state.sort = "recommended";
 
-      elements.searchInput.value = "";
-      elements.yearFilter.value = "all";
-      elements.categoryFilter.value = "all";
-      elements.authorFilter.value = "all";
-      elements.sortFilter.value = "recommended";
+      elements.searchInput.value =
+        "";
+
+      elements.yearFilter.value =
+        "all";
+
+      elements.categoryFilter.value =
+        "all";
+
+      elements.authorFilter.value =
+        "all";
+
+      elements.sortFilter.value =
+        "recommended";
 
       applyFilters();
     }
 
     function setTheme(theme) {
-      document.documentElement.dataset.theme = theme;
-      writeStorage(STORAGE.theme, theme);
+      document.documentElement.dataset.theme =
+        theme;
+
+      writeStorage(
+        STORAGE.theme,
+        theme
+      );
 
       document
-        .querySelector('meta[name="theme-color"]')
+        .querySelector(
+          'meta[name="theme-color"]'
+        )
         .setAttribute(
           "content",
-          theme === "dark" ? "#1c1c1c" : "#d92727"
+          theme === "dark"
+            ? "#1c1c1c"
+            : "#d92727"
         );
     }
 
     function closePanels() {
-      elements.sidebar.classList.remove("is-open");
-      elements.filters.classList.remove("is-open");
-      elements.backdrop.classList.remove("is-visible");
+      elements.sidebar.classList.remove(
+        "is-open"
+      );
+
+      elements.filters.classList.remove(
+        "is-open"
+      );
+
+      elements.backdrop.classList.remove(
+        "is-visible"
+      );
     }
 
     function showSkeletons() {
-      elements.skeletonGrid.innerHTML = Array.from(
-        { length: 8 },
-        () => `<div class="skeleton"></div>`
-      ).join("");
+      elements.skeletonGrid.innerHTML =
+        Array.from(
+          {
+            length: 12
+          },
+          () => `
+            <div class="skeleton"></div>
+          `
+        ).join("");
     }
 
     function hideSkeletons() {
-      elements.skeletonGrid.innerHTML = "";
+      elements.skeletonGrid.innerHTML =
+        "";
     }
 
     function bindEvents() {
-      window.addEventListener("hashchange", () => {
-        setSection(location.hash.slice(1) || "home");
-      });
-
-      elements.navigation.addEventListener("click", (event) => {
-        const link = event.target.closest("[data-section]");
-
-        if (!link) {
-          return;
+      window.addEventListener(
+        "hashchange",
+        () => {
+          setSection(
+            location.hash.slice(1) ||
+            "home"
+          );
         }
+      );
 
-        if (link.dataset.section === "random") {
+      elements.navigation.addEventListener(
+        "click",
+        (event) => {
+          const link =
+            event.target.closest(
+              "[data-section]"
+            );
+
+          if (!link) {
+            return;
+          }
+
+          if (
+            link.dataset.section ===
+            "random"
+          ) {
+            event.preventDefault();
+            openRandomVideo();
+          }
+        }
+      );
+
+      elements.searchForm.addEventListener(
+        "submit",
+        (event) => {
           event.preventDefault();
-          openRandomVideo();
+
+          state.query =
+            elements.searchInput.value.trim();
+
+          if (
+            state.section === "authors"
+          ) {
+            location.hash = "home";
+          } else {
+            applyFilters();
+          }
+
+          elements.catalog.scrollIntoView(
+            {
+              behavior: "smooth",
+              block: "start"
+            }
+          );
         }
-      });
-
-      elements.searchForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        state.query = elements.searchInput.value.trim();
-
-        if (state.section === "authors") {
-          location.hash = "home";
-        } else {
-          applyFilters();
-        }
-
-        elements.catalog.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      });
+      );
 
       let searchTimeout;
 
-      elements.searchInput.addEventListener("input", () => {
-        clearTimeout(searchTimeout);
+      elements.searchInput.addEventListener(
+        "input",
+        () => {
+          clearTimeout(
+            searchTimeout
+          );
 
-        searchTimeout = setTimeout(() => {
-          state.query = elements.searchInput.value.trim();
+          searchTimeout = setTimeout(
+            () => {
+              state.query =
+                elements.searchInput.value.trim();
 
-          if (state.section !== "authors") {
-            applyFilters();
-          }
-        }, 220);
-      });
+              if (
+                state.section !==
+                "authors"
+              ) {
+                applyFilters();
+              }
+            },
+            220
+          );
+        }
+      );
 
-      elements.yearFilter.addEventListener("change", () => {
-        state.year = elements.yearFilter.value;
-        applyFilters();
-      });
-
-      elements.categoryFilter.addEventListener(
+      elements.yearFilter.addEventListener(
         "change",
         () => {
-          state.category = elements.categoryFilter.value;
+          state.year =
+            elements.yearFilter.value;
+
           applyFilters();
         }
       );
 
-      elements.authorFilter.addEventListener("change", () => {
-        state.author = elements.authorFilter.value;
-        applyFilters();
-      });
+      elements.categoryFilter.addEventListener(
+        "change",
+        () => {
+          state.category =
+            elements.categoryFilter.value;
 
-      elements.sortFilter.addEventListener("change", () => {
-        state.sort = elements.sortFilter.value;
-        applyFilters();
-      });
+          applyFilters();
+        }
+      );
+
+      elements.authorFilter.addEventListener(
+        "change",
+        () => {
+          state.author =
+            elements.authorFilter.value;
+
+          applyFilters();
+        }
+      );
+
+      elements.sortFilter.addEventListener(
+        "change",
+        () => {
+          state.sort =
+            elements.sortFilter.value;
+
+          applyFilters();
+        }
+      );
 
       elements.clearFiltersButton.addEventListener(
         "click",
         resetFilters
       );
 
-      elements.themeButton.addEventListener("click", () => {
-        const currentTheme =
-          document.documentElement.dataset.theme;
+      elements.themeButton.addEventListener(
+        "click",
+        () => {
+          const currentTheme =
+            document.documentElement.dataset.theme;
 
-        setTheme(
-          currentTheme === "dark" ? "light" : "dark"
-        );
-      });
+          setTheme(
+            currentTheme === "dark"
+              ? "light"
+              : "dark"
+          );
+        }
+      );
 
       elements.randomHeaderButton.addEventListener(
         "click",
@@ -2399,22 +3479,40 @@
         openRandomVideo
       );
 
-      elements.catalogButton.addEventListener("click", () => {
-        elements.catalog.scrollIntoView({
-          behavior: "smooth"
-        });
-      });
+      elements.catalogButton.addEventListener(
+        "click",
+        () => {
+          elements.catalog.scrollIntoView(
+            {
+              behavior: "smooth"
+            }
+          );
+        }
+      );
 
-      elements.menuButton.addEventListener("click", () => {
-        elements.sidebar.classList.add("is-open");
-        elements.backdrop.classList.add("is-visible");
-      });
+      elements.menuButton.addEventListener(
+        "click",
+        () => {
+          elements.sidebar.classList.add(
+            "is-open"
+          );
+
+          elements.backdrop.classList.add(
+            "is-visible"
+          );
+        }
+      );
 
       elements.mobileFilterButton.addEventListener(
         "click",
         () => {
-          elements.filters.classList.add("is-open");
-          elements.backdrop.classList.add("is-visible");
+          elements.filters.classList.add(
+            "is-open"
+          );
+
+          elements.backdrop.classList.add(
+            "is-visible"
+          );
         }
       );
 
@@ -2423,24 +3521,32 @@
         closePanels
       );
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const entry = entries[0];
+      const observer =
+        new IntersectionObserver(
+          (entries) => {
+            const entry =
+              entries[0];
 
-          if (
-            entry?.isIntersecting &&
-            state.visibleCount < state.filteredVideos.length
-          ) {
-            state.visibleCount += state.pageSize;
-            renderVideos();
+            if (
+              entry?.isIntersecting &&
+              state.visibleCount <
+                state.filteredVideos.length
+            ) {
+              state.visibleCount +=
+                state.pageSize;
+
+              renderVideos();
+            }
+          },
+          {
+            rootMargin:
+              "600px 0px"
           }
-        },
-        {
-          rootMargin: "600px 0px"
-        }
-      );
+        );
 
-      observer.observe(elements.sentinel);
+      observer.observe(
+        elements.sentinel
+      );
     }
 
     function init() {
@@ -2451,24 +3557,39 @@
       renderRecommendations();
       updateNavigationCounts();
 
-      const savedTheme = readStorage(STORAGE.theme, null);
+      const savedTheme =
+        readStorage(
+          STORAGE.theme,
+          null
+        );
 
       setTheme(
         savedTheme ||
-          (
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)")
-              .matches
-              ? "dark"
-              : "light"
-          )
+        (
+          window.matchMedia &&
+          window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches
+            ? "dark"
+            : "light"
+        )
       );
 
-      setTimeout(() => {
-        hideSkeletons();
-        setSection(location.hash.slice(1) || "home");
-        elements.loader.classList.add("is-hidden");
-      }, 650);
+      setTimeout(
+        () => {
+          hideSkeletons();
+
+          setSection(
+            location.hash.slice(1) ||
+            "home"
+          );
+
+          elements.loader.classList.add(
+            "is-hidden"
+          );
+        },
+        650
+      );
     }
 
     init();
